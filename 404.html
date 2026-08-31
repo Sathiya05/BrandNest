@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Page not found on BrandNest.">
+  <link rel="icon" type="image/png" href="favicon.png?v=2">
+    <title>404 Not Found | BrandNest</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1F4E5F',   /* Bold Red */
+                        secondary: '#D4A373', /* Vibrant Orange */
+                        bgLight: '#FFFFFF',
+                        bgDark: '#111827',    
+                        cardLight: '#F9FAFB',
+                        cardDark: '#1f2937',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-primary': 'linear-gradient(to right, #1F4E5F, #D4A373)'
+                    },
+                    animation: {
+                        'gradient-x': 'gradient-x 3s ease infinite',
+                    },
+                    keyframes: {
+                        'gradient-x': {
+                            '0%, 100%': { 'background-size': '200% 200%', 'background-position': 'left center' },
+                            '50%': { 'background-size': '200% 200%', 'background-position': 'right center' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            --bg-color: #FFFFFF;
+            --text-color: #111827;
+            --text-muted: #4B5563;
+            --card-bg: #F9FAFB;
+            --border-color: #E5E7EB;
+        }
+        
+        [data-theme="dark"], .dark {
+            --bg-color: #111827;
+            --text-color: #F9FAFB;
+            --text-muted: #9CA3AF;
+            --card-bg: #1f2937;
+            --border-color: #374151;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: 400;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeInUp 0.5s ease-out; }
+    </style>
+</head>
+<body class="antialiased font-sans h-screen flex items-center justify-center relative overflow-hidden dark">
+
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+
+    <div class="absolute top-1/4 start-1/4 w-72 h-72 bg-primary/10 rounded-full blur-[100px] animate-pulse pointer-events-none z-0"></div>
+    <div class="absolute bottom-1/4 end-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-[120px] animate-pulse pointer-events-none z-0" style="animation-delay: 1.5s;"></div>
+
+    <div class="container mx-auto px-4 text-center z-10 animate-fade-in">
+        
+        <div class="flex justify-center mb-8">
+            <a href="index.html" class="flex items-center gap-2">
+                <i class="fas fa-gift text-3xl text-primary drop-shadow-[0_2px_8px_rgba(239,68,68,0.4)]"></i>
+                <span class="text-2xl font-medium tracking-widest text-[var(--text-color)] uppercase whitespace-nowrap">Iron<span class="text-primary">Pulse</span></span>
+            </a>
+        </div>
+        
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--card-bg)] border border-[var(--border-color)] font-medium tracking-widest uppercase text-xs text-[var(--text-color)] mb-8 shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+            System Error
+        </div>
+        
+        <h1 class="text-[120px] md:text-[200px] font-medium text-transparent bg-clip-text bg-gradient-to-br from-primary via-red-500 to-secondary animate-gradient-x leading-none mb-4 drop-shadow-2xl uppercase tracking-tighter">
+            404
+        </h1>
+        
+        <h2 class="text-2xl md:text-4xl font-medium uppercase tracking-tight text-[var(--text-color)] mb-4">
+            Lost Your Form?
+        </h2>
+        
+        <p class="text-xs md:text-sm text-[var(--text-muted)] max-w-md mx-auto font-medium uppercase tracking-widest mb-10 leading-relaxed">
+            Even the best athletes take a wrong turn. The page you are looking for has been moved or doesn't exist. Let's get you back to the company.
+        </p>
+
+        <a href="index.html" class="inline-flex items-center justify-center gap-3 bg-gradient-primary text-white px-8 py-3.5 rounded-full font-medium text-xs uppercase tracking-widest hover:scale-[1.02] transition-transform duration-300 shadow-lg shadow-primary/30">
+            <i class="fas fa-home text-xs"></i> Return to Base
+        </a>
+    </div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    let currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    
+    // First, clear active classes from ALL nav links and reset them to default inactive state
+    document.querySelectorAll('nav a').forEach(link => {
+        link.classList.remove('text-primary', 'dark:text-primary', 'bg-gray-100', 'dark:bg-primary/10', 'font-bold');
+        // Add default inactive classes if they don't have them
+        if (!link.classList.contains('bg-primary')) { // Don't mess with dropdown item hovers if they exist
+            link.classList.add('text-dark-bg', 'dark:text-white');
+        }
+    });
+
+    // Then, find the exact matching link and apply active state
+    let foundMatch = false;
+    document.querySelectorAll('nav a').forEach(link => {
+      let href = link.getAttribute('href');
+      if (href && href === currentPath) {
+        link.classList.add('text-primary', 'dark:text-primary', 'bg-gray-100', 'dark:bg-primary/10', 'font-bold');
+        link.classList.remove('text-dark-bg', 'text-gray-600', 'dark:text-white', 'dark:text-white/70');
+        foundMatch = true;
+        
+        // If it's a dropdown child (like index.html or home2.html), also highlight the parent "Home" link
+        let parentDropdown = link.closest('.group');
+        if (parentDropdown) {
+            let parentLink = parentDropdown.querySelector('a[href="#"]');
+            if (parentLink) {
+                parentLink.classList.add('text-primary', 'dark:text-primary', 'bg-gray-100', 'dark:bg-primary/10', 'font-bold');
+                parentLink.classList.remove('text-dark-bg', 'dark:text-white');
+            }
+        }
+      }
+    });
+    
+    // Fallback: if somehow no match, but we are at root, highlight index.html
+    if (!foundMatch && currentPath === '') {
+        let homeLink = document.querySelector('nav a[href="index.html"]');
+        if (homeLink) {
+            homeLink.classList.add('text-primary', 'dark:text-primary', 'bg-gray-100', 'dark:bg-primary/10', 'font-bold');
+            homeLink.classList.remove('text-dark-bg', 'dark:text-white');
+        }
+    }
+  });
+</script>
+
+</body>
+</html>
+
+

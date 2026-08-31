@@ -1,0 +1,514 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>BrandNest | Products</title>
+  <meta name="description" content="High-octane group merchandise items at BrandNest. HIIT, Yoga, Spin, and Strength.">
+  <link rel="icon" type="image/png" href="favicon.png?v=2">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script>
+    tailwind.config = { 
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'dark-bg': '#111827',
+            'light-bg': '#FFFFFF',
+            'primary': '#1F4E5F',
+            'secondary': '#D4A373',
+            'dark-surface': '#1f2937'
+          },
+          backgroundImage: {
+            'gradient-primary': 'linear-gradient(to right, #1F4E5F, #D4A373)',
+            'gradient-secondary': 'linear-gradient(to right, #D4A373, #facc15)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html, body {
+      max-width: 100vw;
+      overflow-x: hidden;
+      width: 100%;
+      position: relative;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in { animation: fadeInUp 0.8s ease-out forwards; }
+    .hide-scroll::-webkit-scrollbar { display: none; }
+    .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+    /* Schedule specific hover fx */
+    .schedule-row:hover .schedule-btn { background: #1F4E5F; color: white; border-color: #1F4E5F; }
+  </style>
+</head>
+<body class="font-sans antialiased transition-colors duration-300 bg-light-bg dark:bg-dark-bg text-dark-bg dark:text-white flex flex-col min-h-screen">
+
+  <!-- NAVIGATION -->
+  <div class="fixed top-2 md:top-4 inset-x-0 z-50 px-4 sm:px-6 lg:px-8 flex justify-center pointer-events-none">
+    <nav class="w-full max-w-[1600px] bg-light-bg/90 dark:bg-dark-bg/90 backdrop-blur-lg border border-gray-200 dark:border-primary/30 rounded-2xl xl:rounded-full shadow-2xl transition-colors duration-300 pointer-events-auto relative">
+      <div class="flex justify-between items-center h-[70px] md:h-[80px] px-4 xl:px-8">
+
+        <!-- LOGO -->
+        <div class="flex-shrink-0 pr-2 xl:pr-4">
+          <a href="index.html" class="flex items-center gap-2 md:gap-3">
+            <i class="fas fa-gift text-3xl md:text-4xl text-primary drop-shadow-[0_2px_8px_rgba(239,68,68,0.4)]"></i>
+            <div class="flex flex-col">
+              <span class="text-xl md:text-2xl font-medium tracking-widest text-dark-bg dark:text-white uppercase truncate">Brand<span class="text-primary">Nest</span></span>
+            </div>
+          </a>
+        </div>
+
+        <!-- DESKTOP MENU -->
+        <div class="hidden xl:flex items-center justify-center flex-1">
+          <div class="flex items-center gap-1">
+            
+            <!-- Home Dropdown -->
+            <div class="relative group h-[80px] flex items-center">
+              <a href="#" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary transition-colors flex items-center relative px-2 py-2 rounded-md whitespace-nowrap">
+                <span>Home</span>
+                <i class="fas fa-chevron-down text-[8px] ms-1 transition-transform duration-300 group-hover:rotate-180"></i>
+              </a>
+              <div class="absolute top-[70px] start-0 w-48 bg-light-bg dark:bg-dark-bg border border-gray-200 dark:border-primary/20 shadow-2xl rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 overflow-hidden">
+                <div class="py-2 flex flex-col">
+                  <a href="index.html" class="px-6 py-3 text-xs font-medium text-dark-bg dark:text-white hover:text-white hover:bg-primary transition-colors uppercase">Home 1</a>
+                  <a href="home2.html" class="px-6 py-3 text-xs font-medium text-dark-bg dark:text-white hover:text-white hover:bg-primary transition-colors uppercase">Home 2</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Standard Links -->
+            <a href="about.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary dark:hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-primary/10">About</a>
+            <a href="blog.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary dark:hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-primary/10">Blog</a>
+            <a href="lead-times.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary dark:hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-primary/10">Lead Times</a>
+            <a href="products.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary dark:hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-primary/10">Products</a>
+            <a href="customization.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary dark:hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-primary/10">Customization</a>
+            <a href="catalog.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary dark:hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-primary/10">Catalog</a>
+            <a href="faq.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary dark:hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-primary/10">FAQ</a>
+            <a href="contact.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary dark:hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-primary/10">Contact</a>
+
+            <!-- Dashboard Dropdown -->
+            <div class="relative group h-[80px] flex items-center">
+              <a href="#" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary transition-colors flex items-center relative px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-primary/10 whitespace-nowrap">
+                <span>Dashboard</span>
+                <i class="fas fa-chevron-down text-[8px] ms-1 transition-transform duration-300 group-hover:rotate-180"></i>
+              </a>
+              <div class="absolute top-[70px] end-0 w-48 bg-light-bg dark:bg-dark-bg border border-gray-200 dark:border-primary/20 shadow-2xl rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 overflow-hidden">
+                <div class="py-2 flex flex-col">
+                  <a href="dashboard-user.html" class="px-6 py-3 text-xs font-medium text-dark-bg dark:text-white hover:text-white hover:bg-primary transition-colors uppercase"><i class="fas fa-user mr-2"></i> User</a>
+                  <a href="dashboard-admin.html" class="px-6 py-3 text-xs font-medium text-dark-bg dark:text-white hover:text-white hover:bg-primary transition-colors uppercase"><i class="fas fa-shield-alt mr-2"></i> Admin</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 flex-shrink-0">
+                    <div class="hidden xl:flex items-center gap-2">
+            <button type="button" class="rtl-toggle-btn text-dark-bg dark:text-white hover:text-primary focus:outline-none transition duration-300 bg-gray-100 dark:bg-primary/10 px-3 py-2.5 rounded-full text-xs font-medium uppercase tracking-wider" title="Toggle RTL">RTL</button>
+            <button id="theme-toggle" class="text-dark-bg dark:text-white hover:text-primary focus:outline-none transition duration-300 bg-gray-100 dark:bg-primary/10 p-2.5 rounded-full" title="Toggle Mode">
+              <i class="fas fa-moon text-sm" id="theme-icon"></i>
+            </button>
+            <a href="login.html" class="text-dark-bg dark:text-white hover:text-primary focus:outline-none transition duration-300 bg-gray-100 dark:bg-primary/10 px-4 py-2.5 rounded-full text-xs font-medium uppercase tracking-wider">Login</a>
+            <a href="register.html" class="bg-gradient-primary text-white px-5 py-2.5 rounded-full text-xs uppercase tracking-wider font-medium shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all duration-300">Register</a>
+          </div>
+
+          <!-- Mobile Toggle -->
+          <button id="mobile-menu-button" class="xl:hidden text-dark-bg dark:text-white hover:text-primary focus:outline-none transition duration-300 bg-gray-100 dark:bg-primary/10 p-2 rounded-full">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- MOBILE MENU DROPDOWN -->
+      <div id="mobile-menu" class="hidden xl:hidden absolute top-[80px] inset-x-0 bg-light-bg dark:bg-dark-bg border border-gray-200 dark:border-primary/20 shadow-2xl rounded-2xl transition-colors duration-300 overflow-hidden z-50">
+        <div class="px-6 pt-4 pb-8 flex flex-col gap-0 max-h-[75vh] overflow-y-auto hide-scroll">
+          
+          <div class="border-b border-gray-200 dark:border-white/10 flex flex-col">
+            <div class="w-full flex items-center justify-between py-4">
+              <a href="#" class="text-xs uppercase tracking-widest font-medium text-primary">Home</a>
+              <button id="mobile-home-dropdown" class="p-2 -mr-2 text-primary focus:outline-none"><i class="fas fa-plus text-xs" id="mobile-home-icon"></i></button>
+            </div>
+            <div id="mobile-home-menu" class="hidden pb-4 flex flex-col gap-3 ps-4 border-s-2 border-primary ms-2">
+              <a href="index.html" class="block text-xs font-medium text-gray-600 dark:text-white/70 hover:text-primary uppercase">Home 1</a>
+              <a href="home2.html" class="block text-xs font-medium text-gray-600 dark:text-white/70 hover:text-primary uppercase">Home 2</a>
+            </div>
+          </div>
+          
+          <a href="about.html" class="block py-4 border-b border-gray-200 dark:border-white/10 text-dark-bg dark:text-white hover:text-primary text-xs uppercase tracking-widest font-medium">About</a>
+          <a href="blog.html" class="block py-4 border-b border-gray-200 dark:border-white/10 text-dark-bg dark:text-white hover:text-primary text-xs uppercase tracking-widest font-medium">Blog</a>
+          <a href="lead-times.html" class="block py-4 border-b border-gray-200 dark:border-white/10 text-dark-bg dark:text-white hover:text-primary text-xs uppercase tracking-widest font-medium">Lead Times</a>
+          <a href="products.html" class="block py-4 border-b border-gray-200 dark:border-white/10 text-dark-bg dark:text-white hover:text-primary text-xs uppercase tracking-widest font-medium">Products</a>
+          <a href="customization.html" class="block py-4 border-b border-gray-200 dark:border-white/10 text-dark-bg dark:text-white hover:text-primary text-xs uppercase tracking-widest font-medium">Customization</a>
+          <a href="catalog.html" class="block py-4 border-b border-gray-200 dark:border-white/10 text-dark-bg dark:text-white hover:text-primary text-xs uppercase tracking-widest font-medium">Catalog</a>
+          <a href="faq.html" class="block py-4 border-b border-gray-200 dark:border-white/10 text-dark-bg dark:text-white hover:text-primary text-xs uppercase tracking-widest font-medium">FAQ</a>
+          <a href="contact.html" class="block py-4 border-b border-gray-200 dark:border-white/10 text-dark-bg dark:text-white hover:text-primary text-xs uppercase tracking-widest font-medium">Contact</a>
+          
+          <div class="border-b border-gray-200 dark:border-white/10 flex flex-col">
+            <div class="w-full flex items-center justify-between py-4">
+              <span class="text-xs uppercase tracking-widest font-medium text-dark-bg dark:text-white">Dashboard</span>
+              <button id="mobile-dash-dropdown" class="p-2 -mr-2 text-dark-bg dark:text-white focus:outline-none"><i class="fas fa-plus text-xs" id="mobile-dash-icon"></i></button>
+            </div>
+            <div id="mobile-dash-menu" class="hidden pb-4 flex flex-col gap-3 ps-4 border-s-2 border-gray-500 ms-2">
+              <a href="dashboard-user.html" class="block text-xs font-medium text-gray-600 dark:text-white/70 hover:text-primary uppercase">User</a>
+              <a href="dashboard-admin.html" class="block text-xs font-medium text-gray-600 dark:text-white/70 hover:text-primary uppercase">Admin</a>
+            </div>
+          </div>
+
+                    <div class="pt-6 flex flex-col gap-4">
+            <a href="login.html" class="flex items-center justify-center w-full border border-gray-200 dark:border-primary/30 text-dark-bg dark:text-white px-2 py-3 rounded-full font-medium uppercase tracking-widest text-xs transition duration-300 hover:bg-gray-100 dark:hover:bg-primary/10">Login</a>
+            <a href="register.html" class="flex items-center justify-center w-full bg-gradient-primary text-white px-2 py-3 rounded-full font-medium uppercase tracking-widest text-xs transition duration-300">Register</a>
+            <div class="flex gap-4">
+              <button type="button" class="rtl-toggle-btn flex-1 flex items-center justify-center gap-2 text-dark-bg dark:text-white bg-gray-100 dark:bg-primary/10 px-4 py-3 rounded-full uppercase tracking-widest text-xs font-medium">RTL</button>
+              <button id="mobile-theme-toggle" class="flex-1 flex items-center justify-center gap-2 text-dark-bg dark:text-white bg-gray-100 dark:bg-primary/10 px-4 py-3 rounded-full uppercase tracking-widest text-xs font-medium">
+                <i class="fas fa-moon text-sm" id="mobile-theme-icon"></i>
+                <span id="mobile-theme-text">Light Mode</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <main class="flex-grow w-full max-w-[100vw] overflow-hidden">
+    
+    
+
+<!-- 1️⃣ HERO SECTION -->
+<section class="relative min-h-screen flex items-center justify-center pt-[120px] pb-16 overflow-hidden bg-white dark:bg-dark-bg text-dark-bg dark:text-white">
+  
+  <!-- BACKGROUND IMAGE -->
+  <div class="absolute inset-0 z-0">
+    <img src="assets/images/hero-products.jpg" class="w-full h-full object-cover opacity-60 dark:opacity-70" alt="Corporate Gifting Background">
+  </div>
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in">
+
+    <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight mb-6">Our Products</h1>
+    <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-10">Stationery, Tech, Hampers, Apparel, Trophies.</p>
+    <a href="#section2" class="inline-block bg-primary text-white font-bold px-8 py-4 rounded-full hover:bg-secondary transition-colors">Discover More</a>
+  </div>
+</section>
+
+
+
+<!-- 2️⃣ CATEGORIES -->
+<section class="py-16 bg-gray-50 dark:bg-gray-800/50 text-dark-bg dark:text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold text-center mb-12 uppercase">Explore Our Range</h2>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl text-center border-t-4 border-secondary transition-transform hover:-translate-y-2">
+        <i class="fas fa-pen-nib text-5xl text-primary mb-6"></i>
+        <h3 class="text-xl font-bold mb-3">Stationery</h3>
+        <p class="text-gray-600 dark:text-gray-400">Premium notebooks, executive pens, and desk organizers tailored for professionals.</p>
+      </div>
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl text-center border-t-4 border-secondary transition-transform hover:-translate-y-2">
+        <i class="fas fa-laptop text-5xl text-primary mb-6"></i>
+        <h3 class="text-xl font-bold mb-3">Tech Gear</h3>
+        <p class="text-gray-600 dark:text-gray-400">High-capacity power banks, wireless chargers, and smart office accessories.</p>
+      </div>
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl text-center border-t-4 border-secondary transition-transform hover:-translate-y-2">
+        <i class="fas fa-box-open text-5xl text-primary mb-6"></i>
+        <h3 class="text-xl font-bold mb-3">Gift Hampers</h3>
+        <p class="text-gray-600 dark:text-gray-400">Curated assortments for holidays, onboarding, and client appreciation.</p>
+      </div>
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl text-center border-t-4 border-secondary transition-transform hover:-translate-y-2">
+        <i class="fas fa-tshirt text-5xl text-primary mb-6"></i>
+        <h3 class="text-xl font-bold mb-3">Apparel</h3>
+        <p class="text-gray-600 dark:text-gray-400">High-quality branded hoodies, polos, and activewear for your team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 3️⃣ BEST SELLERS -->
+<section class="py-16 bg-white dark:bg-dark-bg text-dark-bg dark:text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-3xl font-bold mb-12 uppercase">Best Sellers</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700">
+        <img src="assets/images/powerbank.jpg" class="w-full h-48 object-cover transition-transform hover:scale-105">
+        <div class="p-6">
+            <h4 class="text-lg font-bold mb-2">Executive Tech Bundle</h4>
+            <p class="text-sm text-gray-500 mb-4">Includes wireless charger, earbuds, and tracking tag.</p>
+            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold">Top Rated</span>
+        </div>
+      </div>
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700">
+        <img src="assets/images/journal.jpg" class="w-full h-48 object-cover transition-transform hover:scale-105">
+        <div class="p-6">
+            <h4 class="text-lg font-bold mb-2">Leather Bound Journal</h4>
+            <p class="text-sm text-gray-500 mb-4">Embossed genuine leather with refillable pages.</p>
+            <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-xs font-bold">Classic</span>
+        </div>
+      </div>
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700">
+        <img src="assets/images/mug.jpg" class="w-full h-48 object-cover transition-transform hover:scale-105">
+        <div class="p-6">
+            <h4 class="text-lg font-bold mb-2">Insulated Travel Mug</h4>
+            <p class="text-sm text-gray-500 mb-4">Keeps drinks hot for 12 hours. Laser engraved logo.</p>
+            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold">Trending</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 4️⃣ SOURCING -->
+<section class="py-16 bg-gray-50 dark:bg-gray-800/50 text-dark-bg dark:text-white">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-white dark:bg-gray-800 p-10 rounded-3xl shadow-2xl border-l-8 border-primary flex flex-col md:flex-row items-center gap-8">
+        <div class="text-6xl text-primary"><i class="fas fa-leaf"></i></div>
+        <div>
+            <h2 class="text-3xl font-bold mb-4 uppercase">Sustainable Sourcing</h2>
+            <p class="text-lg text-gray-600 dark:text-gray-400">We partner with eco-friendly suppliers globally to ensure your corporate gifts leave a positive impact on the planet. From recycled packaging to carbon-neutral shipping.</p>
+        </div>
+    </div>
+  </div>
+</section>
+<!-- 5️⃣ BULK DEALS -->
+<section class="py-16 bg-white dark:bg-dark-bg text-dark-bg dark:text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold mb-12 uppercase text-center">Tiered Bulk Pricing</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+        <div class="p-8 border border-gray-200 dark:border-gray-700 rounded-2xl hover:shadow-xl transition-shadow bg-gray-50 dark:bg-gray-800/50">
+            <h3 class="text-xl font-bold text-gray-500 mb-2">Standard</h3>
+            <p class="text-4xl font-black mb-4">50 - 499<span class="text-lg font-normal"> units</span></p>
+            <p class="text-gray-500">Base catalog pricing with complimentary standard shipping.</p>
+        </div>
+        <div class="p-8 border-2 border-primary rounded-2xl shadow-2xl transform md:-translate-y-4 bg-white dark:bg-gray-800 relative">
+            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Most Popular</div>
+            <h3 class="text-xl font-bold text-primary mb-2">Corporate</h3>
+            <p class="text-4xl font-black mb-4">500 - 4,999<span class="text-lg font-normal"> units</span></p>
+            <p class="text-gray-500">Up to 20% discount, free digital mockups, and priority production.</p>
+        </div>
+        <div class="p-8 border border-gray-200 dark:border-gray-700 rounded-2xl hover:shadow-xl transition-shadow bg-gray-50 dark:bg-gray-800/50">
+            <h3 class="text-xl font-bold text-gray-500 mb-2">Enterprise</h3>
+            <p class="text-4xl font-black mb-4">5,000+<span class="text-lg font-normal"> units</span></p>
+            <p class="text-gray-500">Up to 40% discount, dedicated account manager, and API access.</p>
+        </div>
+    </div>
+  </div>
+</section>
+<!-- 6️⃣ CTA -->
+<section class="py-16 bg-primary text-white text-center">
+  <h2 class="text-4xl font-bold mb-6 uppercase">Ready to order?</h2>
+  <a href="dashboard-user.html" class="bg-secondary px-8 py-3 rounded-full font-bold shadow-lg hover:bg-white hover:text-primary transition-colors">Start Bulk Order</a>
+</section>
+<!-- FOOTER -->
+  <footer class="bg-[#0b101a] text-white pt-16 pb-10 border-t border-primary/20 w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        
+        <div class="md:col-span-1">
+          <a href="index.html" class="flex items-center gap-3 mb-6">
+            <i class="fas fa-gift text-3xl text-primary"></i>
+            <h3 class="text-2xl font-medium tracking-widest uppercase text-white">Brand<span class="text-primary">Nest</span></h3>
+          </a>
+          <p class="text-gray-400 text-sm font-medium leading-relaxed mb-6">
+            Forging strength, endurance, and community. Start your transformation today.
+          </p>
+          <div class="flex gap-4">
+            <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-primary text-white flex items-center justify-center transition-colors rounded-full"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-primary text-white flex items-center justify-center transition-colors rounded-full"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-primary text-white flex items-center justify-center transition-colors rounded-full"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-sm uppercase tracking-widest font-medium mb-6 text-white border-l-2 border-primary pl-3">Explore</h4>
+          <ul class="space-y-4">
+            <li><a href="about.html" class="text-sm text-gray-400 hover:text-primary transition-colors font-medium uppercase">About Us</a></li>
+            <li><a href="customization.html" class="text-sm text-gray-400 hover:text-primary transition-colors font-medium uppercase">Customization</a></li>
+            <li><a href="products.html" class="text-sm text-gray-400 hover:text-primary transition-colors font-medium uppercase">Items</a></li>
+            <li><a href="catalog.html" class="text-sm text-gray-400 hover:text-primary transition-colors font-medium uppercase">Catalog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-sm uppercase tracking-widest font-medium mb-6 text-white border-l-2 border-primary pl-3">Support</h4>
+          <ul class="space-y-4">
+            <li><a href="faq.html" class="text-sm text-gray-400 hover:text-primary transition-colors font-medium uppercase">FAQ</a></li>
+            <li><a href="contact.html" class="text-sm text-gray-400 hover:text-primary transition-colors font-medium uppercase">Contact Us</a></li>
+            <li><a href="lead-times.html" class="text-sm text-gray-400 hover:text-primary transition-colors font-medium uppercase">Lead Times Guide</a></li>
+            <li><a href="dashboard-user.html" class="text-sm text-gray-400 hover:text-primary transition-colors font-medium uppercase">Member Portal</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-sm uppercase tracking-widest font-medium mb-6 text-white border-l-2 border-primary pl-3">Contact</h4>
+          <ul class="space-y-4">
+            <li class="flex items-start text-sm text-gray-400">
+              <i class="fas fa-map-marker-alt text-primary mt-1 mr-3"></i>
+              <span class="font-medium">100 Muscle Ave, Merchandise District, NY 10001</span>
+            </li>
+            <li class="flex items-center text-sm text-gray-400">
+              <i class="fas fa-phone text-primary mr-3"></i>
+              <a href="tel:+1234567890" class="hover:text-primary transition-colors font-medium">+1 (234) 567-8900</a>
+            </li>
+            <li class="flex items-center text-sm text-gray-400">
+              <i class="fas fa-envelope text-primary mr-3"></i>
+              <a href="mailto:info@BrandNest.com" class="hover:text-primary transition-colors font-medium">info@BrandNest.com</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4">
+        <p class="text-gray-500 text-xs tracking-widest uppercase font-medium">
+          Â© 2026 BrandNest Merchandise. All rights reserved.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="text-gray-500 hover:text-primary text-xs tracking-widest uppercase font-medium transition-colors">Privacy</a>
+          <a href="#" class="text-gray-500 hover:text-primary text-xs tracking-widest uppercase font-medium transition-colors">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const html = document.documentElement;
+
+    // Mobile Menu Toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      menuIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+      if (!mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('flex');
+      } else {
+          mobileMenu.classList.remove('flex');
+      }
+    });
+
+    // Mobile Dropdown Logic
+    function setupMobileDropdown(dropdownId, menuId, iconId) {
+      const dropdownBtn = document.getElementById(dropdownId);   
+      const menu = document.getElementById(menuId);
+      const icon = document.getElementById(iconId);
+      
+      if(dropdownBtn && menu && icon) {
+        dropdownBtn.addEventListener('click', (e) => {
+          e.preventDefault(); 
+          menu.classList.toggle('hidden');
+          if(menu.classList.contains('hidden')) {
+            icon.classList.remove('fa-minus');
+            icon.classList.add('fa-plus');
+            menu.classList.remove('flex');
+          } else {
+            icon.classList.remove('fa-plus');
+            icon.classList.add('fa-minus');
+            menu.classList.add('flex');
+          }
+        });
+      }
+    }
+
+    setupMobileDropdown('mobile-home-dropdown', 'mobile-home-menu', 'mobile-home-icon');
+    setupMobileDropdown('mobile-dash-dropdown', 'mobile-dash-menu', 'mobile-dash-icon');
+
+    // Theme Toggle (Dark/Light)
+    (function() {
+      function updateThemeIcons() {
+        const isDark = html.classList.contains('dark');
+        const themeIcon = document.getElementById('theme-icon');
+        if (themeIcon) themeIcon.className = isDark ? 'fas fa-sun text-sm' : 'fas fa-moon text-sm';
+        
+        const mobileThemeIcon = document.getElementById('mobile-theme-icon');
+        const mobileThemeText = document.getElementById('mobile-theme-text');
+        if (mobileThemeIcon) mobileThemeIcon.className = isDark ? 'fas fa-sun text-sm' : 'fas fa-moon text-sm';
+        if (mobileThemeText) mobileThemeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+      }
+
+      function toggleTheme() {
+        html.classList.toggle('dark');
+        updateThemeIcons();
+      }
+
+      const themeToggle = document.getElementById('theme-toggle');
+      if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+
+      const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+      if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+
+      updateThemeIcons();
+    
+      // --- RTL Toggle Logic ---
+      const rtlToggleBtns = document.querySelectorAll('.rtl-toggle-btn');
+      rtlToggleBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation(); 
+          document.body.classList.add('no-transition');
+          const currentDir = html.getAttribute('dir') || 'ltr';
+          html.setAttribute('dir', currentDir === 'ltr' ? 'rtl' : 'ltr');
+          setTimeout(() => { document.body.classList.remove('no-transition'); }, 50);
+        });
+      });
+    })();
+  </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    let currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    
+    // First, clear active classes from ALL nav links and reset them to default inactive state
+    document.querySelectorAll('nav a').forEach(link => {
+        link.classList.remove('text-primary', 'dark:text-primary', 'bg-gray-100', 'dark:bg-primary/10', 'font-bold');
+        // Add default inactive classes if they don't have them
+        if (!link.classList.contains('bg-primary')) { // Don't mess with dropdown item hovers if they exist
+            link.classList.add('text-dark-bg', 'dark:text-white');
+        }
+    });
+
+    // Then, find the exact matching link and apply active state
+    let foundMatch = false;
+    document.querySelectorAll('nav a').forEach(link => {
+      let href = link.getAttribute('href');
+      if (href && href === currentPath) {
+        link.classList.add('text-primary', 'dark:text-primary', 'bg-gray-100', 'dark:bg-primary/10', 'font-bold');
+        link.classList.remove('text-dark-bg', 'text-gray-600', 'dark:text-white', 'dark:text-white/70');
+        foundMatch = true;
+        
+        // If it's a dropdown child (like index.html or home2.html), also highlight the parent "Home" link
+        let parentDropdown = link.closest('.group');
+        if (parentDropdown) {
+            let parentLink = parentDropdown.querySelector('a[href="#"]');
+            if (parentLink) {
+                parentLink.classList.add('text-primary', 'dark:text-primary', 'bg-gray-100', 'dark:bg-primary/10', 'font-bold');
+                parentLink.classList.remove('text-dark-bg', 'dark:text-white');
+            }
+        }
+      }
+    });
+    
+    // Fallback: if somehow no match, but we are at root, highlight index.html
+    if (!foundMatch && currentPath === '') {
+        let homeLink = document.querySelector('nav a[href="index.html"]');
+        if (homeLink) {
+            homeLink.classList.add('text-primary', 'dark:text-primary', 'bg-gray-100', 'dark:bg-primary/10', 'font-bold');
+            homeLink.classList.remove('text-dark-bg', 'dark:text-white');
+        }
+    }
+  });
+</script>
+
+</body>
+</html>
+
+
