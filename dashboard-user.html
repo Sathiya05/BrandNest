@@ -1,18 +1,12 @@
-﻿<!DOCTYPE html>
-<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="gold-obsidian">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="BrandNest Client Dashboard - Submit bulk orders, track production, view delivery schedules, and download invoices.">
-  <link rel="icon" type="image/png" href="favicon.png?v=2">
-    <title>Client Dashboard | BrandNest</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client Dashboard | BrandNest — Corporate Gifting Portal</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%232563EB'/%3E%3Crect x='20' y='62' width='60' height='10' rx='5' fill='white' opacity='0.95'/%3E%3Crect x='24' y='47' width='52' height='10' rx='5' fill='white' opacity='0.85'/%3E%3Crect x='28' y='32' width='44' height='10' rx='5' fill='white' opacity='0.75'/%3E%3C/svg%3E" />
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -20,446 +14,899 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#1F4E5F',
-                        secondary: '#D4A373',
-                        bgLight: '#FFFFFF',
-                        bgDark: '#111827',    
-                        cardLight: '#F9FAFB',
-                        cardDark: '#1f2937',
-                        textLight: '#111827',
-                        textDark: '#F9FAFB'
+                        'gift-slate': 'var(--color-primary)',
+                        'gift-slate-light': 'var(--color-primary-light)',
+                        'gift-slate-dark': 'var(--color-primary-dark)',
+                        'gift-slate-bright': 'var(--color-primary-bright)',
+                        'gift-accent': 'var(--color-accent)',
+                        'bg-warm': 'var(--color-bg-warm)',
+                        'neutral-dark': 'var(--color-text-dark)',
+                        'neutral-light': '#E8EDF2',
+                        'dark-bg': '#0F172A',
+                        'dark-card': '#141A24',
+                        'dark-surface': '#1C2432',
+                        'brand-primary': '#2563EB',
+                        'brand-secondary': '#F59E0B',
+                        'primary': '#2563EB',
+                        'secondary': '#F59E0B',
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        'sans': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                        'display': ['Inter', 'sans-serif'],
+                        'premium': ['Inter', 'sans-serif'],
+                        'alt': ['Inter', 'sans-serif'],
                     },
-                    screens: {
-                        'xs': '360px', 'sm': '390px', 'md': '768px', 
-                        'lg': '1024px', 'xl': '1280px', '2xl': '1536px', 
+                    animation: {
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'fade-in': 'fadeIn 0.3s ease-out',
+                        'pulse-glow': 'pulseGlow 3s infinite',
+                        'float-slow': 'floatSlow 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        slideUp: { '0%': { transform: 'translateY(30px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
+                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+                        pulseGlow: { '0%, 100%': { opacity: '0.6' }, '50%': { opacity: '1' } },
+                        floatSlow: { '0%,100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-8px)' } },
                     }
                 }
             }
         }
     </script>
-    
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
     <style>
-        :root {
-            --bg-color: #FFFFFF;
-            --text-color: #111827;
-            --text-muted: #4B5563;
-            --card-bg: #F9FAFB;
-            --border-color: #E5E7EB;
-            --nav-bg: rgba(255, 255, 255, 0.95);
-            --hover-highlight: #1F4E5F;
-        }
-        
-        [data-theme="dark"] {
-            --bg-color: #111827;
-            --text-color: #F9FAFB;
-            --text-muted: #9CA3AF;
-            --card-bg: #1f2937;
-            --border-color: #374151;
-            --nav-bg: rgba(17, 24, 39, 0.95);
-            --hover-highlight: #1F4E5F;
+        :root, [data-theme="gold-obsidian"] {
+            --color-primary: #2563EB;
+            --color-primary-light: #60A5FA;
+            --color-primary-dark: #1D4ED8;
+            --color-primary-bright: #93C5FD;
+            --color-accent: #F59E0B;
+            --color-bg-warm: #F8FAFC;
+            --color-text-dark: #0F172A;
+            --color-rgb-primary: 37, 99, 235;
+            --color-rgb-bright: 147, 197, 253;
         }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: background-color 0.3s ease, color 0.3s ease;
-            overflow-x: hidden;
-            font-weight: 400; 
+        body { font-family: 'Inter', sans-serif; background-color: var(--color-bg-warm); color: var(--color-text-dark); transition: background-color 0.4s ease, color 0.4s ease; }
+        .dark body { background-color: #0F172A; color: #E2E8F0; }
+        h1,h2,h3,h4,h5,h6 { font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: -0.025em; }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #60A5FA 0%, #2563EB 50%, #1D4ED8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .dark .text-gift-slate { color: var(--color-primary-bright) !important; }
+        .dark .border-gift-slate { border-color: var(--color-primary-bright) !important; }
+        .dark .bg-gift-slate { background-color: var(--color-primary-bright) !important; }
+        body::-webkit-scrollbar { display: none; }
+        body { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0; top: 0; height: 100vh;
+            width: 280px;
+            background: #FFFFFF;
+            border-right: 1px solid rgba(var(--color-rgb-primary), 0.12);
+            transition: transform 0.3s ease;
+            z-index: 100;
+            overflow-y: auto;
+        }
+        .dark .sidebar { background: #0F172A; border-right-color: rgba(var(--color-rgb-bright), 0.15); }
+        @media (max-width: 768px) { .sidebar { transform: translateX(-100%); } .sidebar.open { transform: translateX(0); } }
+        .sidebar-overlay { position: fixed; top:0;left:0;right:0;bottom:0; background: rgba(0,0,0,0.5); z-index:99; display:none; }
+        .sidebar-overlay.open { display:block; }
+
+        .sidebar-item {
+            display: flex; align-items: center; gap: 0.75rem;
+            padding: 0.85rem 1.5rem; margin: 0.25rem 0.75rem;
+            border-radius: 12px; color: var(--color-text-dark);
+            transition: all 0.2s; cursor: pointer;
+        }
+        .dark .sidebar-item { color: #E2E8F0; }
+        .sidebar-item:hover { background: rgba(var(--color-rgb-primary), 0.08); color: var(--color-primary); }
+        .dark .sidebar-item:hover { background: rgba(var(--color-rgb-bright), 0.12); color: var(--color-primary-bright); }
+        .sidebar-item.active { background: var(--color-primary); color: #FFFFFF; }
+        .dark .sidebar-item.active { background: var(--color-primary-bright); color: #0F172A; }
+        .sidebar-item i { width: 24px; font-size: 1.1rem; }
+
+        .main-content { margin-left: 280px; padding: 1.5rem; min-height: 100vh; }
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+                padding-top: 70px;
+                overflow-x: hidden;
+            }
         }
 
-        .no-transition * { transition: none !important; }
-        .text-body-muted { color: var(--text-muted); transition: color 0.3s ease; }
-        .bg-card { background-color: var(--card-bg); }
-        .border-theme { border-color: var(--border-color); }
-
-        .glass-nav {
-            background: var(--nav-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+        .mobile-header {
+            display: none; position: fixed; top:0;left:0;right:0;
+            background: #FFFFFF; padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(var(--color-rgb-primary), 0.12);
+            z-index: 50; align-items: center; justify-content: space-between;
         }
+        .dark .mobile-header { background: #0F172A; border-bottom-color: rgba(var(--color-rgb-bright), 0.15); }
+        @media (max-width: 768px) { .mobile-header { display: flex; } }
 
-        .utility-btn {
+        .toggle-btn {
+            width: 36px; height: 36px; border-radius: 10px;
+            background: rgba(var(--color-rgb-primary), 0.08);
+            color: var(--color-text-dark); display: inline-flex;
+            align-items: center; justify-content: center; cursor: pointer;
+            transition: all 0.2s; border: none;
+        }
+        .dark .toggle-btn { background: rgba(var(--color-rgb-bright), 0.12); color: #E2E8F0; }
+        .toggle-btn:hover { background: var(--color-primary); color: #FFFFFF; }
+        .dark .toggle-btn:hover { background: var(--color-primary-bright); color: #0F172A; }
+
+        .card-design {
+            background: #FFFFFF; border-radius: 24px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(var(--color-rgb-primary), 0.12);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+        }
+        @media (min-width: 640px) {
+            .card-design { border-radius: 28px; }
+        }
+        .dark .card-design { background: #141A24; border-color: rgba(var(--color-rgb-bright), 0.15); }
+        .card-design:hover { border-color: var(--color-primary); }
+
+        .btn-primary-design {
+            background: var(--color-primary); color: #FFFFFF;
+            font-weight: 700; border-radius: 60px; transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(var(--color-rgb-primary), 0.3);
+            white-space: nowrap; border: none;
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; vertical-align: middle;
+        }
+        .btn-primary-design:hover { background: var(--color-primary-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(var(--color-rgb-primary), 0.4); color: #FFFFFF; }
+        .dark .btn-primary-design { background: var(--color-primary-bright); color: #0F172A; }
+        .dark .btn-primary-design:hover { background: var(--color-primary); color: #FFFFFF; }
+
+        .btn-outline-design {
+            border: 1.5px solid var(--color-primary); color: var(--color-primary);
+            background: transparent; border-radius: 60px; font-weight: 600;
+            transition: all 0.3s; white-space: nowrap;
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; vertical-align: middle;
+        }
+        .btn-outline-design:hover { background: var(--color-primary); color: #FFFFFF; transform: translateY(-2px); }
+        .dark .btn-outline-design { border-color: var(--color-primary-bright); color: var(--color-primary-bright); }
+        .dark .btn-outline-design:hover { background: var(--color-primary-bright); color: #0F172A; }
+
+        .btn-secondary-design {
+            background: var(--color-accent); color: #0F172A;
+            font-weight: 700; border-radius: 60px; transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+            white-space: nowrap; border: none;
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; vertical-align: middle;
+        }
+        .btn-secondary-design:hover { background: #D97706; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4); color: #FFFFFF; }
+
+        .stat-card {
+            background: #FFFFFF; border-radius: 20px; padding: 1.2rem;
+            border: 1px solid rgba(var(--color-rgb-primary), 0.12);
+            transition: all 0.3s;
+        }
+        .dark .stat-card { background: #141A24; border-color: rgba(var(--color-rgb-bright), 0.15); }
+        .stat-card:hover { transform: translateY(-3px); border-color: var(--color-primary); }
+
+        .status-badge {
+            display: inline-flex; align-items: center; padding: 0.25rem 0.75rem;
+            border-radius: 40px; font-size: 0.7rem; font-weight: 700;
+        }
+        .status-received { background: #E3F2FD; color: #0D47A1; }
+        .status-proof { background: #FFF3E0; color: #E65100; }
+        .status-production { background: #F3E5F5; color: #6A1B9A; }
+        .status-quality { background: #E8F5E9; color: #1B5E20; }
+        .status-dispatched { background: #E0F2F1; color: #00695C; }
+        .status-delivered { background: #E8F5E9; color: #1B5E20; }
+        .dark .status-received { background: #0D47A1; color: #90CAF9; }
+        .dark .status-proof { background: #E65100; color: #FFCC80; }
+        .dark .status-production { background: #4A148C; color: #CE93D8; }
+        .dark .status-quality { background: #1B5E20; color: #A5D6A7; }
+        .dark .status-dispatched { background: #00695C; color: #80CBC4; }
+        .dark .status-delivered { background: #1B5E20; color: #A5D6A7; }
+
+        .form-input {
+            width: 100%; padding: 0.75rem 1rem;
+            border-radius: 16px; border: 1.5px solid rgba(var(--color-rgb-primary), 0.2);
+            background: #FFFFFF; transition: all 0.3s;
+            color: var(--color-text-dark); font-family: 'Inter', sans-serif;
+        }
+        .dark .form-input { background: #0F172A; border-color: rgba(var(--color-rgb-bright), 0.2); color: #E2E8F0; }
+        .form-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 4px rgba(var(--color-rgb-primary), 0.15); }
+        .form-label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.4rem; color: var(--color-text-dark); }
+        .dark .form-label { color: #E2E8F0; }
+
+        .progress-bar { height: 8px; background: rgba(var(--color-rgb-primary), 0.12); border-radius: 10px; overflow: hidden; }
+        .dark .progress-bar { background: rgba(var(--color-rgb-bright), 0.15); }
+        .progress-fill { height: 100%; background: var(--color-primary); border-radius: 10px; transition: width 0.6s ease; }
+        .dark .progress-fill { background: var(--color-primary-bright); }
+
+        .page-content.hidden { display: none; }
+        .booking-slot { transition: all 0.3s; cursor: pointer; }
+        .booking-slot:hover { transform: translateY(-2px); border-color: var(--color-primary); }
+        .receipt-item { padding: 0.75rem 0; border-bottom: 1px solid rgba(var(--color-rgb-primary), 0.08); }
+        .dark .receipt-item { border-bottom-color: rgba(var(--color-rgb-bright), 0.1); }
+
+        /* Timeline / Tracking */
+        .tracking-step {
+            display: flex; flex-direction: column; align-items: center;
+            flex: 1; position: relative; text-align: center;
+        }
+        .tracking-step:not(:last-child)::after {
+            content: ''; position: absolute; top: 20px; left: 60%; width: 80%; height: 3px;
+            background: rgba(var(--color-rgb-primary), 0.15); z-index: 0;
+        }
+        .dark .tracking-step:not(:last-child)::after { background: rgba(var(--color-rgb-bright), 0.15); }
+        .tracking-step.completed:not(:last-child)::after { background: var(--color-primary); }
+        .dark .tracking-step.completed:not(:last-child)::after { background: var(--color-primary-bright); }
+        .tracking-icon {
+            width: 44px; height: 44px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            border-radius: 8px;
-            border: 1px solid var(--border-color); background: var(--bg-color);
-            color: var(--text-color); font-weight: 600; transition: all 0.2s ease; cursor: pointer;
+            font-size: 1rem; z-index: 1; position: relative;
+            border: 3px solid rgba(var(--color-rgb-primary), 0.2);
+            background: #FFFFFF; color: var(--color-text-dark);
+            transition: all 0.3s;
         }
-        .utility-btn:hover { border-color: var(--hover-highlight); color: var(--hover-highlight); background: var(--card-bg); }
-
-        .sidebar-link {
-            display: flex; align-items: center; gap: 0.75rem; 
-            padding: 0.75rem 1rem; border-radius: 0.75rem;
-            font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 0.08em; color: var(--text-muted);
-            transition: all 0.2s ease; cursor: pointer;
+        .dark .tracking-icon { background: #141A24; border-color: rgba(var(--color-rgb-bright), 0.2); color: #E2E8F0; }
+        .tracking-step.completed .tracking-icon {
+            background: var(--color-primary); border-color: var(--color-primary); color: #FFFFFF;
         }
-        .sidebar-link:hover { background-color: #1F4E5F15; color: #1F4E5F; }
-        .sidebar-link.active { background: linear-gradient(to right, #1F4E5F, #D4A373); color: white; }
-        .sidebar-link.active i { color: white !important; }
-
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-color); }
-        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #1F4E5F; }
-
-        .tab-btn { transition: all 0.2s ease; }
-        .tab-btn.active { background: linear-gradient(to right,#1F4E5F,#D4A373); color: white; }
-        
-        .stage-dot { width:14px; height:14px; border-radius:50%; border:2px solid #E5E7EB; background:#fff; flex-shrink:0; }
-        .stage-dot.done { background: linear-gradient(to right,#1F4E5F,#D4A373); border-color:#1F4E5F; }
-        .stage-dot.active-stage { background:#1F4E5F; border-color:#1F4E5F; box-shadow:0 0 0 4px rgba(239,68,68,0.2); }
-        .stage-line { flex:1; height:2px; background:#E5E7EB; }
-        .stage-line.done { background: linear-gradient(to right,#1F4E5F,#D4A373); }
-
-        @keyframes fadeInUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-        .animate-fade-in { animation: fadeInUp 0.5s ease-out; }
-
-        input[type="file"]::file-selector-button {
-            background: linear-gradient(to right, #1F4E5F, #D4A373);
-            color: white; border: none; padding: 4px 12px;
-            border-radius: 6px; cursor: pointer; font-size: 11px; font-weight: 600;
+        .dark .tracking-step.completed .tracking-icon { background: var(--color-primary-bright); border-color: var(--color-primary-bright); color: #0F172A; }
+        .tracking-step.active .tracking-icon {
+            background: var(--color-accent); border-color: var(--color-accent); color: #0F172A;
+            box-shadow: 0 0 0 6px rgba(245, 158, 11, 0.2);
         }
+        .tracking-label { font-size: 0.7rem; font-weight: 600; margin-top: 0.5rem; color: var(--color-text-dark); }
+        .dark .tracking-label { color: #E2E8F0; }
+        .tracking-step.completed .tracking-label { color: var(--color-primary); }
+        .dark .tracking-step.completed .tracking-label { color: var(--color-primary-bright); }
+        .tracking-step.active .tracking-label { color: var(--color-accent); font-weight: 800; }
+
+        .upload-area {
+            border: 2px dashed rgba(var(--color-rgb-primary), 0.3);
+            border-radius: 20px; padding: 2rem; text-align: center;
+            transition: all 0.3s; cursor: pointer;
+            background: rgba(var(--color-rgb-primary), 0.02);
+        }
+        .upload-area:hover { border-color: var(--color-primary); background: rgba(var(--color-rgb-primary), 0.05); }
+        .dark .upload-area { border-color: rgba(var(--color-rgb-bright), 0.3); background: rgba(var(--color-rgb-bright), 0.02); }
+        .dark .upload-area:hover { border-color: var(--color-primary-bright); background: rgba(var(--color-rgb-bright), 0.05); }
+
+        .category-chip {
+            padding: 0.5rem 1rem; border-radius: 40px; font-size: 0.8rem; font-weight: 600;
+            border: 1.5px solid rgba(var(--color-rgb-primary), 0.2); cursor: pointer;
+            transition: all 0.2s; background: #FFFFFF; color: var(--color-text-dark);
+        }
+        .dark .category-chip { background: #0F172A; border-color: rgba(var(--color-rgb-bright), 0.2); color: #E2E8F0; }
+        .category-chip:hover { border-color: var(--color-primary); }
+        .category-chip.selected { background: var(--color-primary); border-color: var(--color-primary); color: #FFFFFF; }
+        .dark .category-chip.selected { background: var(--color-primary-bright); border-color: var(--color-primary-bright); color: #0F172A; }
+
+        /* RTL support */
+        [dir="rtl"] .sidebar { left: auto; right: 0; border-right: none; border-left: 1px solid rgba(var(--color-rgb-primary), 0.12); }
+        [dir="rtl"] .main-content { margin-left: 0; margin-right: 280px; }
+        [dir="rtl"] .sidebar-item i { margin-right: 0; margin-left: 0.75rem; }
+        @media (max-width: 768px) {
+            [dir="rtl"] .sidebar { transform: translateX(100%); }
+            [dir="rtl"] .sidebar.open { transform: translateX(0); }
+            [dir="rtl"] .main-content { margin-right: 0; }
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator { cursor: pointer; opacity: 0.85; transition: all 0.2s ease; }
+        input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
+        .dark input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1) brightness(1.2); opacity: 0.9; }
+        .dark input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
     </style>
 </head>
-<body class="antialiased font-sans flex flex-col min-h-screen">
+<body>
 
-  
-
-
-  <!-- TOP NAV -->
-  <header class="glass-nav fixed top-0 inset-x-0 z-50 border-b border-theme">
-    <div class="flex items-center justify-between h-[64px] px-4 md:px-6">
-      <!-- Logo -->
-      <a href="index.html" class="flex items-center gap-2.5">
-        <i class="fas fa-gift text-2xl text-primary drop-shadow-[0_2px_8px_rgba(239,68,68,0.4)]"></i>
-        <span class="text-lg font-medium tracking-widest uppercase text-[var(--text-color)]">Brand<span class="text-primary">Nest</span></span>
-      </a>
-      <!-- Right controls -->
-      <div class="flex items-center gap-3">
-        <!-- RTL -->
-        <button type="button" class="rtl-toggle-btn utility-btn px-3 py-1.5 text-xs font-medium uppercase tracking-wider" title="Toggle RTL">RTL</button>
-        <!-- Theme -->
-        <button type="button" id="theme-toggle-btn" class="utility-btn w-9 h-9" title="Toggle Theme">
-          <i class="fas fa-moon text-sm" id="theme-icon-dash"></i>
-        </button>
-        <!-- Notification -->
-        <button class="utility-btn w-9 h-9 relative">
-          <i class="fas fa-bell text-sm"></i>
-          <span class="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full"></span>
-        </button>
-        <!-- Avatar -->
-        <div class="w-9 h-9 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-white text-xs font-bold cursor-pointer">RK</div>
-        <!-- Mobile hamburger -->
-        <button id="mobile-sidebar-toggle" class="md:hidden utility-btn w-9 h-9">
-          <i class="fas fa-bars text-sm"></i>
-        </button>
-      </div>
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <div class="flex items-center gap-3">
+            <button id="menuToggle" class="toggle-btn"><i class="fas fa-bars"></i></button>
+            <a href="index.html" class="flex items-center gap-3 group shrink-0">
+                <div class="w-10 h-10 bg-gradient-to-br from-brand-primary to-blue-500 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-layer-group text-white text-lg"></i>
+                </div>
+                <span class="text-xl font-extrabold text-neutral-dark dark:text-white tracking-tight">Brand<span class="text-gift-slate">Nest</span></span>
+            </a>
+        </div>
+        <div class="flex items-center gap-2">
+            <button id="theme-toggle-mobile" class="toggle-btn"><i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:inline"></i></button>
+            <button id="rtl-toggle-mobile" class="toggle-btn"><i class="fas fa-exchange-alt"></i></button>
+            <div class="w-8 h-8 rounded-full overflow-hidden border-2 border-gift-slate shadow-sm shrink-0 ml-1">
+                <img src="assets/images/team4.jpg" alt="Michael Johnson" class="w-full h-full object-cover" />
+            </div>
+        </div>
     </div>
-  </header>
 
-  <div class="flex flex-1 pt-[64px]">
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
-    <!-- SIDEBAR -->
-    <aside id="sidebar" class="fixed md:sticky top-[64px] left-0 h-[calc(100vh-64px)] w-64 bg-card border-r border-theme flex flex-col py-6 px-4 overflow-y-auto z-40 -translate-x-full md:translate-x-0 transition-transform duration-300">
-      
-      <!-- Client info -->
-      <div class="flex flex-col items-center text-center mb-8 pb-6 border-b border-theme">
-        <div class="w-16 h-16 rounded-2xl bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-white text-xl font-bold mb-3">RK</div>
-        <h3 class="text-sm font-bold text-[var(--text-color)] uppercase">Rajesh Kumar</h3>
-        <p class="text-xs text-body-muted mt-0.5">Infosys Technologies</p>
-        <span class="mt-2 text-[10px] bg-primary/10 text-primary font-bold uppercase px-2 py-0.5 rounded-full">Enterprise Client</span>
-      </div>
-
-      <!-- Nav links -->
-      <nav class="flex flex-col gap-1 flex-1">
-        <button class="sidebar-link active" onclick="showSection('bulk-order')">
-          <i class="fas fa-shopping-cart text-sm"></i> Place Bulk Order
-        </button>
-        <button class="sidebar-link" onclick="showSection('track-order')">
-          <i class="fas fa-tasks text-sm"></i> Track Production
-        </button>
-        <button class="sidebar-link" onclick="showSection('delivery')">
-          <i class="fas fa-truck text-sm"></i> Delivery Schedule
-        </button>
-        <button class="sidebar-link" onclick="showSection('invoices')">
-          <i class="fas fa-file-invoice text-sm"></i> Invoices & Docs
-        </button>
-        <button class="sidebar-link" onclick="showSection('my-orders')">
-          <i class="fas fa-history text-sm"></i> Order History
-        </button>
-        <button class="sidebar-link" onclick="showSection('profile')">
-          <i class="fas fa-building text-sm"></i> Company Profile
-        </button>
-      </nav>
-
-      <!-- Logout -->
-      <div class="mt-6 pt-4 border-t border-theme">
-        <a href="login.html" class="sidebar-link text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20">
-          <i class="fas fa-sign-out-alt text-sm text-red-500"></i>  LogOut
-        </a>
-      </div>
-    </aside>
-
-    <!-- MAIN CONTENT -->
-    
-      <!-- MAIN CONTENT -->
-      <main class="flex-1 p-4 md:p-6 overflow-y-auto">
-        
-
-        <!-- ============= SECTION: BULK ORDER FORM ============= -->
-        <section id="section-bulk-order" class="animate-fade-in pb-16">
-          <div class="mb-6">
-            <h1 class="text-2xl font-bold text-[var(--text-color)] uppercase tracking-tight">Bulk Order Dashboard</h1>
-            <p class="text-xs text-body-muted mt-1 uppercase tracking-widest">Submit a bulk corporate gift order</p>
-          </div>
-          
-          <div class="bg-card border border-theme rounded-2xl p-6 mb-8 shadow-sm">
-            <h2 class="text-lg font-bold mb-4">Submit Bulk Order</h2>
-            <form>
-                <label class="block text-sm font-medium mb-2">Product Category</label>
-                <select class="w-full p-2 mb-4 rounded border border-theme bg-[var(--bg-color)]">
-                    <option>Stationery</option>
-                    <option>Tech Accessories</option>
-                    <option>Hampers</option>
-                    <option>Branded Apparel</option>
-                    <option>Trophies</option>
-                </select>
-                
-                <div class="grid grid-cols-2 gap-4 mb-4">
-                    <div>
-                        <label class="block text-sm font-medium mb-2">Quantity</label>
-                        <input type="number" class="w-full p-2 rounded border border-theme bg-[var(--bg-color)]" placeholder="Min 50">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium mb-2">Per-Unit Budget ($)</label>
-                        <input type="number" class="w-full p-2 rounded border border-theme bg-[var(--bg-color)]" placeholder="e.g. 20">
-                    </div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="p-5 border-b border-[rgba(var(--color-rgb-primary),0.12)] dark:border-[rgba(var(--color-rgb-bright),0.15)]">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-gradient-to-br from-brand-primary to-blue-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-layer-group text-white text-lg"></i>
                 </div>
-                
-                <label class="block text-sm font-medium mb-2">Upload Company Logo and Artwork Files</label>
-                <input type="file" class="w-full p-2 mb-4 rounded border border-theme bg-[var(--bg-color)]">
-                
-                <button type="button" class="bg-primary text-white px-6 py-2 rounded-full font-bold hover:bg-secondary transition-colors" onclick="alert('Order Submitted Successfully!')">Submit Order</button>
-            </form>
-          </div>
-        </section>
+                <div>
+                    <span class="text-xl font-extrabold text-neutral-dark dark:text-white tracking-tight">Brand<span class="text-gift-slate">Nest</span></span>
+                    <p class="text-xs text-neutral-dark/60 dark:text-gray-400">Client Portal</p>
+                </div>
+            </a>
+        </div>
+        <nav class="py-4">
+            <div class="sidebar-item active" data-page="dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></div>
+            <div class="sidebar-item" data-page="new-order"><i class="fas fa-plus-circle"></i><span>New Bulk Order</span></div>
+            <div class="sidebar-item" data-page="orders"><i class="fas fa-boxes"></i><span>My Orders</span></div>
+            <div class="sidebar-item" data-page="delivery"><i class="fas fa-truck"></i><span>Delivery Schedule</span></div>
+            <div class="sidebar-item" data-page="invoices"><i class="fas fa-file-invoice-dollar"></i><span>Invoices</span></div>
+        </nav>
+        <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-[rgba(var(--color-rgb-primary),0.12)] dark:border-[rgba(var(--color-rgb-bright),0.15)]">
+            <a href="login.html" class="flex items-center justify-center gap-2 w-full p-2.5 rounded-xl bg-[rgba(var(--color-rgb-primary),0.08)] hover:bg-gift-slate transition font-semibold text-sm text-neutral-dark dark:text-gray-200 hover:text-white">
+                <i class="fas fa-sign-out-alt"></i><span>Logout</span>
+            </a>
+        </div>
+    </div>
 
-        <!-- ============= SECTION: TRACK PRODUCTION ============= -->
-        <section id="section-track-order" class="animate-fade-in hidden pb-16">
-          <div class="mb-6">
-            <h1 class="text-2xl font-bold text-[var(--text-color)] uppercase tracking-tight">Track Production</h1>
-            <p class="text-xs text-body-muted mt-1 uppercase tracking-widest">View real-time status of your orders</p>
-          </div>
-          <div class="bg-card border border-theme rounded-2xl p-6 mb-8 shadow-sm">
-            <h2 class="text-lg font-bold mb-4">Order #ORD-94827 - Tech Hampers</h2>
-            <div class="flex flex-wrap justify-between items-center text-sm gap-2">
-                <div class="text-primary font-bold"><i class="fas fa-check-circle"></i> Order Received</div>
-                <div class="text-primary font-bold"><i class="fas fa-arrow-right"></i> Design Proof Sent</div>
-                <div class="text-secondary font-bold"><i class="fas fa-spinner fa-spin"></i> Production In Progress</div>
-                <div class="text-gray-400"><i class="fas fa-arrow-right"></i> Quality Checked</div>
-                <div class="text-gray-400"><i class="fas fa-circle"></i> Dispatched</div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="card-design p-4 md:p-6 flex justify-between items-center flex-wrap gap-3 mb-6">
+            <div>
+                <h1 class="text-2xl font-bold" id="page-title">Dashboard</h1>
+                <p class="text-sm text-neutral-dark/60 dark:text-gray-400" id="page-subtitle">Welcome back, Michael</p>
             </div>
-          </div>
-        </section>
-
-        <!-- ============= SECTION: DELIVERY ============= -->
-        <section id="section-delivery" class="animate-fade-in hidden pb-16">
-          <div class="mb-6">
-            <h1 class="text-2xl font-bold text-[var(--text-color)] uppercase tracking-tight">Delivery Schedules</h1>
-            <p class="text-xs text-body-muted mt-1 uppercase tracking-widest">Track shipments to multiple office locations</p>
-          </div>
-          <div class="bg-card border border-theme rounded-2xl p-6 shadow-sm">
-            <h2 class="text-lg font-bold mb-4">Current Shipments</h2>
-            <ul class="text-sm space-y-4">
-                <li class="border-b border-theme pb-2"><strong>New York HQ:</strong> Dispatched (Expected Oct 12) <br><span class="text-xs text-gray-500">Tracking: UPS-1Z99999999</span></li>
-                <li class="border-b border-theme pb-2"><strong>London Branch:</strong> Production in Progress (Expected Oct 15)</li>
-                <li class="pb-2"><strong>Sydney Office:</strong> Quality Checked (Expected Oct 18)</li>
-            </ul>
-          </div>
-        </section>
-
-        <!-- ============= SECTION: INVOICES ============= -->
-        <section id="section-invoices" class="animate-fade-in hidden pb-16">
-          <div class="mb-6">
-            <h1 class="text-2xl font-bold text-[var(--text-color)] uppercase tracking-tight">Invoices & Docs</h1>
-            <p class="text-xs text-body-muted mt-1 uppercase tracking-widest">Download confirmations and itemized bills</p>
-          </div>
-          <div class="bg-card border border-theme rounded-2xl p-6 shadow-sm">
-            <div class="flex justify-between items-center border-b border-theme pb-4 mb-4">
-                <div>
-                    <h3 class="font-bold">Order #ORD-94827</h3>
-                    <p class="text-xs text-gray-500">Oct 01, 2026 - $12,500.00</p>
-                </div>
-                <div>
-                    <button class="bg-secondary/10 text-secondary px-4 py-2 rounded font-bold text-sm mr-2 mb-2 hover:bg-secondary hover:text-white transition-colors"><i class="fas fa-download"></i> Order Confirmation</button>
-                    <button class="bg-secondary/10 text-secondary px-4 py-2 rounded font-bold text-sm hover:bg-secondary hover:text-white transition-colors"><i class="fas fa-download"></i> Itemized Invoice</button>
-                </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ============= SECTION: ORDER HISTORY ============= -->
-        <section id="section-my-orders" class="animate-fade-in hidden pb-16">
-          <div class="mb-6">
-            <h1 class="text-2xl font-bold text-[var(--text-color)] uppercase tracking-tight">Order History</h1>
-            <p class="text-xs text-body-muted mt-1 uppercase tracking-widest">Past completed orders</p>
-          </div>
-          <div class="bg-card border border-theme rounded-2xl p-6 shadow-sm">
-             <p class="text-sm">No past orders found.</p>
-          </div>
-        </section>
-
-        <!-- ============= SECTION: PROFILE ============= -->
-        <section id="section-profile" class="animate-fade-in hidden pb-16">
-          <div class="mb-6">
-            <h1 class="text-2xl font-bold text-[var(--text-color)] uppercase tracking-tight">Company Profile</h1>
-            <p class="text-xs text-body-muted mt-1 uppercase tracking-widest">Manage your corporate details</p>
-          </div>
-          <div class="bg-card border border-theme rounded-2xl p-6 shadow-sm">
-             <p class="text-sm"><strong>Company:</strong> Infosys Technologies</p>
-             <p class="text-sm mt-2"><strong>Representative:</strong> Rajesh Kumar</p>
-          </div>
-        </section>
-        
-        <div class="bg-card border border-theme rounded-2xl p-6 shadow-sm mt-6">
-            <h2 class="text-lg font-bold mb-4">Dedicated Account Representative</h2>
-            <div class="flex items-center gap-4">
-                <div class="w-12 h-12 rounded-full bg-secondary text-white flex items-center justify-center font-bold text-lg"><i class="fas fa-headset"></i></div>
-                <div>
-                <h3 class="font-bold">Sarah Jenkins</h3>
-                <p class="text-sm text-gray-500">Corporate Gifting Specialist</p>
-                <p class="text-sm text-primary font-bold mt-1">sarah.j@brandnest.com | +1 (555) 123-4567</p>
+            <div class="hidden lg:flex items-center gap-4">
+                <button id="theme-toggle" class="toggle-btn"><i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:inline"></i></button>
+                <button id="rtl-toggle" class="toggle-btn"><i class="fas fa-exchange-alt"></i></button>
+                <div class="flex items-center gap-3 border-l border-[rgba(var(--color-rgb-primary),0.12)] dark:border-[rgba(var(--color-rgb-bright),0.15)] pl-4">
+                    <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-gift-slate shadow-sm shrink-0">
+                        <img src="assets/images/team4.jpg" alt="Michael Johnson" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="text-left hidden lg:block">
+                        <p class="text-sm font-bold text-neutral-dark dark:text-white leading-tight">Michael Johnson</p>
+                        <p class="text-[10px] text-neutral-dark/60 dark:text-gray-400">Premium Client</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-      </main>
+        <!-- ========== DASHBOARD ========== -->
+        <div id="page-dashboard" class="page-content">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                <div class="stat-card">
+                    <div class="flex justify-between">
+                        <div><p class="text-xs text-neutral-dark/60 dark:text-gray-400 mb-1">Active Orders</p><p class="text-2xl font-bold text-neutral-dark dark:text-white">5</p></div>
+                        <div class="w-10 h-10 bg-[rgba(var(--color-rgb-primary),0.08)] rounded-full flex items-center justify-center"><i class="fas fa-boxes text-gift-slate"></i></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="flex justify-between">
+                        <div><p class="text-xs text-neutral-dark/60 dark:text-gray-400 mb-1">In Production</p><p class="text-2xl font-bold text-neutral-dark dark:text-white">2</p></div>
+                        <div class="w-10 h-10 bg-[rgba(var(--color-rgb-primary),0.08)] rounded-full flex items-center justify-center"><i class="fas fa-cog text-gift-slate"></i></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="flex justify-between">
+                        <div><p class="text-xs text-neutral-dark/60 dark:text-gray-400 mb-1">Awaiting Proof</p><p class="text-2xl font-bold text-neutral-dark dark:text-white">1</p></div>
+                        <div class="w-10 h-10 bg-[rgba(var(--color-rgb-primary),0.08)] rounded-full flex items-center justify-center"><i class="fas fa-eye text-gift-slate"></i></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="flex justify-between">
+                        <div><p class="text-xs text-neutral-dark/60 dark:text-gray-400 mb-1">Total Spent</p><p class="text-2xl font-bold text-emerald-500">$24,850</p></div>
+                        <div class="w-10 h-10 bg-[rgba(var(--color-rgb-primary),0.08)] rounded-full flex items-center justify-center"><i class="fas fa-dollar-sign text-gift-slate"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="card-design p-6">
+                    <h3 class="font-bold text-lg mb-4">Recent Orders</h3>
+                    <div class="space-y-3">
+                        <div class="flex gap-3 pb-3 border-b border-[rgba(var(--color-rgb-primary),0.08)] dark:border-[rgba(var(--color-rgb-bright),0.1)]">
+                            <i class="fas fa-box text-gift-slate mt-1"></i>
+                            <div class="flex-1"><p class="text-sm font-medium">Executive Kits — 250 units</p><p class="text-xs text-neutral-dark/60 dark:text-gray-400">Order #BN-2026-042</p></div>
+                            <span class="status-badge status-production text-xs">Production</span>
+                        </div>
+                        <div class="flex gap-3 pb-3 border-b border-[rgba(var(--color-rgb-primary),0.08)] dark:border-[rgba(var(--color-rgb-bright),0.1)]">
+                            <i class="fas fa-box text-gift-slate mt-1"></i>
+                            <div class="flex-1"><p class="text-sm font-medium">Branded Hoodies — 500 units</p><p class="text-xs text-neutral-dark/60 dark:text-gray-400">Order #BN-2026-038</p></div>
+                            <span class="status-badge status-proof text-xs">Proof Sent</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <i class="fas fa-box text-gift-slate mt-1"></i>
+                            <div class="flex-1"><p class="text-sm font-medium">Welcome Boxes — 120 units</p><p class="text-xs text-neutral-dark/60 dark:text-gray-400">Order #BN-2026-031</p></div>
+                            <span class="status-badge status-dispatched text-xs">Dispatched</span>
+                        </div>
+                    </div>
+                    <button data-nav="orders" class="btn-outline-design w-full mt-4 py-2 text-sm">View All Orders</button>
+                </div>
+                <div class="card-design p-6">
+                    <h3 class="font-bold text-lg mb-4">Quick Actions</h3>
+                    <div class="space-y-3">
+                        <button data-nav="new-order" class="w-full text-left px-4 py-3 bg-[rgba(var(--color-rgb-primary),0.08)] dark:bg-[rgba(var(--color-rgb-bright),0.1)] text-neutral-dark dark:text-white rounded-xl hover:bg-[rgba(var(--color-rgb-primary),0.2)] transition flex items-center gap-3">
+                            <i class="fas fa-plus-circle text-gift-slate"></i><span>Submit New Bulk Order</span>
+                        </button>
+                        <button data-nav="delivery" class="w-full text-left px-4 py-3 bg-[rgba(var(--color-rgb-primary),0.08)] dark:bg-[rgba(var(--color-rgb-bright),0.1)] text-neutral-dark dark:text-white rounded-xl hover:bg-[rgba(var(--color-rgb-primary),0.2)] transition flex items-center gap-3">
+                            <i class="fas fa-truck text-gift-slate"></i><span>View Delivery Schedule</span>
+                        </button>
+                        <button data-nav="invoices" class="w-full text-left px-4 py-3 bg-[rgba(var(--color-rgb-primary),0.08)] dark:bg-[rgba(var(--color-rgb-bright),0.1)] text-neutral-dark dark:text-white rounded-xl hover:bg-[rgba(var(--color-rgb-primary),0.2)] transition flex items-center gap-3">
+                            <i class="fas fa-file-invoice-dollar text-gift-slate"></i><span>Download Invoices</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!-- ========== NEW BULK ORDER ========== -->
+        <div id="page-new-order" class="page-content hidden">
+            <div class="card-design p-6">
+                <h3 class="font-bold text-2xl mb-4">Submit a Bulk Corporate Gift Order</h3>
+                <p class="text-sm text-neutral-dark/60 dark:text-gray-400 mb-6">Select product category, specify quantity and budget, and upload your branding assets.</p>
+                <form>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Left column -->
+                        <div class="space-y-5">
+                            <div>
+                                <label class="form-label">Product Category <span class="text-gift-slate">*</span></label>
+                                <div class="flex flex-wrap gap-2 mt-1" id="categoryChips">
+                                    <span class="category-chip selected" data-cat="executive">Executive Kits</span>
+                                    <span class="category-chip" data-cat="drinkware">Drinkware</span>
+                                    <span class="category-chip" data-cat="apparel">Apparel</span>
+                                    <span class="category-chip" data-cat="tech">Tech & Gadgets</span>
+                                    <span class="category-chip" data-cat="desk">Desk & Stationery</span>
+                                    <span class="category-chip" data-cat="welcome">Welcome Boxes</span>
+                                    <span class="category-chip" data-cat="festive">Festive Hampers</span>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="form-label">Estimated Quantity <span class="text-gift-slate">*</span></label>
+                                <input type="number" class="form-input" placeholder="e.g., 500" min="50" value="250" />
+                                <p class="text-xs text-neutral-dark/50 dark:text-gray-500 mt-1">Minimum order: 50 units</p>
+                            </div>
+                            <div>
+                                <label class="form-label">Per-Unit Budget (USD) <span class="text-gift-slate">*</span></label>
+                                <div class="relative">
+                                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-dark/40 dark:text-gray-500">$</span>
+                                    <input type="number" class="form-input pl-8" placeholder="e.g., 45" min="5" step="0.01" value="42.50" />
+                                </div>
+                                <p class="text-xs text-neutral-dark/50 dark:text-gray-500 mt-1">Volume discounts applied at checkout</p>
+                            </div>
+                            <div>
+                                <label class="form-label">Preferred Delivery Date</label>
+                                <input type="date" class="form-input" value="2026-04-15" min="2026-03-25" />
+                            </div>
+                            <div>
+                                <label class="form-label">Special Instructions</label>
+                                <textarea class="form-input" rows="3" placeholder="Any specific requirements, packaging notes, or deadlines..."></textarea>
+                            </div>
+                        </div>
 
+                        <!-- Right column: uploads -->
+                        <div class="space-y-5">
+                            <div>
+                                <label class="form-label">Company Logo <span class="text-gift-slate">*</span></label>
+                                <div class="upload-area" onclick="document.getElementById('logoInput').click()">
+                                    <i class="fas fa-cloud-upload-alt text-3xl text-gift-slate mb-2"></i>
+                                    <p class="font-semibold text-sm">Click to upload or drag & drop</p>
+                                    <p class="text-xs text-neutral-dark/50 dark:text-gray-500 mt-1">SVG, PNG, AI, EPS (max 10MB)</p>
+                                    <input type="file" id="logoInput" class="hidden" accept=".svg,.png,.ai,.eps,.pdf" />
+                                </div>
+                                <div id="logoPreview" class="hidden mt-2 flex items-center gap-2 p-2 bg-[rgba(var(--color-rgb-primary),0.06)] rounded-xl text-sm">
+                                    <i class="fas fa-check-circle text-emerald-500"></i>
+                                    <span class="font-medium" id="logoFileName">logo.svg</span>
+                                    <span class="text-xs text-neutral-dark/50 dark:text-gray-500">(2.4 MB)</span>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="form-label">Artwork / Design Files</label>
+                                <div class="upload-area" onclick="document.getElementById('artworkInput').click()">
+                                    <i class="fas fa-paint-brush text-3xl text-gift-slate mb-2"></i>
+                                    <p class="font-semibold text-sm">Upload artwork for branding</p>
+                                    <p class="text-xs text-neutral-dark/50 dark:text-gray-500 mt-1">PDF, AI, PSD, PNG (max 50MB)</p>
+                                    <input type="file" id="artworkInput" class="hidden" accept=".pdf,.ai,.psd,.png,.jpg,.jpeg" multiple />
+                                </div>
+                                <div id="artworkPreview" class="hidden mt-2 space-y-1">
+                                    <div class="flex items-center gap-2 p-2 bg-[rgba(var(--color-rgb-primary),0.06)] rounded-xl text-sm">
+                                        <i class="fas fa-file-pdf text-red-500"></i>
+                                        <span class="font-medium">brand-guidelines.pdf</span>
+                                        <span class="text-xs text-neutral-dark/50 dark:text-gray-500 ml-auto">4.1 MB</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 p-2 bg-[rgba(var(--color-rgb-primary),0.06)] rounded-xl text-sm">
+                                        <i class="fas fa-file-image text-blue-500"></i>
+                                        <span class="font-medium">logo-variations.png</span>
+                                        <span class="text-xs text-neutral-dark/50 dark:text-gray-500 ml-auto">1.8 MB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="form-label">Branding Method</label>
+                                <select class="form-input">
+                                    <option>Laser Engraving</option>
+                                    <option>Embroidery</option>
+                                    <option>Screen Printing</option>
+                                    <option>Embossing</option>
+                                    <option>Full-Color UV Print</option>
+                                </select>
+                            </div>
+                            <div class="p-4 bg-[rgba(var(--color-rgb-primary),0.04)] rounded-2xl border border-[rgba(var(--color-rgb-primary),0.1)]">
+                                <p class="text-sm font-semibold mb-1">Estimated Order Total</p>
+                                <p class="text-3xl font-black text-gift-slate">$10,625.00</p>
+                                <p class="text-xs text-neutral-dark/50 dark:text-gray-500 mt-1">250 units × $42.50 · Volume discount applied</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3 mt-8">
+                        <button type="submit" class="btn-primary-design flex-1 py-3 text-lg font-bold">
+                            <i class="fas fa-paper-plane"></i> Submit Order
+                        </button>
+                        <button type="button" class="btn-outline-design flex-1 py-3 text-lg font-bold">
+                            <i class="fas fa-save"></i> Save as Draft
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-  </div>
+        <!-- ========== MY ORDERS / PRODUCTION TRACKING ========== -->
+        <div id="page-orders" class="page-content hidden">
+            <div class="card-design p-6">
+                <h3 class="font-bold text-2xl mb-4">My Orders & Production Tracking</h3>
+                <p class="text-sm text-neutral-dark/60 dark:text-gray-400 mb-6">Track every stage from order received to dispatched.</p>
+                <div class="space-y-6">
 
-  <script>
-    // Section navigation
-    function showSection(name) {
-      document.querySelectorAll('[id^="section-"]').forEach(s => s.classList.add('hidden'));
-      document.getElementById('section-' + name).classList.remove('hidden');
-      document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
-      event.currentTarget.classList.add('active');
-      // Close mobile sidebar
-      document.getElementById('sidebar').classList.add('-translate-x-full');
-    }
+                    <!-- Order 1: In Production -->
+                    <div class="p-5 bg-[rgba(var(--color-rgb-primary),0.04)] dark:bg-[rgba(var(--color-rgb-bright),0.05)] rounded-2xl border border-[rgba(var(--color-rgb-primary),0.08)]">
+                        <div class="flex flex-wrap justify-between items-start gap-3 mb-4">
+                            <div>
+                                <p class="font-bold text-lg">Executive Kits — 250 units</p>
+                                <p class="text-sm text-neutral-dark/60 dark:text-gray-400">Order #BN-2026-042 · Placed Mar 18, 2026</p>
+                                <div class="flex items-center gap-3 mt-1">
+                                    <span class="text-xs text-neutral-dark/60 dark:text-gray-400">Budget: $42.50/unit</span>
+                                    <span class="text-xs text-neutral-dark/60 dark:text-gray-400">Total: $10,625.00</span>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="btn-outline-design text-xs px-4 py-1.5"><i class="fas fa-file-invoice mr-1"></i>Invoice</button>
+                                <button class="btn-primary-design text-xs px-4 py-1.5"><i class="fas fa-eye mr-1"></i>Details</button>
+                            </div>
+                        </div>
+                        <!-- Tracking timeline -->
+                        <div class="flex flex-wrap justify-between gap-y-4 mt-6">
+                            <div class="tracking-step completed">
+                                <div class="tracking-icon"><i class="fas fa-check"></i></div>
+                                <span class="tracking-label">Order Received</span>
+                            </div>
+                            <div class="tracking-step completed">
+                                <div class="tracking-icon"><i class="fas fa-check"></i></div>
+                                <span class="tracking-label">Design Proof Sent</span>
+                            </div>
+                            <div class="tracking-step active">
+                                <div class="tracking-icon"><i class="fas fa-cog fa-spin"></i></div>
+                                <span class="tracking-label">Production</span>
+                            </div>
+                            <div class="tracking-step">
+                                <div class="tracking-icon"><i class="fas fa-clipboard-check"></i></div>
+                                <span class="tracking-label">Quality Checked</span>
+                            </div>
+                            <div class="tracking-step">
+                                <div class="tracking-icon"><i class="fas fa-truck"></i></div>
+                                <span class="tracking-label">Dispatched</span>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 55%"></div></div>
+                            <p class="text-xs text-neutral-dark/50 dark:text-gray-500 mt-1">55% complete · Est. dispatch: Apr 5, 2026</p>
+                        </div>
+                    </div>
 
-    // File chosen display
-    function fileChosen(input, labelId) {
-      const label = document.getElementById(labelId);
-      if (input.files.length > 0) {
-        label.textContent = 'âœ“ ' + input.files[0].name;
-      }
-    }
+                    <!-- Order 2: Proof Sent -->
+                    <div class="p-5 bg-[rgba(var(--color-rgb-primary),0.04)] dark:bg-[rgba(var(--color-rgb-bright),0.05)] rounded-2xl border border-[rgba(var(--color-rgb-primary),0.08)]">
+                        <div class="flex flex-wrap justify-between items-start gap-3 mb-4">
+                            <div>
+                                <p class="font-bold text-lg">Branded Hoodies — 500 units</p>
+                                <p class="text-sm text-neutral-dark/60 dark:text-gray-400">Order #BN-2026-038 · Placed Mar 15, 2026</p>
+                                <div class="flex items-center gap-3 mt-1">
+                                    <span class="text-xs text-neutral-dark/60 dark:text-gray-400">Budget: $28.00/unit</span>
+                                    <span class="text-xs text-neutral-dark/60 dark:text-gray-400">Total: $14,000.00</span>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="btn-outline-design text-xs px-4 py-1.5"><i class="fas fa-file-invoice mr-1"></i>Invoice</button>
+                                <button class="btn-primary-design text-xs px-4 py-1.5"><i class="fas fa-eye mr-1"></i>Details</button>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap justify-between gap-y-4 mt-6">
+                            <div class="tracking-step completed">
+                                <div class="tracking-icon"><i class="fas fa-check"></i></div>
+                                <span class="tracking-label">Order Received</span>
+                            </div>
+                            <div class="tracking-step active">
+                                <div class="tracking-icon"><i class="fas fa-eye"></i></div>
+                                <span class="tracking-label">Design Proof Sent</span>
+                            </div>
+                            <div class="tracking-step">
+                                <div class="tracking-icon"><i class="fas fa-cog"></i></div>
+                                <span class="tracking-label">Production</span>
+                            </div>
+                            <div class="tracking-step">
+                                <div class="tracking-icon"><i class="fas fa-clipboard-check"></i></div>
+                                <span class="tracking-label">Quality Checked</span>
+                            </div>
+                            <div class="tracking-step">
+                                <div class="tracking-icon"><i class="fas fa-truck"></i></div>
+                                <span class="tracking-label">Dispatched</span>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 30%"></div></div>
+                            <p class="text-xs text-neutral-dark/50 dark:text-gray-500 mt-1">30% complete · Awaiting proof approval</p>
+                        </div>
+                    </div>
 
-    // Submit order
-    function submitOrder(event) {
-      event.preventDefault();
-      const btn = event.target.querySelector('button[type="submit"]');
-      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-      btn.disabled = true;
-      setTimeout(() => {
-        alert('âœ… Your bulk order request has been submitted!\n\nOrder Reference: BN-2026-0095\nOur team will review and send a quote within 2 business hours.\n\nThank you, BrandNest Team');
-        btn.innerHTML = '<i class="fas fa-paper-plane text-xs"></i> Submit Order Request';
-        btn.disabled = false;
-      }, 1800);
-    }
+                    <!-- Order 3: Dispatched -->
+                    <div class="p-5 bg-[rgba(var(--color-rgb-primary),0.04)] dark:bg-[rgba(var(--color-rgb-bright),0.05)] rounded-2xl border border-[rgba(var(--color-rgb-primary),0.08)]">
+                        <div class="flex flex-wrap justify-between items-start gap-3 mb-4">
+                            <div>
+                                <p class="font-bold text-lg">Welcome Boxes — 120 units</p>
+                                <p class="text-sm text-neutral-dark/60 dark:text-gray-400">Order #BN-2026-031 · Placed Mar 10, 2026</p>
+                                <div class="flex items-center gap-3 mt-1">
+                                    <span class="text-xs text-neutral-dark/60 dark:text-gray-400">Budget: $65.00/unit</span>
+                                    <span class="text-xs text-neutral-dark/60 dark:text-gray-400">Total: $7,800.00</span>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="btn-outline-design text-xs px-4 py-1.5"><i class="fas fa-file-invoice mr-1"></i>Invoice</button>
+                                <button class="btn-primary-design text-xs px-4 py-1.5"><i class="fas fa-eye mr-1"></i>Track</button>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap justify-between gap-y-4 mt-6">
+                            <div class="tracking-step completed">
+                                <div class="tracking-icon"><i class="fas fa-check"></i></div>
+                                <span class="tracking-label">Order Received</span>
+                            </div>
+                            <div class="tracking-step completed">
+                                <div class="tracking-icon"><i class="fas fa-check"></i></div>
+                                <span class="tracking-label">Design Proof Sent</span>
+                            </div>
+                            <div class="tracking-step completed">
+                                <div class="tracking-icon"><i class="fas fa-check"></i></div>
+                                <span class="tracking-label">Production</span>
+                            </div>
+                            <div class="tracking-step completed">
+                                <div class="tracking-icon"><i class="fas fa-check"></i></div>
+                                <span class="tracking-label">Quality Checked</span>
+                            </div>
+                            <div class="tracking-step active">
+                                <div class="tracking-icon"><i class="fas fa-truck"></i></div>
+                                <span class="tracking-label">Dispatched</span>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
+                            <p class="text-xs text-neutral-dark/50 dark:text-gray-500 mt-1">100% complete · In transit to 3 office locations</p>
+                        </div>
+                    </div>
 
-    // Mobile sidebar toggle
-    document.getElementById('mobile-sidebar-toggle').addEventListener('click', () => {
-      document.getElementById('sidebar').classList.toggle('-translate-x-full');
-    });
+                </div>
+            </div>
+        </div>
 
-    // Theme toggle
-    const htmlEl = document.documentElement;
-    const themeBtn = document.getElementById('theme-toggle-btn');
-    const themeIcon = document.getElementById('theme-icon-dash');
+        <!-- ========== DELIVERY SCHEDULE ========== -->
+        <div id="page-delivery" class="page-content hidden">
+            <div class="card-design p-6">
+                <h3 class="font-bold text-2xl mb-4">Delivery Schedule</h3>
+                <p class="text-sm text-neutral-dark/60 dark:text-gray-400 mb-6">Orders being shipped to multiple office locations.</p>
+                <div class="space-y-4">
+                    <!-- Shipment 1 -->
+                    <div class="p-5 bg-[rgba(var(--color-rgb-primary),0.04)] dark:bg-[rgba(var(--color-rgb-bright),0.05)] rounded-2xl border border-[rgba(var(--color-rgb-primary),0.08)]">
+                        <div class="flex flex-wrap justify-between items-start gap-3">
+                            <div>
+                                <p class="font-bold text-lg">Order #BN-2026-031 — Welcome Boxes (120 units)</p>
+                                <p class="text-sm text-neutral-dark/60 dark:text-gray-400">Dispatched Mar 19, 2026 · Tracking: BNEST-8842-US</p>
+                            </div>
+                            <span class="status-badge status-dispatched">In Transit</span>
+                        </div>
+                        <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div class="p-3 bg-white dark:bg-[#0F172A] rounded-xl border border-[rgba(var(--color-rgb-primary),0.08)]">
+                                <p class="text-xs font-semibold text-gift-slate mb-1">New York HQ</p>
+                                <p class="text-sm">100 Premium Ave, NY 10001</p>
+                                <p class="text-xs text-neutral-dark/50 dark:text-gray-500 mt-1">Est. Mar 22 · 60 units</p>
+                            </div>
+                            <div class="p-3 bg-white dark:bg-[#0F172A] rounded-xl border border-[rgba(var(--color-rgb-primary),0.08)]">
+                                <p class="text-xs font-semibold text-gift-slate mb-1">San Francisco</p>
+                                <p class="text-sm">450 Market St, SF 94105</p>
+                                <p class="text-xs text-neutral-dark/50 dark:text-gray-500 mt-1">Est. Mar 24 · 40 units</p>
+                            </div>
+                            <div class="p-3 bg-white dark:bg-[#0F172A] rounded-xl border border-[rgba(var(--color-rgb-primary),0.08)]">
+                                <p class="text-xs font-semibold text-gift-slate mb-1">Austin Office</p>
+                                <p class="text-sm">600 Congress Ave, TX 78701</p>
+                                <p class="text-xs text-neutral-dark/50 dark:text-gray-500 mt-1">Est. Mar 26 · 20 units</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Shipment 2 -->
+                    <div class="p-5 bg-[rgba(var(--color-rgb-primary),0.04)] dark:bg-[rgba(var(--color-rgb-bright),0.05)] rounded-2xl border border-[rgba(var(--color-rgb-primary),0.08)]">
+                        <div class="flex flex-wrap justify-between items-start gap-3">
+                            <div>
+                                <p class="font-bold text-lg">Order #BN-2026-042 — Executive Kits (250 units)</p>
+                                <p class="text-sm text-neutral-dark/60 dark:text-gray-400">Scheduled dispatch: Apr 5, 2026 · Not yet shipped</p>
+                            </div>
+                            <span class="status-badge status-production">In Production</span>
+                        </div>
+                        <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div class="p-3 bg-white dark:bg-[#0F172A] rounded-xl border border-[rgba(var(--color-rgb-primary),0.08)]">
+                                <p class="text-xs font-semibold text-gift-slate mb-1">London Office</p>
+                                <p class="text-sm">30 St Mary Axe, EC3A 8BF</p>
+                                <p class="text-xs text-neutral-dark/50 dark:text-gray-500 mt-1">Est. Apr 12 · 150 units</p>
+                            </div>
+                            <div class="p-3 bg-white dark:bg-[#0F172A] rounded-xl border border-[rgba(var(--color-rgb-primary),0.08)]">
+                                <p class="text-xs font-semibold text-gift-slate mb-1">Singapore Office</p>
+                                <p class="text-sm">1 Raffles Place, 048616</p>
+                                <p class="text-xs text-neutral-dark/50 dark:text-gray-500 mt-1">Est. Apr 15 · 100 units</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    function applyTheme() {
-      const isDark = htmlEl.dataset.theme === 'dark';
-      if (isDark) {
-        htmlEl.classList.add('dark');
-        themeIcon.className = 'fas fa-sun text-sm';
-      } else {
-        htmlEl.classList.remove('dark');
-        themeIcon.className = 'fas fa-moon text-sm';
-      }
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    }
+        <!-- ========== INVOICES ========== -->
+        <div id="page-invoices" class="page-content hidden">
+            <div class="card-design p-6">
+                <h3 class="font-bold text-2xl mb-4">Invoices & Documents</h3>
+                <p class="text-sm text-neutral-dark/60 dark:text-gray-400 mb-6">Download order confirmations and itemized invoices.</p>
+                <div class="space-y-2">
+                    <div class="receipt-item flex justify-between items-center flex-wrap gap-2">
+                        <div><p class="font-bold">Order Confirmation — #BN-2026-042</p><p class="text-sm text-neutral-dark/60 dark:text-gray-400">Mar 18, 2026 · Executive Kits</p></div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm font-bold">$10,625.00</span>
+                            <span class="status-badge status-completed text-xs">Paid</span>
+                            <button class="text-gift-slate hover:text-gift-slate-dark"><i class="fas fa-download"></i></button>
+                        </div>
+                    </div>
+                    <div class="receipt-item flex justify-between items-center flex-wrap gap-2">
+                        <div><p class="font-bold">Itemized Invoice — #BN-2026-042</p><p class="text-sm text-neutral-dark/60 dark:text-gray-400">Mar 18, 2026 · 250 units × $42.50</p></div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm font-bold">$10,625.00</span>
+                            <span class="status-badge status-completed text-xs">Paid</span>
+                            <button class="text-gift-slate hover:text-gift-slate-dark"><i class="fas fa-download"></i></button>
+                        </div>
+                    </div>
+                    <div class="receipt-item flex justify-between items-center flex-wrap gap-2">
+                        <div><p class="font-bold">Order Confirmation — #BN-2026-038</p><p class="text-sm text-neutral-dark/60 dark:text-gray-400">Mar 15, 2026 · Branded Hoodies</p></div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm font-bold">$14,000.00</span>
+                            <span class="status-badge status-pending text-xs">Pending</span>
+                            <button class="text-gift-slate hover:text-gift-slate-dark"><i class="fas fa-download"></i></button>
+                        </div>
+                    </div>
+                    <div class="receipt-item flex justify-between items-center flex-wrap gap-2">
+                        <div><p class="font-bold">Order Confirmation — #BN-2026-031</p><p class="text-sm text-neutral-dark/60 dark:text-gray-400">Mar 10, 2026 · Welcome Boxes</p></div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm font-bold">$7,800.00</span>
+                            <span class="status-badge status-completed text-xs">Paid</span>
+                            <button class="text-gift-slate hover:text-gift-slate-dark"><i class="fas fa-download"></i></button>
+                        </div>
+                    </div>
+                    <div class="receipt-item flex justify-between items-center flex-wrap gap-2">
+                        <div><p class="font-bold">Itemized Invoice — #BN-2026-031</p><p class="text-sm text-neutral-dark/60 dark:text-gray-400">Mar 10, 2026 · 120 units × $65.00</p></div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm font-bold">$7,800.00</span>
+                            <span class="status-badge status-completed text-xs">Paid</span>
+                            <button class="text-gift-slate hover:text-gift-slate-dark"><i class="fas fa-download"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    themeBtn.addEventListener('click', () => {
-      htmlEl.dataset.theme = htmlEl.dataset.theme === 'dark' ? 'light' : 'dark';
-      applyTheme();
-    });
-
-    if (localStorage.getItem('theme') === 'dark') {
-      htmlEl.dataset.theme = 'dark';
-    }
-    applyTheme();
-
-    // RTL toggle
-    document.querySelectorAll('.rtl-toggle-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        htmlEl.setAttribute('dir', htmlEl.getAttribute('dir') === 'ltr' ? 'rtl' : 'ltr');
-      });
-    });
-  </script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    let currentPath = window.location.pathname.split('/').pop() || 'index.html';
-    
-    // First, clear active classes from ALL nav links and reset them to default inactive state
-    document.querySelectorAll('nav a').forEach(link => {
-        link.classList.remove('text-primary', 'dark:text-primary', 'bg-gray-100', 'dark:bg-primary/10', 'font-bold');
-        // Add default inactive classes if they don't have them
-        if (!link.classList.contains('bg-primary')) { // Don't mess with dropdown item hovers if they exist
-            link.classList.add('text-dark-bg', 'dark:text-white');
-        }
-    });
-
-    // Then, find the exact matching link and apply active state
-    let foundMatch = false;
-    document.querySelectorAll('nav a').forEach(link => {
-      let href = link.getAttribute('href');
-      if (href && href === currentPath) {
-        link.classList.add('text-primary', 'dark:text-primary', 'bg-gray-100', 'dark:bg-primary/10', 'font-bold');
-        link.classList.remove('text-dark-bg', 'text-gray-600', 'dark:text-white', 'dark:text-white/70');
-        foundMatch = true;
-        
-        // If it's a dropdown child (like index.html or home2.html), also highlight the parent "Home" link
-        let parentDropdown = link.closest('.group');
-        if (parentDropdown) {
-            let parentLink = parentDropdown.querySelector('a[href="#"]');
-            if (parentLink) {
-                parentLink.classList.add('text-primary', 'dark:text-primary', 'bg-gray-100', 'dark:bg-primary/10', 'font-bold');
-                parentLink.classList.remove('text-dark-bg', 'dark:text-white');
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // RTL Toggle
+            const rtlToggle = document.getElementById('rtl-toggle');
+            const rtlToggleMobile = document.getElementById('rtl-toggle-mobile');
+            function setRTL(isRTL) {
+                document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+                localStorage.setItem('dir', isRTL ? 'rtl' : 'ltr');
             }
-        }
-      }
-    });
-    
-    // Fallback: if somehow no match, but we are at root, highlight index.html
-    if (!foundMatch && currentPath === '') {
-        let homeLink = document.querySelector('nav a[href="index.html"]');
-        if (homeLink) {
-            homeLink.classList.add('text-primary', 'dark:text-primary', 'bg-gray-100', 'dark:bg-primary/10', 'font-bold');
-            homeLink.classList.remove('text-dark-bg', 'dark:text-white');
-        }
-    }
-  });
-</script>
+            const savedDir = localStorage.getItem('dir');
+            setRTL(savedDir === 'rtl');
+            if (rtlToggle) rtlToggle.addEventListener('click', () => setRTL(document.documentElement.getAttribute('dir') !== 'rtl'));
+            if (rtlToggleMobile) rtlToggleMobile.addEventListener('click', () => setRTL(document.documentElement.getAttribute('dir') !== 'rtl'));
 
+            // Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+            function setTheme(isDark) {
+                if (isDark) document.documentElement.classList.add('dark');
+                else document.documentElement.classList.remove('dark');
+                [themeToggle, themeToggleMobile].forEach(btn => {
+                    if (btn) {
+                        let moon = btn.querySelector('.fa-moon'), sun = btn.querySelector('.fa-sun');
+                        if (isDark) { moon?.classList.add('hidden'); sun?.classList.remove('hidden'); }
+                        else { moon?.classList.remove('hidden'); sun?.classList.add('hidden'); }
+                    }
+                });
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            }
+            const savedTheme = localStorage.getItem('theme');
+            setTheme(savedTheme === 'dark');
+            if (themeToggle) themeToggle.addEventListener('click', () => setTheme(!document.documentElement.classList.contains('dark')));
+            if (themeToggleMobile) themeToggleMobile.addEventListener('click', () => setTheme(!document.documentElement.classList.contains('dark')));
+
+            // Mobile Sidebar
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('open'); }
+            function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('open'); }
+            if (menuToggle) menuToggle.addEventListener('click', (e) => { e.stopPropagation(); sidebar.classList.contains('open') ? closeSidebar() : openSidebar(); });
+            if (overlay) overlay.addEventListener('click', closeSidebar);
+            window.addEventListener('resize', () => { if (window.innerWidth > 768 && sidebar.classList.contains('open')) closeSidebar(); });
+
+            // Navigation
+            const sidebarItems = document.querySelectorAll('.sidebar-item');
+            const pages = document.querySelectorAll('.page-content');
+            const pageTitle = document.getElementById('page-title');
+            const pageSubtitle = document.getElementById('page-subtitle');
+            const titles = {
+                dashboard: { title: 'Dashboard', subtitle: 'Welcome back, Michael' },
+                'new-order': { title: 'New Bulk Order', subtitle: 'Submit a corporate gift order' },
+                orders: { title: 'My Orders', subtitle: 'Track production status' },
+                delivery: { title: 'Delivery Schedule', subtitle: 'Multi-office shipment tracking' },
+                invoices: { title: 'Invoices', subtitle: 'Download confirmations and invoices' }
+            };
+            function navigateTo(page) {
+                sidebarItems.forEach(i => i.classList.remove('active'));
+                document.querySelector(`.sidebar-item[data-page="${page}"]`)?.classList.add('active');
+                pages.forEach(p => p.classList.add('hidden'));
+                document.getElementById(`page-${page}`)?.classList.remove('hidden');
+                if (titles[page]) { pageTitle.textContent = titles[page].title; pageSubtitle.textContent = titles[page].subtitle; }
+                closeSidebar();
+            }
+            sidebarItems.forEach(item => { item.addEventListener('click', () => { navigateTo(item.getAttribute('data-page')); }); });
+            document.querySelectorAll('[data-nav]').forEach(btn => { btn.addEventListener('click', () => { navigateTo(btn.getAttribute('data-nav')); }); });
+
+            // Category chips
+            const chips = document.querySelectorAll('.category-chip');
+            chips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    chips.forEach(c => c.classList.remove('selected'));
+                    chip.classList.add('selected');
+                });
+            });
+
+            // Upload previews (demo)
+            const logoInput = document.getElementById('logoInput');
+            const logoPreview = document.getElementById('logoPreview');
+            if (logoInput) {
+                logoInput.addEventListener('change', function() {
+                    if (this.files && this.files[0]) {
+                        logoPreview.classList.remove('hidden');
+                        document.getElementById('logoFileName').textContent = this.files[0].name;
+                    }
+                });
+            }
+            const artworkInput = document.getElementById('artworkInput');
+            const artworkPreview = document.getElementById('artworkPreview');
+            if (artworkInput) {
+                artworkInput.addEventListener('change', function() {
+                    if (this.files && this.files.length) {
+                        artworkPreview.classList.remove('hidden');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
-
-

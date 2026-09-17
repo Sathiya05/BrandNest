@@ -1,12 +1,15 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>BrandNest | About Us</title>
   <meta name="description" content="Learn about the BrandNest mission, our core values, and the team behind the ultimate merchandise experience.">
-  <link rel="icon" type="image/png" href="favicon.png?v=2">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20style%3D%22stop-color%3A%232563EB%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20style%3D%22stop-color%3A%2360A5FA%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2222%22%20fill%3D%22url(%23bg)%22%2F%3E%3Crect%20x%3D%2220%22%20y%3D%2262%22%20width%3D%2260%22%20height%3D%2210%22%20rx%3D%225%22%20fill%3D%22white%22%20opacity%3D%220.95%22%2F%3E%3Crect%20x%3D%2224%22%20y%3D%2247%22%20width%3D%2252%22%20height%3D%2210%22%20rx%3D%225%22%20fill%3D%22white%22%20opacity%3D%220.85%22%2F%3E%3Crect%20x%3D%2228%22%20y%3D%2232%22%20width%3D%2244%22%20height%3D%2210%22%20rx%3D%225%22%20fill%3D%22white%22%20opacity%3D%220.75%22%2F%3E%3C%2Fsvg%3E">
   
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
@@ -16,14 +19,17 @@
       theme: {
         extend: {
           colors: {
-            'dark-bg': '#111827',
-            'light-bg': '#FFFFFF',
-            'primary': '#1F4E5F',
-            'secondary': '#D4A373',
-            'dark-surface': '#1f2937'
+            'dark-bg': '#0F172A',
+            'light-bg': '#F8FAFC',
+            'primary': '#2563EB', // Bright Corporate Blue
+            'secondary': '#F59E0B' // Vibrant Amber
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
           },
           backgroundImage: {
-            'gradient-primary': 'linear-gradient(to right, #1F4E5F, #D4A373)'
+            'gradient-primary': 'linear-gradient(135deg, #2563EB 0%, #60A5FA 100%)',
+            'gradient-secondary': 'linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%)',
           }
         }
       }
@@ -41,7 +47,7 @@
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .animate-fade-in { animation: fadeInUp 0.8s ease-out forwards; }
+    .animate-fade-in { animation: fadeInUp 0.8s ease-out; }
     .hide-scroll::-webkit-scrollbar { display: none; }
     .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
@@ -50,15 +56,17 @@
 
   <!-- NAVIGATION -->
   <div class="fixed top-2 md:top-4 inset-x-0 z-50 px-4 sm:px-6 lg:px-8 flex justify-center pointer-events-none">
-    <nav class="w-full max-w-[1600px] bg-light-bg/90 dark:bg-dark-bg/90 backdrop-blur-lg border border-gray-200 dark:border-primary/30 rounded-2xl xl:rounded-full shadow-2xl transition-colors duration-300 pointer-events-auto relative">
+    <nav class="w-full max-w-[1600px] bg-light-bg/80 dark:bg-dark-bg/80 backdrop-blur-xl border border-white/20 dark:border-primary/30 rounded-2xl xl:rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-colors duration-300 pointer-events-auto relative">
       <div class="flex justify-between items-center h-[70px] md:h-[80px] px-4 xl:px-8">
 
         <!-- LOGO -->
         <div class="flex-shrink-0 pr-2 xl:pr-4">
-          <a href="index.html" class="flex items-center gap-2 md:gap-3">
-            <i class="fas fa-gift text-3xl md:text-4xl text-primary drop-shadow-[0_2px_8px_rgba(239,68,68,0.4)]"></i>
+          <a href="index.html" class="flex items-center gap-2 md:gap-3 group">
+            <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-primary rounded-xl flex items-center justify-center shadow-lg transform group-hover:scale-105 transition-transform">
+                <i class="fas fa-layer-group text-white text-xl md:text-2xl"></i>
+            </div>
             <div class="flex flex-col">
-              <span class="text-xl md:text-2xl font-medium tracking-widest text-dark-bg dark:text-white uppercase truncate">Brand<span class="text-primary">Nest</span></span>
+              <span class="text-xl md:text-2xl font-black tracking-tight text-dark-bg dark:text-white uppercase truncate">Brand<span class="text-primary">Nest</span></span>
             </div>
           </a>
         </div>
@@ -82,18 +90,18 @@
             </div>
 
             <!-- Standard Links -->
-            <a href="about.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary dark:hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-primary/10">About</a>
-            <a href="blog.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary dark:hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-primary/10">Blog</a>
-            <a href="lead-times.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary dark:hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-primary/10">Lead Times</a>
-            <a href="products.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary dark:hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-primary/10">Products</a>
-            <a href="customization.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary dark:hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-primary/10">Customization</a>
-            <a href="catalog.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary dark:hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-primary/10">Catalog</a>
-            <a href="faq.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary dark:hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-primary/10">FAQ</a>
-            <a href="contact.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary dark:hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-primary/10">Contact</a>
+            <a href="about.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100/50 dark:hover:bg-primary/10">About</a>
+            <a href="blog.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100/50 dark:hover:bg-primary/10">Blog</a>
+            <a href="lead-times.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100/50 dark:hover:bg-primary/10 whitespace-nowrap">Lead Times</a>
+            <a href="products.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100/50 dark:hover:bg-primary/10">Products</a>
+            <a href="customization.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100/50 dark:hover:bg-primary/10">Customization</a>
+            <a href="catalog.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100/50 dark:hover:bg-primary/10">Catalog</a>
+            <a href="faq.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100/50 dark:hover:bg-primary/10">FAQ</a>
+            <a href="contact.html" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary transition-colors px-2 py-2 rounded-md hover:bg-gray-100/50 dark:hover:bg-primary/10">Contact</a>
 
             <!-- Dashboard Dropdown -->
             <div class="relative group h-[80px] flex items-center">
-              <a href="#" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary transition-colors flex items-center relative px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-primary/10 whitespace-nowrap">
+              <a href="#" class="text-xs uppercase tracking-[0.1em] font-medium text-dark-bg dark:text-white hover:text-primary transition-colors flex items-center relative px-2 py-2 rounded-md hover:bg-gray-100/50 dark:hover:bg-primary/10 whitespace-nowrap">
                 <span>Dashboard</span>
                 <i class="fas fa-chevron-down text-[8px] ms-1 transition-transform duration-300 group-hover:rotate-180"></i>
               </a>
@@ -109,17 +117,17 @@
         </div>
 
         <div class="flex items-center gap-2 flex-shrink-0">
-                    <div class="hidden xl:flex items-center gap-2">
-            <button type="button" class="rtl-toggle-btn text-dark-bg dark:text-white hover:text-primary focus:outline-none transition duration-300 bg-gray-100 dark:bg-primary/10 px-3 py-2.5 rounded-full text-xs font-medium uppercase tracking-wider" title="Toggle RTL">RTL</button>
-            <button id="theme-toggle" class="text-dark-bg dark:text-white hover:text-primary focus:outline-none transition duration-300 bg-gray-100 dark:bg-primary/10 p-2.5 rounded-full" title="Toggle Mode">
+          <div class="hidden xl:flex items-center gap-2">
+            <button type="button" class="rtl-toggle-btn text-dark-bg dark:text-white hover:text-primary focus:outline-none transition duration-300 bg-gray-100/50 dark:bg-primary/10 px-3 py-2.5 rounded-full text-xs font-medium uppercase tracking-wider backdrop-blur-sm" title="Toggle RTL">RTL</button>
+            <button id="theme-toggle" class="text-dark-bg dark:text-white hover:text-primary focus:outline-none transition duration-300 bg-gray-100/50 dark:bg-primary/10 p-2.5 rounded-full backdrop-blur-sm" title="Toggle Mode">
               <i class="fas fa-moon text-sm" id="theme-icon"></i>
             </button>
-            <a href="login.html" class="text-dark-bg dark:text-white hover:text-primary focus:outline-none transition duration-300 bg-gray-100 dark:bg-primary/10 px-4 py-2.5 rounded-full text-xs font-medium uppercase tracking-wider">Login</a>
-            <a href="register.html" class="bg-gradient-primary text-white px-5 py-2.5 rounded-full text-xs uppercase tracking-wider font-medium shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all duration-300">Register</a>
+            <a href="login.html" class="text-dark-bg dark:text-white hover:text-primary focus:outline-none transition duration-300 bg-gray-100/50 dark:bg-primary/10 px-4 py-2.5 rounded-full text-xs font-medium uppercase tracking-wider backdrop-blur-sm">Login</a>
+            <a href="register.html" class="bg-gradient-primary text-white px-5 py-2.5 rounded-full text-xs uppercase tracking-wider font-medium shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">Register</a>
           </div>
 
           <!-- Mobile Toggle -->
-          <button id="mobile-menu-button" class="xl:hidden text-dark-bg dark:text-white hover:text-primary focus:outline-none transition duration-300 bg-gray-100 dark:bg-primary/10 p-2 rounded-full">
+          <button id="mobile-menu-button" class="xl:hidden text-dark-bg dark:text-white hover:text-primary focus:outline-none transition duration-300 bg-gray-100/50 dark:bg-primary/10 p-2 rounded-full backdrop-blur-sm">
             <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
               <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -129,7 +137,7 @@
       </div>
 
       <!-- MOBILE MENU DROPDOWN -->
-      <div id="mobile-menu" class="hidden xl:hidden absolute top-[80px] inset-x-0 bg-light-bg dark:bg-dark-bg border border-gray-200 dark:border-primary/20 shadow-2xl rounded-2xl transition-colors duration-300 overflow-hidden z-50">
+      <div id="mobile-menu" class="hidden xl:hidden absolute top-[80px] inset-x-0 bg-light-bg/95 dark:bg-dark-bg/95 backdrop-blur-xl border border-gray-200 dark:border-primary/20 shadow-2xl rounded-2xl transition-colors duration-300 overflow-hidden z-50">
         <div class="px-6 pt-4 pb-8 flex flex-col gap-0 max-h-[75vh] overflow-y-auto hide-scroll">
           
           <div class="border-b border-gray-200 dark:border-white/10 flex flex-col">
@@ -163,12 +171,12 @@
             </div>
           </div>
 
-                    <div class="pt-6 flex flex-col gap-4">
-            <a href="login.html" class="flex items-center justify-center w-full border border-gray-200 dark:border-primary/30 text-dark-bg dark:text-white px-2 py-3 rounded-full font-medium uppercase tracking-widest text-xs transition duration-300 hover:bg-gray-100 dark:hover:bg-primary/10">Login</a>
+          <div class="pt-6 flex flex-col gap-4">
+            <a href="login.html" class="flex items-center justify-center w-full border border-gray-200 dark:border-primary/30 text-dark-bg dark:text-white px-2 py-3 rounded-full font-medium uppercase tracking-widest text-xs transition duration-300 hover:bg-gray-100/50 dark:hover:bg-primary/10">Login</a>
             <a href="register.html" class="flex items-center justify-center w-full bg-gradient-primary text-white px-2 py-3 rounded-full font-medium uppercase tracking-widest text-xs transition duration-300">Register</a>
             <div class="flex gap-4">
-              <button type="button" class="rtl-toggle-btn flex-1 flex items-center justify-center gap-2 text-dark-bg dark:text-white bg-gray-100 dark:bg-primary/10 px-4 py-3 rounded-full uppercase tracking-widest text-xs font-medium">RTL</button>
-              <button id="mobile-theme-toggle" class="flex-1 flex items-center justify-center gap-2 text-dark-bg dark:text-white bg-gray-100 dark:bg-primary/10 px-4 py-3 rounded-full uppercase tracking-widest text-xs font-medium">
+              <button type="button" class="rtl-toggle-btn flex-1 flex items-center justify-center gap-2 text-dark-bg dark:text-white bg-gray-100/50 dark:bg-primary/10 px-4 py-3 rounded-full uppercase tracking-widest text-xs font-medium">RTL</button>
+              <button id="mobile-theme-toggle" class="flex-1 flex items-center justify-center gap-2 text-dark-bg dark:text-white bg-gray-100/50 dark:bg-primary/10 px-4 py-3 rounded-full uppercase tracking-widest text-xs font-medium">
                 <i class="fas fa-moon text-sm" id="mobile-theme-icon"></i>
                 <span id="mobile-theme-text">Light Mode</span>
               </button>
@@ -181,168 +189,171 @@
 
   <main class="flex-grow w-full max-w-[100vw] overflow-hidden">
     
-    
-
 <!-- 1️⃣ HERO SECTION -->
 <section class="relative min-h-screen flex items-center justify-center pt-[120px] pb-16 overflow-hidden bg-white dark:bg-dark-bg text-dark-bg dark:text-white">
   
   <!-- BACKGROUND IMAGE -->
   <div class="absolute inset-0 z-0">
-    <img src="assets/images/hero-about.jpg" class="w-full h-full object-cover opacity-60 dark:opacity-70" alt="Corporate Gifting Background">
+    <img src="images/hero-about.jpg" class="w-full h-full object-cover opacity-80 dark:opacity-70 scale-105 transform transition-transform duration-[20s] hover:scale-110" alt="Corporate Gifting Background">
+    <div class="absolute inset-0 bg-gradient-to-b from-dark-bg/80 to-dark-bg/30 mix-blend-multiply"></div>
   </div>
-  <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in">
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in backdrop-blur-sm bg-white/5 dark:bg-dark-bg/20 p-12 rounded-3xl border border-white/20 shadow-2xl">
 
-    <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight mb-6">About Us</h1>
-    <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-10">The premier corporate gifting partner.</p>
-    <a href="#section2" class="inline-block bg-primary text-white font-bold px-8 py-4 rounded-full hover:bg-secondary transition-colors">Discover More</a>
+    <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 drop-shadow-md">Our Story</h1>
+    <p class="text-xl md:text-2xl text-gray-100 font-light mb-10 max-w-3xl mx-auto drop-shadow">The premier corporate gifting partner redefining how brands connect with people.</p>
   </div>
 </section>
-
-
 
 <!-- 2️⃣ OUR STORY -->
-<section class="py-16 bg-gray-50 dark:bg-gray-800/50 text-dark-bg dark:text-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
+<section class="py-24 bg-light-bg dark:bg-dark-bg text-dark-bg dark:text-white relative">
+  <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-16">
     <div class="flex-1">
-      <h2 class="text-4xl font-bold mb-6 uppercase">Our Story</h2>
-      <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-4">Founded in 2018, BrandNest started with a simple mission: revolutionize the corporate gifting industry through premium quality and seamless technology.</p>
-      <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">Today, we are the trusted gifting partner for over 500 enterprise clients globally, combining world-class logistics with bespoke curation.</p>
+      <h2 class="text-sm font-bold text-secondary uppercase tracking-widest mb-2">Our Foundation</h2>
+      <h3 class="text-4xl font-bold tracking-tight mb-8">Crafting Connections</h3>
+      <p class="text-lg text-gray-600 dark:text-gray-400 font-light leading-relaxed mb-6">Founded in 2018, BrandNest started with a simple mission: revolutionize the corporate gifting industry through premium quality, thoughtful curation, and seamless technology.</p>
+      <p class="text-lg text-gray-600 dark:text-gray-400 font-light leading-relaxed">Today, we are the trusted gifting partner for over 500 enterprise clients globally, combining world-class logistics with bespoke merchandise that leaves a lasting impression.</p>
     </div>
-    <div class="flex-1 relative">
-      <img src="assets/images/team.jpg" class="rounded-2xl shadow-2xl">
-      <div class="absolute -bottom-6 -left-6 bg-secondary text-white p-6 rounded-2xl shadow-xl font-bold text-2xl">8+ Years<br><span class="text-sm font-normal">of Excellence</span></div>
+    <div class="flex-1 relative group">
+      <div class="absolute inset-0 bg-primary/20 blur-3xl rounded-full transform group-hover:scale-110 transition-transform duration-700"></div>
+      <img src="images/team.jpg" class="rounded-3xl shadow-2xl relative z-10 border border-white/10">
+      <div class="absolute -bottom-8 -left-8 bg-gradient-secondary text-dark-bg p-8 rounded-3xl shadow-2xl font-bold text-3xl z-20 border border-white/20">8+ Years<br><span class="text-sm font-medium">of Excellence</span></div>
     </div>
   </div>
 </section>
+
 <!-- 3️⃣ MISSION -->
-<section class="py-16 bg-white dark:bg-dark-bg text-dark-bg dark:text-white text-center">
+<section class="py-24 bg-gray-50 dark:bg-gray-900 text-dark-bg dark:text-white text-center border-y border-gray-200 dark:border-white/5">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-3xl font-bold mb-12 uppercase">Mission & Values</h2>
+    <h2 class="text-sm font-bold text-secondary uppercase tracking-widest mb-2">What Drives Us</h2>
+    <h3 class="text-4xl font-bold tracking-tight mb-16">Mission & Values</h3>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="p-8 border border-gray-100 dark:border-gray-700 rounded-3xl shadow-lg bg-gray-50 dark:bg-gray-800">
-            <i class="fas fa-gem text-5xl text-primary mb-4"></i>
-            <h3 class="text-xl font-bold mb-2">Integrity</h3>
-            <p class="text-gray-500">Transparent pricing, honest lead times, and ethical sourcing in every single order.</p>
+        <div class="group bg-white dark:bg-gray-800/40 p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-white/5 hover:-translate-y-2">
+            <i class="fas fa-gem text-5xl text-primary mb-6 group-hover:scale-110 transition-transform"></i>
+            <h3 class="text-2xl font-bold mb-3">Integrity</h3>
+            <p class="text-gray-500 font-light leading-relaxed">Transparent pricing, honest lead times, and ethical sourcing in every single order.</p>
         </div>
-        <div class="p-8 border border-gray-100 dark:border-gray-700 rounded-3xl shadow-lg bg-gray-50 dark:bg-gray-800">
-            <i class="fas fa-leaf text-5xl text-primary mb-4"></i>
-            <h3 class="text-xl font-bold mb-2">Sustainability</h3>
-            <p class="text-gray-500">Committed to reducing waste through high-quality, long-lasting products, not cheap throwaways.</p>
+        <div class="group bg-white dark:bg-gray-800/40 p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-white/5 hover:-translate-y-2">
+            <i class="fas fa-leaf text-5xl text-primary mb-6 group-hover:scale-110 transition-transform"></i>
+            <h3 class="text-2xl font-bold mb-3">Sustainability</h3>
+            <p class="text-gray-500 font-light leading-relaxed">Committed to reducing waste through high-quality, long-lasting products, not cheap throwaways.</p>
         </div>
-        <div class="p-8 border border-gray-100 dark:border-gray-700 rounded-3xl shadow-lg bg-gray-50 dark:bg-gray-800">
-            <i class="fas fa-paint-roller text-5xl text-primary mb-4"></i>
-            <h3 class="text-xl font-bold mb-2">Design Excellence</h3>
-            <p class="text-gray-500">We believe every corporate gift should reflect the highest standards of your brand's identity.</p>
+        <div class="group bg-white dark:bg-gray-800/40 p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-white/5 hover:-translate-y-2">
+            <i class="fas fa-paint-roller text-5xl text-primary mb-6 group-hover:scale-110 transition-transform"></i>
+            <h3 class="text-2xl font-bold mb-3">Design Excellence</h3>
+            <p class="text-gray-500 font-light leading-relaxed">We believe every corporate gift should reflect the highest standards of your brand's identity.</p>
         </div>
     </div>
   </div>
 </section>
+
 <!-- 4️⃣ TEAM -->
-<section class="py-16 bg-gray-50 dark:bg-gray-800/50 text-dark-bg dark:text-white text-center">
+<section class="py-24 bg-light-bg dark:bg-dark-bg text-dark-bg dark:text-white text-center">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-3xl font-bold mb-12 uppercase">Meet the Leadership</h2>
+    <h2 class="text-sm font-bold text-secondary uppercase tracking-widest mb-2">The Minds Behind BrandNest</h2>
+    <h3 class="text-4xl font-bold tracking-tight mb-16">Meet the Leadership</h3>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow overflow-hidden pb-4">
-        <img src="assets/images/team1.jpg" class="h-48 w-full object-cover mb-4">
-        <h3 class="font-bold text-lg">Jane Doe</h3><p class="text-sm text-primary font-bold">CEO & Founder</p>
+      <div class="bg-gray-50 dark:bg-gray-800/40 rounded-3xl shadow-lg overflow-hidden pb-6 border border-gray-100 dark:border-white/5 hover:shadow-xl transition-shadow">
+        <img src="images/team1.jpg" class="h-64 w-full object-cover mb-6">
+        <h3 class="font-bold text-xl mb-1">Jane Doe</h3><p class="text-sm text-secondary font-medium tracking-wide uppercase">CEO & Founder</p>
       </div>
-      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow overflow-hidden pb-4">
-        <img src="assets/images/team2.jpg" class="h-48 w-full object-cover mb-4">
-        <h3 class="font-bold text-lg">John Smith</h3><p class="text-sm text-primary font-bold">CTO</p>
+      <div class="bg-gray-50 dark:bg-gray-800/40 rounded-3xl shadow-lg overflow-hidden pb-6 border border-gray-100 dark:border-white/5 hover:shadow-xl transition-shadow">
+        <img src="images/team2.jpg" class="h-64 w-full object-cover mb-6">
+        <h3 class="font-bold text-xl mb-1">John Smith</h3><p class="text-sm text-secondary font-medium tracking-wide uppercase">CTO</p>
       </div>
-      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow overflow-hidden pb-4">
-        <img src="assets/images/team3.jpg" class="h-48 w-full object-cover mb-4">
-        <h3 class="font-bold text-lg">Emily R.</h3><p class="text-sm text-primary font-bold">Head of Design</p>
+      <div class="bg-gray-50 dark:bg-gray-800/40 rounded-3xl shadow-lg overflow-hidden pb-6 border border-gray-100 dark:border-white/5 hover:shadow-xl transition-shadow">
+        <img src="images/team3.jpg" class="h-64 w-full object-cover mb-6">
+        <h3 class="font-bold text-xl mb-1">Emily R.</h3><p class="text-sm text-secondary font-medium tracking-wide uppercase">Head of Design</p>
       </div>
-      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow overflow-hidden pb-4">
-        <img src="assets/images/team4.jpg" class="h-48 w-full object-cover mb-4">
-        <h3 class="font-bold text-lg">Marcus T.</h3><p class="text-sm text-primary font-bold">VP Logistics</p>
+      <div class="bg-gray-50 dark:bg-gray-800/40 rounded-3xl shadow-lg overflow-hidden pb-6 border border-gray-100 dark:border-white/5 hover:shadow-xl transition-shadow">
+        <img src="images/team4.jpg" class="h-64 w-full object-cover mb-6">
+        <h3 class="font-bold text-xl mb-1">Marcus T.</h3><p class="text-sm text-secondary font-medium tracking-wide uppercase">VP Logistics</p>
       </div>
     </div>
   </div>
 </section>
+
 <!-- 5️⃣ SOCIAL RESP -->
-<section class="py-16 bg-white dark:bg-dark-bg text-dark-bg dark:text-white text-center">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="bg-green-50 dark:bg-green-900/20 p-10 rounded-3xl border border-green-200 dark:border-green-800">
-        <i class="fas fa-tree text-6xl text-green-600 mb-6"></i>
-        <h2 class="text-3xl font-bold mb-4 uppercase text-green-700 dark:text-green-400">Social Responsibility</h2>
-        <p class="text-lg text-green-800 dark:text-green-200">1% of all our profits are directly donated to reforestation projects and fair-trade initiatives worldwide. Gifting with BrandNest means giving back.</p>
+<section class="py-24 bg-gray-50 dark:bg-gray-900 text-dark-bg dark:text-white text-center border-t border-gray-200 dark:border-white/5">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/10 p-16 rounded-[3rem] border border-green-200 dark:border-green-800/50 shadow-2xl relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 text-[20rem] text-green-500/10 dark:text-green-500/5"><i class="fas fa-leaf"></i></div>
+        <i class="fas fa-tree text-6xl text-emerald-600 dark:text-emerald-400 mb-8 relative z-10"></i>
+        <h2 class="text-3xl font-bold mb-6 uppercase text-emerald-800 dark:text-emerald-300 relative z-10 tracking-tight">Social Responsibility</h2>
+        <p class="text-xl text-emerald-900/80 dark:text-emerald-100/80 font-light leading-relaxed max-w-3xl mx-auto relative z-10">1% of all our profits are directly donated to reforestation projects and fair-trade initiatives worldwide. Gifting with BrandNest means giving back.</p>
     </div>
   </div>
 </section>
-<!-- 6️⃣ CTA -->
-<section class="py-16 bg-primary text-white text-center">
-  <h2 class="text-4xl font-bold mb-6 uppercase">Join Our Journey</h2>
-  <a href="contact.html" class="bg-secondary px-8 py-3 rounded-full font-bold shadow hover:bg-white hover:text-primary transition-colors">Partner With Us</a>
-</section>
+
+  </main>
+
 <!-- FOOTER -->
-  <footer class="bg-[#0b101a] text-white pt-16 pb-10 border-t border-primary/20 w-full">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+  <footer class="bg-[#0b101a] text-white pt-20 pb-10 border-t border-white/10 w-full relative overflow-hidden">
+    <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
         
         <div class="md:col-span-1">
           <a href="index.html" class="flex items-center gap-3 mb-6">
-            <i class="fas fa-gift text-3xl text-primary"></i>
-            <h3 class="text-2xl font-medium tracking-widest uppercase text-white">Iron<span class="text-primary">Pulse</span></h3>
+            <i class="fas fa-gift text-3xl text-secondary"></i>
+            <h3 class="text-2xl font-bold tracking-widest uppercase text-white">Brand<span class="text-secondary">Nest</span></h3>
           </a>
-          <p class="text-gray-400 text-sm font-medium leading-relaxed mb-6">
-            Forging strength, endurance, and community. Start your transformation today.
+          <p class="text-gray-400 text-sm font-light leading-relaxed mb-8">
+            Elevating corporate connections through premium, bespoke gifting experiences.
           </p>
           <div class="flex gap-4">
-            <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-primary text-white flex items-center justify-center transition-colors rounded-full"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-primary text-white flex items-center justify-center transition-colors rounded-full"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-primary text-white flex items-center justify-center transition-colors rounded-full"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="w-10 h-10 bg-white/5 hover:bg-primary text-white flex items-center justify-center transition-all rounded-full hover:scale-110"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="w-10 h-10 bg-white/5 hover:bg-primary text-white flex items-center justify-center transition-all rounded-full hover:scale-110"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="w-10 h-10 bg-white/5 hover:bg-primary text-white flex items-center justify-center transition-all rounded-full hover:scale-110"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
 
         <div>
-          <h4 class="text-sm uppercase tracking-widest font-medium mb-6 text-white border-l-2 border-primary pl-3">Explore</h4>
+          <h4 class="text-sm uppercase tracking-widest font-bold mb-6 text-white">Explore</h4>
           <ul class="space-y-4">
-            <li><a href="about.html" class="text-sm text-gray-400 hover:text-primary transition-colors font-medium uppercase">About Us</a></li>
-            <li><a href="customization.html" class="text-sm text-gray-400 hover:text-primary transition-colors font-medium uppercase">Customization</a></li>
-            <li><a href="products.html" class="text-sm text-gray-400 hover:text-primary transition-colors font-medium uppercase">Items</a></li>
-            <li><a href="catalog.html" class="text-sm text-gray-400 hover:text-primary transition-colors font-medium uppercase">Catalog</a></li>
+            <li><a href="about.html" class="text-sm text-gray-400 hover:text-secondary transition-colors font-medium">About Us</a></li>
+            <li><a href="products.html" class="text-sm text-gray-400 hover:text-secondary transition-colors font-medium">Products</a></li>
+            <li><a href="customization.html" class="text-sm text-gray-400 hover:text-secondary transition-colors font-medium">Customization</a></li>
+            <li><a href="catalog.html" class="text-sm text-gray-400 hover:text-secondary transition-colors font-medium">Catalog</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="text-sm uppercase tracking-widest font-medium mb-6 text-white border-l-2 border-primary pl-3">Support</h4>
+          <h4 class="text-sm uppercase tracking-widest font-bold mb-6 text-white">Support</h4>
           <ul class="space-y-4">
-            <li><a href="faq.html" class="text-sm text-gray-400 hover:text-primary transition-colors font-medium uppercase">FAQ</a></li>
-            <li><a href="contact.html" class="text-sm text-gray-400 hover:text-primary transition-colors font-medium uppercase">Contact Us</a></li>
-            <li><a href="lead-times.html" class="text-sm text-gray-400 hover:text-primary transition-colors font-medium uppercase">Lead Times Guide</a></li>
-            <li><a href="dashboard-user.html" class="text-sm text-gray-400 hover:text-primary transition-colors font-medium uppercase">Member Portal</a></li>
+            <li><a href="contact.html" class="text-sm text-gray-400 hover:text-secondary transition-colors font-medium">Contact Us</a></li>
+            <li><a href="#" class="text-sm text-gray-400 hover:text-secondary transition-colors font-medium">FAQ</a></li>
+            <li><a href="#" class="text-sm text-gray-400 hover:text-secondary transition-colors font-medium">Shipping & Returns</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="text-sm uppercase tracking-widest font-medium mb-6 text-white border-l-2 border-primary pl-3">Contact</h4>
+          <h4 class="text-sm uppercase tracking-widest font-bold mb-6 text-white">Contact</h4>
           <ul class="space-y-4">
             <li class="flex items-start text-sm text-gray-400">
-              <i class="fas fa-map-marker-alt text-primary mt-1 mr-3"></i>
-              <span class="font-medium">100 Muscle Ave, Merchandise District, NY 10001</span>
+              <i class="fas fa-map-marker-alt text-secondary mt-1 mr-3"></i>
+              <span class="font-medium">100 Premium Ave, Business District, NY 10001</span>
             </li>
             <li class="flex items-center text-sm text-gray-400">
-              <i class="fas fa-phone text-primary mr-3"></i>
-              <a href="tel:+1234567890" class="hover:text-primary transition-colors font-medium">+1 (234) 567-8900</a>
+              <i class="fas fa-phone text-secondary mr-3"></i>
+              <a href="tel:+1234567890" class="hover:text-secondary transition-colors font-medium">+1 (234) 567-8900</a>
             </li>
             <li class="flex items-center text-sm text-gray-400">
-              <i class="fas fa-envelope text-primary mr-3"></i>
-              <a href="mailto:info@ironpulse.com" class="hover:text-primary transition-colors font-medium">info@ironpulse.com</a>
+              <i class="fas fa-envelope text-secondary mr-3"></i>
+              <a href="mailto:hello@brandnest.com" class="hover:text-secondary transition-colors font-medium">hello@brandnest.com</a>
             </li>
           </ul>
         </div>
 
       </div>
 
-      <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4">
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4">
         <p class="text-gray-500 text-xs tracking-widest uppercase font-medium">
-          Â© 2026 BrandNest Merchandise. All rights reserved.
+          &copy; 2026 BrandNest. All rights reserved.
         </p>
         <div class="flex gap-6">
-          <a href="#" class="text-gray-500 hover:text-primary text-xs tracking-widest uppercase font-medium transition-colors">Privacy</a>
-          <a href="#" class="text-gray-500 hover:text-primary text-xs tracking-widest uppercase font-medium transition-colors">Terms</a>
+          <a href="#" class="text-gray-500 hover:text-secondary text-xs tracking-widest uppercase font-medium transition-colors">Privacy Policy</a>
+          <a href="#" class="text-gray-500 hover:text-secondary text-xs tracking-widest uppercase font-medium transition-colors">Terms of Service</a>
         </div>
       </div>
     </div>
@@ -367,32 +378,6 @@
           mobileMenu.classList.remove('flex');
       }
     });
-
-    // Mobile Dropdown Logic
-    function setupMobileDropdown(dropdownId, menuId, iconId) {
-      const dropdownBtn = document.getElementById(dropdownId);   
-      const menu = document.getElementById(menuId);
-      const icon = document.getElementById(iconId);
-      
-      if(dropdownBtn && menu && icon) {
-        dropdownBtn.addEventListener('click', (e) => {
-          e.preventDefault(); 
-          menu.classList.toggle('hidden');
-          if(menu.classList.contains('hidden')) {
-            icon.classList.remove('fa-minus');
-            icon.classList.add('fa-plus');
-            menu.classList.remove('flex');
-          } else {
-            icon.classList.remove('fa-plus');
-            icon.classList.add('fa-minus');
-            menu.classList.add('flex');
-          }
-        });
-      }
-    }
-
-    setupMobileDropdown('mobile-home-dropdown', 'mobile-home-menu', 'mobile-home-icon');
-    setupMobileDropdown('mobile-dash-dropdown', 'mobile-dash-menu', 'mobile-dash-icon');
 
     // Theme Toggle (Dark/Light)
     (function() {
@@ -419,68 +404,46 @@
       if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
 
       updateThemeIcons();
-    
-      // --- RTL Toggle Logic ---
-      const rtlToggleBtns = document.querySelectorAll('.rtl-toggle-btn');
-      rtlToggleBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation(); 
-          document.body.classList.add('no-transition');
-          const currentDir = html.getAttribute('dir') || 'ltr';
-          html.setAttribute('dir', currentDir === 'ltr' ? 'rtl' : 'ltr');
-          setTimeout(() => { document.body.classList.remove('no-transition'); }, 50);
-        });
-      });
     })();
   </script>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    let currentPath = window.location.pathname.split('/').pop() || 'index.html';
-    
-    // First, clear active classes from ALL nav links and reset them to default inactive state
-    document.querySelectorAll('nav a').forEach(link => {
-        link.classList.remove('text-primary', 'dark:text-primary', 'bg-gray-100', 'dark:bg-primary/10', 'font-bold');
-        // Add default inactive classes if they don't have them
-        if (!link.classList.contains('bg-primary')) { // Don't mess with dropdown item hovers if they exist
-            link.classList.add('text-dark-bg', 'dark:text-white');
+  // Active Nav Highlighting
+  (function() {
+    var current = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('nav a[href]').forEach(function(link) {
+      var href = link.getAttribute('href');
+      if (href && href === current && href !== '#') {
+        link.classList.remove('text-dark-bg', 'dark:text-white', 'text-gray-600');
+        link.style.color = '#2563EB';
+        link.style.fontWeight = '800';
+        if (!link.querySelector('.nav-active-dot')) {
+          var dot = document.createElement('span');
+          dot.className = 'nav-active-dot';
+          dot.style.cssText = 'display:block;position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:6px;height:6px;background:#2563EB;border-radius:9999px;box-shadow:0 0 8px #2563EB;';
+          link.style.position = 'relative';
+          link.appendChild(dot);
         }
-    });
-
-    // Then, find the exact matching link and apply active state
-    let foundMatch = false;
-    document.querySelectorAll('nav a').forEach(link => {
-      let href = link.getAttribute('href');
-      if (href && href === currentPath) {
-        link.classList.add('text-primary', 'dark:text-primary', 'bg-gray-100', 'dark:bg-primary/10', 'font-bold');
-        link.classList.remove('text-dark-bg', 'text-gray-600', 'dark:text-white', 'dark:text-white/70');
-        foundMatch = true;
-        
-        // If it's a dropdown child (like index.html or home2.html), also highlight the parent "Home" link
-        let parentDropdown = link.closest('.group');
-        if (parentDropdown) {
-            let parentLink = parentDropdown.querySelector('a[href="#"]');
-            if (parentLink) {
-                parentLink.classList.add('text-primary', 'dark:text-primary', 'bg-gray-100', 'dark:bg-primary/10', 'font-bold');
-                parentLink.classList.remove('text-dark-bg', 'dark:text-white');
-            }
+        var parentGroup = link.closest('.group');
+        if (parentGroup) {
+          var parentLink = parentGroup.querySelector('a[href="#"]');
+          if (parentLink) {
+            parentLink.style.color = '#2563EB';
+            parentLink.style.fontWeight = '800';
+          }
         }
       }
     });
-    
-    // Fallback: if somehow no match, but we are at root, highlight index.html
-    if (!foundMatch && currentPath === '') {
-        let homeLink = document.querySelector('nav a[href="index.html"]');
-        if (homeLink) {
-            homeLink.classList.add('text-primary', 'dark:text-primary', 'bg-gray-100', 'dark:bg-primary/10', 'font-bold');
-            homeLink.classList.remove('text-dark-bg', 'dark:text-white');
-        }
-    }
-  });
+    document.querySelectorAll('#mobile-menu a[href]').forEach(function(link) {
+      var href = link.getAttribute('href');
+      if (href && href === current && href !== '#') {
+        link.style.color = '#2563EB';
+        link.style.fontWeight = '800';
+        link.style.borderLeft = '3px solid #2563EB';
+        link.style.paddingLeft = '10px';
+      }
+    });
+  })();
 </script>
-
 </body>
 </html>
-
-

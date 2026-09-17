@@ -1,18 +1,13 @@
-﻿<!DOCTYPE html>
-<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="gold-obsidian">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="BrandNest Admin Dashboard - Manage members, items, revenue, and company settings.">
-  <link rel="icon" type="image/png" href="favicon.png?v=2">
-    <title>Admin Dashboard | BrandNest</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard | BrandNest — Corporate Gifting Management</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%232563EB'/%3E%3Cstop offset='100%25' style='stop-color:%2360A5FA'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23bg)'/%3E%3Crect x='20' y='62' width='60' height='10' rx='5' fill='white' opacity='0.95'/%3E%3Crect x='24' y='47' width='52' height='10' rx='5' fill='white' opacity='0.85'/%3E%3Crect x='28' y='32' width='44' height='10' rx='5' fill='white' opacity='0.75'/%3E%3C/svg%3E" />
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -20,804 +15,1173 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#1F4E5F',   /* Bold Red */
-                        secondary: '#D4A373', /* Vibrant Orange */
-                        bgLight: '#FFFFFF',
-                        bgDark: '#111827',    
-                        cardLight: '#F9FAFB',
-                        cardDark: '#1f2937',
-                        textLight: '#111827',
-                        textDark: '#F9FAFB'
+                        'gift-slate': 'var(--color-primary)',
+                        'gift-slate-light': 'var(--color-primary-light)',
+                        'gift-slate-dark': 'var(--color-primary-dark)',
+                        'gift-slate-bright': 'var(--color-primary-bright)',
+                        'gift-accent': 'var(--color-accent)',
+                        'bg-warm': 'var(--color-bg-warm)',
+                        'neutral-dark': 'var(--color-text-dark)',
+                        'neutral-light': '#E8EDF2',
+                        'dark-bg': '#0F172A',
+                        'dark-card': '#141A24',
+                        'dark-surface': '#1C2432',
+                        'brand-primary': '#2563EB',
+                        'brand-secondary': '#F59E0B',
+                        'primary': '#2563EB',
+                        'secondary': '#F59E0B',
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        'sans': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                        'display': ['Inter', 'sans-serif'],
+                        'premium': ['Inter', 'sans-serif'],
+                        'alt': ['Inter', 'sans-serif'],
                     },
-                    screens: {
-                        'xs': '360px', 'sm': '390px', 'md': '768px', 
-                        'lg': '1024px', 'xl': '1280px', '2xl': '1536px', 
+                    animation: {
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'fade-in': 'fadeIn 0.3s ease-out',
+                        'pulse-glow': 'pulseGlow 3s infinite',
+                        'float-slow': 'floatSlow 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        slideUp: { '0%': { transform: 'translateY(30px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
+                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+                        pulseGlow: { '0%, 100%': { opacity: '0.6' }, '50%': { opacity: '1' } },
+                        floatSlow: { '0%,100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-8px)' } },
                     }
                 }
             }
         }
     </script>
-    
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
     <style>
-        :root {
-            --bg-color: #FFFFFF;
-            --text-color: #111827;
-            --text-muted: #4B5563;
-            --card-bg: #F9FAFB;
-            --border-color: #E5E7EB;
-            --nav-bg: rgba(255, 255, 255, 0.95);
-            --hover-highlight: #1F4E5F; 
-        }
-        
-        [data-theme="dark"] {
-            --bg-color: #111827;
-            --text-color: #F9FAFB;
-            --text-muted: #9CA3AF;
-            --card-bg: #1f2937;
-            --border-color: #374151;
-            --nav-bg: rgba(17, 24, 39, 0.95);
-            --hover-highlight: #1F4E5F;
+        :root, [data-theme="gold-obsidian"] {
+            --color-primary: #2563EB;
+            --color-primary-light: #60A5FA;
+            --color-primary-dark: #1D4ED8;
+            --color-primary-bright: #93C5FD;
+            --color-accent: #F59E0B;
+            --color-bg-warm: #F8FAFC;
+            --color-text-dark: #0F172A;
+            --color-rgb-primary: 37, 99, 235;
+            --color-rgb-bright: 147, 197, 253;
         }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: background-color 0.3s ease, color 0.3s ease;
-            overflow-x: hidden;
-            font-weight: 400; 
+        body { font-family: 'Inter', sans-serif; background-color: var(--color-bg-warm); color: var(--color-text-dark); transition: background-color 0.4s ease, color 0.4s ease; }
+        .dark body { background-color: #0F172A; color: #E2E8F0; }
+        h1,h2,h3,h4,h5,h6 { font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: -0.025em; }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #60A5FA 0%, #2563EB 50%, #1D4ED8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .dark .text-gift-slate { color: var(--color-primary-bright) !important; }
+        .dark .border-gift-slate { border-color: var(--color-primary-bright) !important; }
+        .dark .bg-gift-slate { background-color: var(--color-primary-bright) !important; }
+        body::-webkit-scrollbar { display: none; }
+        body { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0; top: 0; height: 100vh;
+            width: 280px;
+            background: #FFFFFF;
+            border-right: 1px solid rgba(var(--color-rgb-primary), 0.12);
+            transition: transform 0.3s ease;
+            z-index: 100;
+            overflow-y: auto;
+        }
+        .dark .sidebar { background: #0F172A; border-right-color: rgba(var(--color-rgb-bright), 0.15); }
+        @media (max-width: 768px) { .sidebar { transform: translateX(-100%); } .sidebar.open { transform: translateX(0); } }
+        .sidebar-overlay { position: fixed; top:0;left:0;right:0;bottom:0; background: rgba(0,0,0,0.5); z-index:99; display:none; }
+        .sidebar-overlay.open { display:block; }
+
+        .sidebar-item {
+            display: flex; align-items: center; gap: 0.75rem;
+            padding: 0.85rem 1.5rem; margin: 0.25rem 0.75rem;
+            border-radius: 12px; color: var(--color-text-dark);
+            transition: all 0.2s; cursor: pointer;
+        }
+        .dark .sidebar-item { color: #E2E8F0; }
+        .sidebar-item:hover { background: rgba(var(--color-rgb-primary), 0.08); color: var(--color-primary); }
+        .dark .sidebar-item:hover { background: rgba(var(--color-rgb-bright), 0.12); color: var(--color-primary-bright); }
+        .sidebar-item.active { background: var(--color-primary); color: #FFFFFF; }
+        .dark .sidebar-item.active { background: var(--color-primary-bright); color: #0F172A; }
+        .sidebar-item i { width: 24px; font-size: 1.1rem; }
+
+        .main-content { margin-left: 280px; padding: 1.5rem; min-height: 100vh; }
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+                padding-top: 70px;
+                overflow-x: hidden;
+            }
         }
 
-        .no-transition * {
-            transition: none !important;
+        .mobile-header {
+            display: none; position: fixed; top:0;left:0;right:0;
+            background: #FFFFFF; padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(var(--color-rgb-primary), 0.12);
+            z-index: 50; align-items: center; justify-content: space-between;
         }
+        .dark .mobile-header { background: #0F172A; border-bottom-color: rgba(var(--color-rgb-bright), 0.15); }
+        @media (max-width: 768px) { .mobile-header { display: flex; } }
 
-        .text-body-muted { color: var(--text-muted); transition: color 0.3s ease; }
-        .bg-card { background-color: var(--card-bg); border-color: var(--border-color); }
-        .border-theme { border-color: var(--border-color); }
-
-        /* Clean Navbar */
-        .glass-nav {
-            background: var(--nav-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+        .toggle-btn {
+            width: 36px; height: 36px; border-radius: 10px;
+            background: rgba(var(--color-rgb-primary), 0.08);
+            color: var(--color-text-dark); display: inline-flex;
+            align-items: center; justify-content: center; cursor: pointer;
+            transition: all 0.2s; border: none;
         }
+        .dark .toggle-btn { background: rgba(var(--color-rgb-bright), 0.12); color: #E2E8F0; }
+        .toggle-btn:hover { background: var(--color-primary); color: #FFFFFF; }
+        .dark .toggle-btn:hover { background: var(--color-primary-bright); color: #0F172A; }
 
-        /* Utility Buttons */
-        .utility-btn {
+        .card-design {
+            background: #FFFFFF; border-radius: 24px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(var(--color-rgb-primary), 0.12);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+        }
+        @media (min-width: 640px) {
+            .card-design { border-radius: 28px; }
+        }
+        .dark .card-design { background: #141A24; border-color: rgba(var(--color-rgb-bright), 0.15); }
+        .card-design:hover { border-color: var(--color-primary); }
+
+        .btn-primary-design {
+            background: var(--color-primary); color: #FFFFFF;
+            font-weight: 700; border-radius: 60px; transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(var(--color-rgb-primary), 0.3);
+            white-space: nowrap; border: none;
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; vertical-align: middle;
+        }
+        .btn-primary-design:hover { background: var(--color-primary-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(var(--color-rgb-primary), 0.4); color: #FFFFFF; }
+        .dark .btn-primary-design { background: var(--color-primary-bright); color: #0F172A; }
+        .dark .btn-primary-design:hover { background: var(--color-primary); color: #FFFFFF; }
+
+        .btn-outline-design {
+            border: 1.5px solid var(--color-primary); color: var(--color-primary);
+            background: transparent; border-radius: 60px; font-weight: 600;
+            transition: all 0.3s; white-space: nowrap;
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; vertical-align: middle;
+        }
+        .btn-outline-design:hover { background: var(--color-primary); color: #FFFFFF; transform: translateY(-2px); }
+        .dark .btn-outline-design { border-color: var(--color-primary-bright); color: var(--color-primary-bright); }
+        .dark .btn-outline-design:hover { background: var(--color-primary-bright); color: #0F172A; }
+
+        .btn-secondary-design {
+            background: var(--color-accent); color: #0F172A;
+            font-weight: 700; border-radius: 60px; transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+            white-space: nowrap; border: none;
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; vertical-align: middle;
+        }
+        .btn-secondary-design:hover { background: #D97706; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4); color: #FFFFFF; }
+
+        .stat-card {
+            background: #FFFFFF; border-radius: 20px; padding: 1.2rem;
+            border: 1px solid rgba(var(--color-rgb-primary), 0.12);
+            transition: all 0.3s;
+        }
+        .dark .stat-card { background: #141A24; border-color: rgba(var(--color-rgb-bright), 0.15); }
+        .stat-card:hover { transform: translateY(-3px); border-color: var(--color-primary); }
+
+        .status-badge {
+            display: inline-flex; align-items: center; padding: 0.25rem 0.75rem;
+            border-radius: 40px; font-size: 0.7rem; font-weight: 700;
+        }
+        .status-received { background: #E3F2FD; color: #0D47A1; }
+        .status-proof { background: #FFF3E0; color: #E65100; }
+        .status-production { background: #F3E5F5; color: #6A1B9A; }
+        .status-quality { background: #E8F5E9; color: #1B5E20; }
+        .status-dispatched { background: #E0F2F1; color: #00695C; }
+        .status-delivered { background: #E8F5E9; color: #1B5E20; }
+        .status-cancelled { background: #FFEBEE; color: #C62828; }
+        .status-active { background: #E8F5E9; color: #1B5E20; }
+        .status-inactive { background: #ECEFF1; color: #546E7A; }
+        .status-low { background: #FFF3E0; color: #E65100; }
+        .dark .status-received { background: #0D47A1; color: #90CAF9; }
+        .dark .status-proof { background: #E65100; color: #FFCC80; }
+        .dark .status-production { background: #4A148C; color: #CE93D8; }
+        .dark .status-quality { background: #1B5E20; color: #A5D6A7; }
+        .dark .status-dispatched { background: #00695C; color: #80CBC4; }
+        .dark .status-delivered { background: #1B5E20; color: #A5D6A7; }
+        .dark .status-cancelled { background: #B71C1C; color: #EF9A9A; }
+        .dark .status-active { background: #1B5E20; color: #A5D6A7; }
+        .dark .status-inactive { background: #37474F; color: #B0BEC5; }
+        .dark .status-low { background: #E65100; color: #FFCC80; }
+
+        .form-input {
+            width: 100%; padding: 0.75rem 1rem;
+            border-radius: 16px; border: 1.5px solid rgba(var(--color-rgb-primary), 0.2);
+            background: #FFFFFF; transition: all 0.3s;
+            color: var(--color-text-dark); font-family: 'Inter', sans-serif;
+        }
+        .dark .form-input { background: #0F172A; border-color: rgba(var(--color-rgb-bright), 0.2); color: #E2E8F0; }
+        .form-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 4px rgba(var(--color-rgb-primary), 0.15); }
+        .form-label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.4rem; color: var(--color-text-dark); }
+        .dark .form-label { color: #E2E8F0; }
+
+        .progress-bar { height: 8px; background: rgba(var(--color-rgb-primary), 0.12); border-radius: 10px; overflow: hidden; }
+        .dark .progress-bar { background: rgba(var(--color-rgb-bright), 0.15); }
+        .progress-fill { height: 100%; background: var(--color-primary); border-radius: 10px; transition: width 0.6s ease; }
+        .dark .progress-fill { background: var(--color-primary-bright); }
+
+        .page-content.hidden { display: none; }
+        .receipt-item { padding: 0.75rem 0; border-bottom: 1px solid rgba(var(--color-rgb-primary), 0.08); }
+        .dark .receipt-item { border-bottom-color: rgba(var(--color-rgb-bright), 0.1); }
+
+        /* Production Tracking Timeline */
+        .tracking-step {
+            display: flex; flex-direction: column; align-items: center;
+            flex: 1; position: relative; text-align: center;
+        }
+        .tracking-step:not(:last-child)::after {
+            content: ''; position: absolute; top: 20px; left: 60%; width: 80%; height: 3px;
+            background: rgba(var(--color-rgb-primary), 0.15); z-index: 0;
+        }
+        .dark .tracking-step:not(:last-child)::after { background: rgba(var(--color-rgb-bright), 0.15); }
+        .tracking-step.completed:not(:last-child)::after { background: var(--color-primary); }
+        .dark .tracking-step.completed:not(:last-child)::after { background: var(--color-primary-bright); }
+        .tracking-icon {
+            width: 44px; height: 44px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            border-radius: 8px;
-            border: 1px solid var(--border-color); background: var(--bg-color);
-            color: var(--text-color); font-weight: 600; transition: all 0.2s ease; cursor: pointer;
+            font-size: 1rem; z-index: 1; position: relative;
+            border: 3px solid rgba(var(--color-rgb-primary), 0.2);
+            background: #FFFFFF; color: var(--color-text-dark);
+            transition: all 0.3s;
         }
-        .utility-btn:hover { border-color: var(--hover-highlight); color: var(--hover-highlight); background: var(--card-bg); }
+        .dark .tracking-icon { background: #141A24; border-color: rgba(var(--color-rgb-bright), 0.2); color: #E2E8F0; }
+        .tracking-step.completed .tracking-icon {
+            background: var(--color-primary); border-color: var(--color-primary); color: #FFFFFF;
+        }
+        .dark .tracking-step.completed .tracking-icon { background: var(--color-primary-bright); border-color: var(--color-primary-bright); color: #0F172A; }
+        .tracking-step.active .tracking-icon {
+            background: var(--color-accent); border-color: var(--color-accent); color: #0F172A;
+            box-shadow: 0 0 0 6px rgba(245, 158, 11, 0.2);
+        }
+        .tracking-label { font-size: 0.7rem; font-weight: 600; margin-top: 0.5rem; color: var(--color-text-dark); }
+        .dark .tracking-label { color: #E2E8F0; }
+        .tracking-step.completed .tracking-label { color: var(--color-primary); }
+        .dark .tracking-step.completed .tracking-label { color: var(--color-primary-bright); }
+        .tracking-step.active .tracking-label { color: var(--color-accent); font-weight: 800; }
 
-        /* Sidebar Link Styles */
-        .sidebar-link {
-            display: flex; align-items: center; gap: 0.75rem; 
-            padding: 0.75rem 1rem; border-radius: 0.75rem;
-            font-size: 0.875rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.05em;
-            color: var(--text-muted);
-            transition: all 0.2s ease; cursor: pointer;
-            border-left: 4px solid transparent;
+        .category-chip {
+            padding: 0.5rem 1rem; border-radius: 40px; font-size: 0.8rem; font-weight: 600;
+            border: 1.5px solid rgba(var(--color-rgb-primary), 0.2); cursor: pointer;
+            transition: all 0.2s; background: #FFFFFF; color: var(--color-text-dark);
         }
-        html[dir="rtl"] .sidebar-link {
-            border-left: none; border-right: 4px solid transparent;
-        }
-        .sidebar-link:hover {
-            color: var(--hover-highlight);
-            background-color: rgba(239, 68, 68, 0.05);
-        }
-        .sidebar-link.active {
-            color: var(--hover-highlight);
-            background-color: rgba(239, 68, 68, 0.1);
-            font-weight: 700;
-            border-left-color: var(--hover-highlight);
-        }
-        html[dir="rtl"] .sidebar-link.active {
-            border-right-color: var(--hover-highlight);
+        .dark .category-chip { background: #0F172A; border-color: rgba(var(--color-rgb-bright), 0.2); color: #E2E8F0; }
+        .category-chip:hover { border-color: var(--color-primary); }
+        .category-chip.selected { background: var(--color-primary); border-color: var(--color-primary); color: #FFFFFF; }
+        .dark .category-chip.selected { background: var(--color-primary-bright); border-color: var(--color-primary-bright); color: #0F172A; }
+
+        .data-table { width: 100%; border-collapse: separate; border-spacing: 0; }
+        .data-table th { text-align: left; padding: 0.75rem 1rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(15,23,42,0.6); border-bottom: 1px solid rgba(var(--color-rgb-primary), 0.12); }
+        .dark .data-table th { color: rgba(226,232,240,0.6); border-bottom-color: rgba(var(--color-rgb-bright), 0.15); }
+        .data-table td { padding: 1rem; border-bottom: 1px solid rgba(var(--color-rgb-primary), 0.08); font-size: 0.875rem; }
+        .dark .data-table td { border-bottom-color: rgba(var(--color-rgb-bright), 0.1); }
+        .data-table tr:hover td { background: rgba(var(--color-rgb-primary), 0.03); }
+        .dark .data-table tr:hover td { background: rgba(var(--color-rgb-bright), 0.05); }
+
+        /* RTL support */
+        [dir="rtl"] .sidebar { left: auto; right: 0; border-right: none; border-left: 1px solid rgba(var(--color-rgb-primary), 0.12); }
+        [dir="rtl"] .main-content { margin-left: 0; margin-right: 280px; }
+        [dir="rtl"] .sidebar-item i { margin-right: 0; margin-left: 0.75rem; }
+        @media (max-width: 768px) {
+            [dir="rtl"] .sidebar { transform: translateX(100%); }
+            [dir="rtl"] .sidebar.open { transform: translateX(0); }
+            [dir="rtl"] .main-content { margin-right: 0; }
         }
 
-        /* Tab Switching Animation */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-up {
-            animation: fadeInUp 0.4s ease-out forwards;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #1F4E5F; }
+        input[type="date"]::-webkit-calendar-picker-indicator { cursor: pointer; opacity: 0.85; transition: all 0.2s ease; }
+        input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
+        .dark input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1) brightness(1.2); opacity: 0.9; }
+        .dark input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
     </style>
 </head>
-<body class="antialiased font-sans flex flex-col h-screen overflow-hidden">
+<body>
 
-  
-
-
-    <!-- NAVBAR -->
-    <nav class="h-20 shrink-0 w-full z-[100] glass-nav transition-all duration-300 border-b border-theme relative">
-        <div class="container mx-auto px-4 md:px-6 lg:px-8 h-full">
-            <div class="flex items-center justify-between h-full">
-                
-                <div class="flex items-center gap-2 xs:gap-3 sm:gap-4 shrink-0">
-                    <button type="button" id="mobile-sidebar-btn" class="text-[var(--text-color)] hover:text-primary text-xl bg-transparent border-0 cursor-pointer md:hidden flex items-center justify-center w-8 h-8 shrink-0">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    
-                    <a href="index.html" class="flex items-center gap-2 md:gap-3 shrink-0">
-                        <i class="fas fa-gift text-2xl sm:text-3xl text-primary drop-shadow-[0_2px_8px_rgba(239,68,68,0.4)]"></i>
-                        <span class="text-xl sm:text-2xl font-medium tracking-widest text-[var(--text-color)] uppercase whitespace-nowrap">Brand<span class="text-primary">Nest</span></span>
-                 
-                    </a>
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <div class="flex items-center gap-3">
+            <button id="menuToggle" class="toggle-btn"><i class="fas fa-bars"></i></button>
+            <a href="index.html" class="flex items-center gap-3 group shrink-0">
+                <div class="w-10 h-10 bg-gradient-to-br from-brand-primary to-blue-500 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-layer-group text-white text-lg"></i>
                 </div>
+                <span class="text-xl font-extrabold text-neutral-dark dark:text-white tracking-tight">Brand<span class="text-gift-slate">Nest</span></span>
+            </a>
+        </div>
+        <div class="flex items-center gap-2">
+            <button id="theme-toggle-mobile" class="toggle-btn"><i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:inline"></i></button>
+            <button id="rtl-toggle-mobile" class="toggle-btn"><i class="fas fa-exchange-alt"></i></button>
+            <div class="w-8 h-8 rounded-full overflow-hidden border-2 border-gift-slate shadow-sm shrink-0 ml-1">
+                <img src="assets/images/team1.jpg" alt="Admin User" class="w-full h-full object-cover" />
+            </div>
+        </div>
+    </div>
 
-                <!-- Toggles and Profile -->
-                <div class="flex items-center gap-3 sm:gap-4 shrink-0">
-                    
-                    <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
-                        <button type="button" class="rtl-toggle-btn utility-btn w-8 h-8 sm:w-9 sm:h-9 text-xs font-medium uppercase tracking-wider" title="Toggle RTL">RTL</button>
-                        <button type="button" class="theme-toggle utility-btn w-8 h-8 sm:w-9 sm:h-9" title="Toggle Theme"><i class="fas fa-moon text-xs sm:text-sm"></i></button>
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="p-5 border-b border-[rgba(var(--color-rgb-primary),0.12)] dark:border-[rgba(var(--color-rgb-bright),0.15)]">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-gradient-to-br from-brand-primary to-blue-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-layer-group text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold text-neutral-dark dark:text-white tracking-tight">Brand<span class="text-gift-slate">Nest</span></span>
+                    <p class="text-xs text-neutral-dark/60 dark:text-gray-400">Admin Panel</p>
+                </div>
+            </a>
+        </div>
+        <nav class="py-4">
+            <div class="sidebar-item active" data-page="dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></div>
+            <div class="sidebar-item" data-page="orders"><i class="fas fa-boxes"></i><span>Order Management</span></div>
+            <div class="sidebar-item" data-page="production"><i class="fas fa-industry"></i><span>Production Queue</span></div>
+            <div class="sidebar-item" data-page="clients"><i class="fas fa-users"></i><span>Client Management</span></div>
+            <div class="sidebar-item" data-page="inventory"><i class="fas fa-warehouse"></i><span>Inventory</span></div>
+            <div class="sidebar-item" data-page="analytics"><i class="fas fa-chart-pie"></i><span>Analytics</span></div>
+        </nav>
+        <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-[rgba(var(--color-rgb-primary),0.12)] dark:border-[rgba(var(--color-rgb-bright),0.15)]">
+            <a href="login.html" class="flex items-center justify-center gap-2 w-full p-2.5 rounded-xl bg-[rgba(var(--color-rgb-primary),0.08)] hover:bg-gift-slate transition font-semibold text-sm text-neutral-dark dark:text-gray-200 hover:text-white">
+                <i class="fas fa-sign-out-alt"></i><span>Logout</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="card-design p-4 md:p-6 flex justify-between items-center flex-wrap gap-3 mb-6">
+            <div>
+                <h1 class="text-2xl font-bold" id="page-title">Admin Dashboard</h1>
+                <p class="text-sm text-neutral-dark/60 dark:text-gray-400" id="page-subtitle">Overview of all operations</p>
+            </div>
+            <div class="hidden lg:flex items-center gap-4">
+                <button id="theme-toggle" class="toggle-btn"><i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:inline"></i></button>
+                <button id="rtl-toggle" class="toggle-btn"><i class="fas fa-exchange-alt"></i></button>
+                <button class="toggle-btn" title="Notifications"><i class="fas fa-bell"></i></button>
+                <div class="flex items-center gap-3 border-l border-[rgba(var(--color-rgb-primary),0.12)] dark:border-[rgba(var(--color-rgb-bright),0.15)] pl-4">
+                    <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-gift-slate shadow-sm shrink-0">
+                        <img src="assets/images/team1.jpg" alt="Admin User" class="w-full h-full object-cover" />
                     </div>
-
-                    <div class="flex items-center gap-2 sm:gap-3 cursor-pointer group ltr:border-l rtl:border-r border-theme ltr:pl-3 rtl:pr-3 sm:ltr:pl-4 sm:rtl:pr-4">
-                        <div class="ltr:text-right rtl:text-left hidden md:flex flex-col justify-center">
-                            <p class="text-xs sm:text-sm font-medium text-[var(--text-color)] uppercase tracking-wide leading-tight">System Admin</p>
-                            <p class="text-[9px] sm:text-xs font-medium uppercase tracking-widest text-primary">Headquarters</p>
-                        </div>
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary border border-secondary/20 group-hover:bg-secondary group-hover:text-white transition-colors shrink-0">
-                            <i class="fas fa-shield-alt text-xs sm:text-base"></i>
-                        </div>
+                    <div class="text-left hidden lg:block">
+                        <p class="text-sm font-bold text-neutral-dark dark:text-white leading-tight">Admin User</p>
+                        <p class="text-[10px] text-neutral-dark/60 dark:text-gray-400">Super Admin</p>
                     </div>
-
                 </div>
             </div>
         </div>
-    </nav>
 
-    <div class="flex flex-1 overflow-hidden relative w-full bg-[var(--bg-color)]">
-        
-        <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-40 hidden opacity-0 transition-opacity duration-300 md:hidden"></div>
-
-        <!-- SIDEBAR -->
-        <aside id="dashboard-sidebar" class="w-64 bg-card border-r border-theme flex-shrink-0 flex flex-col transition-transform duration-300 absolute md:relative z-50 h-full ltr:-translate-x-full ltr:md:translate-x-0 rtl:translate-x-full rtl:md:translate-x-0 shadow-2xl md:shadow-none">
-            
-            <div class="flex md:hidden items-center justify-between p-4 border-b border-theme shrink-0">
-                <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center text-secondary border border-secondary/20">
-                        <i class="fas fa-shield-alt text-xs"></i>
+        <!-- ========== ADMIN DASHBOARD ========== -->
+        <div id="page-dashboard" class="page-content">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                <div class="stat-card">
+                    <div class="flex justify-between">
+                        <div><p class="text-xs text-neutral-dark/60 dark:text-gray-400 mb-1">Total Orders</p><p class="text-2xl font-bold text-neutral-dark dark:text-white">128</p><p class="text-xs text-emerald-500 mt-1"><i class="fas fa-arrow-up"></i> 12% this month</p></div>
+                        <div class="w-10 h-10 bg-[rgba(var(--color-rgb-primary),0.08)] rounded-full flex items-center justify-center"><i class="fas fa-boxes text-gift-slate"></i></div>
                     </div>
+                </div>
+                <div class="stat-card">
+                    <div class="flex justify-between">
+                        <div><p class="text-xs text-neutral-dark/60 dark:text-gray-400 mb-1">Pending Production</p><p class="text-2xl font-bold text-neutral-dark dark:text-white">18</p><p class="text-xs text-amber-500 mt-1"><i class="fas fa-clock"></i> 5 urgent</p></div>
+                        <div class="w-10 h-10 bg-[rgba(var(--color-rgb-primary),0.08)] rounded-full flex items-center justify-center"><i class="fas fa-industry text-gift-slate"></i></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="flex justify-between">
+                        <div><p class="text-xs text-neutral-dark/60 dark:text-gray-400 mb-1">Active Clients</p><p class="text-2xl font-bold text-neutral-dark dark:text-white">94</p><p class="text-xs text-emerald-500 mt-1"><i class="fas fa-arrow-up"></i> 8 new</p></div>
+                        <div class="w-10 h-10 bg-[rgba(var(--color-rgb-primary),0.08)] rounded-full flex items-center justify-center"><i class="fas fa-users text-gift-slate"></i></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="flex justify-between">
+                        <div><p class="text-xs text-neutral-dark/60 dark:text-gray-400 mb-1">Revenue (MTD)</p><p class="text-2xl font-bold text-emerald-500">$186K</p><p class="text-xs text-emerald-500 mt-1"><i class="fas fa-arrow-up"></i> 18% vs last month</p></div>
+                        <div class="w-10 h-10 bg-[rgba(var(--color-rgb-primary),0.08)] rounded-full flex items-center justify-center"><i class="fas fa-dollar-sign text-gift-slate"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order pipeline overview -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                <div class="card-design p-6 lg:col-span-2">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-lg">Order Pipeline</h3>
+                        <span class="text-xs text-neutral-dark/60 dark:text-gray-400">Live status of all active orders</span>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+                        <div class="p-4 rounded-xl bg-[rgba(var(--color-rgb-primary),0.04)] dark:bg-[rgba(var(--color-rgb-bright),0.05)] border border-[rgba(var(--color-rgb-primary),0.08)] text-center">
+                            <i class="fas fa-inbox text-gift-slate text-xl mb-2"></i>
+                            <p class="text-2xl font-bold">12</p>
+                            <p class="text-xs text-neutral-dark/60 dark:text-gray-400 mt-1">Received</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-[rgba(var(--color-rgb-primary),0.04)] dark:bg-[rgba(var(--color-rgb-bright),0.05)] border border-[rgba(var(--color-rgb-primary),0.08)] text-center">
+                            <i class="fas fa-eye text-gift-slate text-xl mb-2"></i>
+                            <p class="text-2xl font-bold">8</p>
+                            <p class="text-xs text-neutral-dark/60 dark:text-gray-400 mt-1">Proof Sent</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-[rgba(var(--color-rgb-primary),0.04)] dark:bg-[rgba(var(--color-rgb-bright),0.05)] border border-[rgba(var(--color-rgb-primary),0.08)] text-center">
+                            <i class="fas fa-cog fa-spin text-gift-slate text-xl mb-2"></i>
+                            <p class="text-2xl font-bold">18</p>
+                            <p class="text-xs text-neutral-dark/60 dark:text-gray-400 mt-1">Production</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-[rgba(var(--color-rgb-primary),0.04)] dark:bg-[rgba(var(--color-rgb-bright),0.05)] border border-[rgba(var(--color-rgb-primary),0.08)] text-center">
+                            <i class="fas fa-clipboard-check text-gift-slate text-xl mb-2"></i>
+                            <p class="text-2xl font-bold">6</p>
+                            <p class="text-xs text-neutral-dark/60 dark:text-gray-400 mt-1">Quality Check</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-[rgba(var(--color-rgb-primary),0.04)] dark:bg-[rgba(var(--color-rgb-bright),0.05)] border border-[rgba(var(--color-rgb-primary),0.08)] text-center">
+                            <i class="fas fa-truck text-gift-slate text-xl mb-2"></i>
+                            <p class="text-2xl font-bold">4</p>
+                            <p class="text-xs text-neutral-dark/60 dark:text-gray-400 mt-1">Dispatched</p>
+                        </div>
+                    </div>
+                    <div class="mt-5">
+                        <div class="flex justify-between text-xs mb-2">
+                            <span class="text-neutral-dark/60 dark:text-gray-400">Production capacity this week</span>
+                            <span class="font-bold">72%</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:72%"></div></div>
+                    </div>
+                </div>
+
+                <div class="card-design p-6">
+                    <h3 class="font-bold text-lg mb-4">Quick Actions</h3>
+                    <div class="space-y-3">
+                        <button data-nav="orders" class="w-full text-left px-4 py-3 bg-[rgba(var(--color-rgb-primary),0.08)] dark:bg-[rgba(var(--color-rgb-bright),0.1)] text-neutral-dark dark:text-white rounded-xl hover:bg-[rgba(var(--color-rgb-primary),0.2)] transition flex items-center gap-3">
+                            <i class="fas fa-clipboard-list text-gift-slate"></i><span>Review New Orders</span>
+                        </button>
+                        <button data-nav="production" class="w-full text-left px-4 py-3 bg-[rgba(var(--color-rgb-primary),0.08)] dark:bg-[rgba(var(--color-rgb-bright),0.1)] text-neutral-dark dark:text-white rounded-xl hover:bg-[rgba(var(--color-rgb-primary),0.2)] transition flex items-center gap-3">
+                            <i class="fas fa-tasks text-gift-slate"></i><span>Update Production Status</span>
+                        </button>
+                        <button data-nav="clients" class="w-full text-left px-4 py-3 bg-[rgba(var(--color-rgb-primary),0.08)] dark:bg-[rgba(var(--color-rgb-bright),0.1)] text-neutral-dark dark:text-white rounded-xl hover:bg-[rgba(var(--color-rgb-primary),0.2)] transition flex items-center gap-3">
+                            <i class="fas fa-user-plus text-gift-slate"></i><span>Add New Client</span>
+                        </button>
+                        <button data-nav="inventory" class="w-full text-left px-4 py-3 bg-[rgba(var(--color-rgb-primary),0.08)] dark:bg-[rgba(var(--color-rgb-bright),0.1)] text-neutral-dark dark:text-white rounded-xl hover:bg-[rgba(var(--color-rgb-primary),0.2)] transition flex items-center gap-3">
+                            <i class="fas fa-exclamation-triangle text-gift-slate"></i><span>Check Low Stock Alerts</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent orders table -->
+            <div class="card-design p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-lg">Recent Orders</h3>
+                    <button data-nav="orders" class="text-gift-slate text-sm font-semibold hover:underline">View all →</button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Client</th>
+                                <th>Product</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-semibold">#BN-2026-042</td>
+                                <td>Michael Johnson</td>
+                                <td>Executive Kits</td>
+                                <td>250</td>
+                                <td class="font-semibold">$10,625.00</td>
+                                <td><span class="status-badge status-production">Production</span></td>
+                                <td><button class="text-gift-slate hover:text-gift-slate-dark"><i class="fas fa-eye"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">#BN-2026-038</td>
+                                <td>Sarah Kim</td>
+                                <td>Branded Hoodies</td>
+                                <td>500</td>
+                                <td class="font-semibold">$14,000.00</td>
+                                <td><span class="status-badge status-proof">Proof Sent</span></td>
+                                <td><button class="text-gift-slate hover:text-gift-slate-dark"><i class="fas fa-eye"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">#BN-2026-031</td>
+                                <td>Marcus Reed</td>
+                                <td>Welcome Boxes</td>
+                                <td>120</td>
+                                <td class="font-semibold">$7,800.00</td>
+                                <td><span class="status-badge status-dispatched">Dispatched</span></td>
+                                <td><button class="text-gift-slate hover:text-gift-slate-dark"><i class="fas fa-eye"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">#BN-2026-027</td>
+                                <td>Amara Lopez</td>
+                                <td>Tech & Gadgets</td>
+                                <td>300</td>
+                                <td class="font-semibold">$12,900.00</td>
+                                <td><span class="status-badge status-quality">Quality Check</span></td>
+                                <td><button class="text-gift-slate hover:text-gift-slate-dark"><i class="fas fa-eye"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== ORDER MANAGEMENT ========== -->
+        <div id="page-orders" class="page-content hidden">
+            <div class="card-design p-6">
+                <div class="flex flex-wrap justify-between items-center gap-3 mb-6">
                     <div>
-                        <p class="text-sm font-medium uppercase tracking-wide text-[var(--text-color)] leading-tight">System Admin</p>
-                        <p class="text-xs font-medium uppercase tracking-widest text-primary">Headquarters</p>
+                        <h3 class="font-bold text-2xl">Order Management</h3>
+                        <p class="text-sm text-neutral-dark/60 dark:text-gray-400">Review, update status, and manage all client orders.</p>
                     </div>
-                </div>
-                <button type="button" id="close-sidebar-btn" class="w-8 h-8 flex items-center justify-center bg-transparent border-0 text-[var(--text-muted)] hover:text-primary text-xl cursor-pointer">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-
-            <div class="flex-1 overflow-y-auto py-6 px-4 space-y-2">
-                
-                <span class="text-xs font-medium text-body-muted uppercase tracking-widest pl-4 mb-3 block">Management</span>
-                
-                <a onclick="switchTab(event, 'section-overview')" class="sidebar-link active">
-                    <i class="fas fa-chart-line w-5 text-center"></i> Overview
-                </a>
-                <a onclick="switchTab(event, 'section-members')" class="sidebar-link">
-                    <i class="fas fa-users w-5 text-center"></i> Members
-                </a>
-                <a onclick="switchTab(event, 'section-items')" class="sidebar-link justify-between">
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-calendar-alt w-5 text-center"></i> Items
-                    </div>
-                    <span class="bg-primary text-white text-xs px-2 py-0.5 rounded-sm font-medium">Live</span>
-                </a>
-                <a onclick="switchTab(event, 'section-revenue')" class="sidebar-link">
-                    <i class="fas fa-dollar-sign w-5 text-center"></i> Revenue
-                </a>
-                <a onclick="switchTab(event, 'section-settings')" class="sidebar-link">
-                    <i class="fas fa-cog w-5 text-center"></i> Settings
-                </a>
-            </div>
-
-            <div class="p-4 shrink-0 flex flex-col gap-4">
-                <a href="login.html" class="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition-colors font-medium uppercase tracking-widest text-xs cursor-pointer border border-transparent">
-                    <i class="fas fa-sign-out-alt ltr:rotate-0 rtl:rotate-180"></i> Logout
-                </a>
-            </div>
-        </aside>
-
-        <!-- MAIN CONTENT AREA -->
-        <main class="flex-1 overflow-y-auto p-4 md:p-8 lg:p-10 relative scroll-smooth">
-            
-            <!-- OVERVIEW SECTION -->
-            <div id="section-overview" class="page-section block animate-fade-in-up space-y-8 max-w-7xl mx-auto pb-12">
-                
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-theme pb-6">
-                    <div>
-                        <h1 class="text-3xl md:text-4xl font-medium uppercase tracking-tight text-[var(--text-color)] mb-1">Command Center</h1>
-                        <p class="text-body-muted text-xs font-medium uppercase tracking-widest">Real-time facility overview.</p>
-                    </div>
-                    <button onclick="switchTab(event, 'section-members')" class="w-full md:w-auto inline-flex bg-primary text-white px-6 py-3.5 rounded-full font-medium uppercase tracking-widest text-xs hover:bg-[#DC2626] transition-colors items-center justify-center gap-2 shadow-lg shadow-primary/30 border-0 cursor-pointer">
-                        <i class="fas fa-user-plus"></i> Add Member
-                    </button>
-                </div>
-
-                <!-- KPI Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-card border border-theme p-6 rounded-3xl shadow-sm hover:border-primary transition-colors group">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary text-lg"><i class="fas fa-users"></i></div>
-                            <span class="text-green-500 text-xs font-medium bg-green-500/10 px-2 py-1 rounded">+12%</span>
-                        </div>
-                        <h3 class="text-body-muted text-xs font-medium uppercase tracking-widest mb-1">Active Members</h3>
-                        <p class="text-4xl font-medium text-[var(--text-color)] group-hover:text-primary transition-colors">2,450</p>
-                    </div>
-
-                    <div class="bg-card border border-theme p-6 rounded-3xl shadow-sm hover:border-secondary transition-colors group">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary text-lg"><i class="fas fa-chart-bar"></i></div>
-                            <span class="text-green-500 text-xs font-medium bg-green-500/10 px-2 py-1 rounded">+8.4%</span>
-                        </div>
-                        <h3 class="text-body-muted text-xs font-medium uppercase tracking-widest mb-1">Monthly Revenue (MRR)</h3>
-                        <p class="text-4xl font-medium text-[var(--text-color)] group-hover:text-secondary transition-colors">$124k</p>
-                    </div>
-
-                    <div class="bg-card border border-theme p-6 rounded-3xl shadow-sm hover:border-primary transition-colors group">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="w-10 h-10 rounded-lg bg-[var(--bg-color)] border border-theme flex items-center justify-center text-[var(--text-color)] text-lg"><i class="fas fa-calendar-check"></i></div>
-                        </div>
-                        <h3 class="text-body-muted text-xs font-medium uppercase tracking-widest mb-1">Items Today</h3>
-                        <p class="text-4xl font-medium text-[var(--text-color)] group-hover:text-primary transition-colors">12</p>
-                    </div>
-
-                    <div class="bg-card border border-theme p-6 rounded-3xl shadow-sm hover:border-secondary transition-colors group">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500 text-lg"><i class="fas fa-clipboard-list"></i></div>
-                            <span class="text-red-500 text-xs font-medium bg-red-500/10 px-2 py-1 rounded">Action Needed</span>
-                        </div>
-                        <h3 class="text-body-muted text-xs font-medium uppercase tracking-widest mb-1">Pending Waivers</h3>
-                        <p class="text-4xl font-medium text-[var(--text-color)] group-hover:text-secondary transition-colors">45</p>
+                    <div class="flex gap-2">
+                        <select class="form-input py-2 text-sm w-auto">
+                            <option>All Statuses</option>
+                            <option>Received</option>
+                            <option>Proof Sent</option>
+                            <option>Production</option>
+                            <option>Quality Check</option>
+                            <option>Dispatched</option>
+                        </select>
+                        <button class="btn-primary-design px-5 py-2 text-sm"><i class="fas fa-plus"></i> New Order</button>
                     </div>
                 </div>
 
-                <!-- Recent Activity & Corporate Capacity -->
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-                    
-                    <div class="lg:col-span-2 bg-card border border-theme rounded-3xl p-0 overflow-hidden shadow-sm flex flex-col h-full">
-                        <div class="p-6 border-b border-theme flex justify-between items-center bg-[var(--bg-color)]">
-                            <h3 class="text-lg font-medium uppercase tracking-tight text-[var(--text-color)]">Recent Signups</h3>
-                            <button onclick="switchTab(event, 'section-members')" class="text-primary text-xs font-medium uppercase tracking-widest hover:text-secondary transition-colors bg-transparent border-0 cursor-pointer">View All</button>
-                        </div>
-                        <div class="flex-grow overflow-x-auto">
-                            <table class="w-full text-left border-collapse min-w-[500px]">
-                                <tbody class="divide-y divide-[var(--border-color)]">
-                                    <tr class="hover:bg-[var(--bg-color)] transition-colors group">
-                                        <td class="p-4 flex items-center gap-3">
-                                            <div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-[var(--text-color)] font-medium text-sm shrink-0">JD</div>
-                                            <div>
-                                                <p class="text-sm font-medium text-[var(--text-color)]">John Doe</p>
-                                                <p class="text-xs text-body-muted font-medium">john.d@example.com</p>
-                                            </div>
-                                        </td>
-                                        <td class="p-4 text-xs font-medium uppercase tracking-wider text-secondary">Annual Elite</td>
-                                        <td class="p-4 text-xs font-medium text-body-muted">2 mins ago</td>
-                                    </tr>
-                                    <tr class="hover:bg-[var(--bg-color)] transition-colors group">
-                                        <td class="p-4 flex items-center gap-3">
-                                            <div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-[var(--text-color)] font-medium text-sm shrink-0">SM</div>
-                                            <div>
-                                                <p class="text-sm font-medium text-[var(--text-color)]">Sarah Miller</p>
-                                                <p class="text-xs text-body-muted font-medium">s.miller@example.com</p>
-                                            </div>
-                                        </td>
-                                        <td class="p-4 text-xs font-medium uppercase tracking-wider text-primary">Monthly Flex</td>
-                                        <td class="p-4 text-xs font-medium text-body-muted">15 mins ago</td>
-                                    </tr>
-                                    <tr class="hover:bg-[var(--bg-color)] transition-colors group">
-                                        <td class="p-4 flex items-center gap-3">
-                                            <div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-[var(--text-color)] font-medium text-sm shrink-0">TR</div>
-                                            <div>
-                                                <p class="text-sm font-medium text-[var(--text-color)]">Tom Richards</p>
-                                                <p class="text-xs text-body-muted font-medium">tom.r@example.com</p>
-                                            </div>
-                                        </td>
-                                        <td class="p-4 text-xs font-medium uppercase tracking-wider text-[var(--text-color)]">Quarterly Pro</td>
-                                        <td class="p-4 text-xs font-medium text-body-muted">1 hr ago</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="bg-dark-bg border border-gray-800 rounded-3xl p-8 flex flex-col shadow-lg relative overflow-hidden">
-                        <div class="absolute bottom-0 right-0 w-48 h-48 bg-primary/20 rounded-full blur-[60px] pointer-events-none"></div>
-                        <div class="relative z-10">
-                            <h3 class="text-lg font-medium uppercase tracking-tight text-white mb-6">Live Capacity</h3>
-                            
-                            <div class="flex justify-center mb-6">
-                                <div class="relative w-32 h-32 flex items-center justify-center rounded-full border-8 border-gray-800">
-                                    <div class="absolute inset-0 rounded-full border-8 border-primary border-t-transparent border-l-transparent transform rotate-45"></div>
-                                    <div class="text-center">
-                                        <span class="block text-3xl font-medium text-white">65%</span>
+                <div class="overflow-x-auto">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Client</th>
+                                <th>Product</th>
+                                <th>Qty</th>
+                                <th>Budget/Unit</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-semibold">#BN-2026-042</td>
+                                <td>Michael Johnson</td>
+                                <td>Executive Kits</td>
+                                <td>250</td>
+                                <td>$42.50</td>
+                                <td class="font-semibold">$10,625.00</td>
+                                <td><span class="status-badge status-production">Production</span></td>
+                                <td>
+                                    <div class="flex gap-2">
+                                        <button class="text-gift-slate hover:text-gift-slate-dark" title="Update Status"><i class="fas fa-sync-alt"></i></button>
+                                        <button class="text-gift-slate hover:text-gift-slate-dark" title="View Details"><i class="fas fa-eye"></i></button>
                                     </div>
-                                </div>
-                            </div>
-                            
-                            <ul class="space-y-4 text-sm">
-                                <li class="flex justify-between items-center border-b border-gray-800 pb-2">
-                                    <span class="font-medium text-gray-400">Total Check-ins</span>
-                                    <span class="font-medium text-white">142</span>
-                                </li>
-                                <li class="flex justify-between items-center border-b border-gray-800 pb-2">
-                                    <span class="font-medium text-gray-400">Capacity Limit</span>
-                                    <span class="font-medium text-white">220</span>
-                                </li>
-                                <li class="flex justify-between items-center">
-                                    <span class="font-medium text-gray-400">Status</span>
-                                    <span class="text-green-500 font-medium uppercase tracking-widest text-xs bg-green-500/10 px-2 py-1 rounded">Optimal</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">#BN-2026-038</td>
+                                <td>Sarah Kim</td>
+                                <td>Branded Hoodies</td>
+                                <td>500</td>
+                                <td>$28.00</td>
+                                <td class="font-semibold">$14,000.00</td>
+                                <td><span class="status-badge status-proof">Proof Sent</span></td>
+                                <td>
+                                    <div class="flex gap-2">
+                                        <button class="text-gift-slate hover:text-gift-slate-dark" title="Update Status"><i class="fas fa-sync-alt"></i></button>
+                                        <button class="text-gift-slate hover:text-gift-slate-dark" title="View Details"><i class="fas fa-eye"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">#BN-2026-031</td>
+                                <td>Marcus Reed</td>
+                                <td>Welcome Boxes</td>
+                                <td>120</td>
+                                <td>$65.00</td>
+                                <td class="font-semibold">$7,800.00</td>
+                                <td><span class="status-badge status-dispatched">Dispatched</span></td>
+                                <td>
+                                    <div class="flex gap-2">
+                                        <button class="text-gift-slate hover:text-gift-slate-dark" title="Update Status"><i class="fas fa-sync-alt"></i></button>
+                                        <button class="text-gift-slate hover:text-gift-slate-dark" title="View Details"><i class="fas fa-eye"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">#BN-2026-027</td>
+                                <td>Amara Lopez</td>
+                                <td>Tech & Gadgets</td>
+                                <td>300</td>
+                                <td>$43.00</td>
+                                <td class="font-semibold">$12,900.00</td>
+                                <td><span class="status-badge status-quality">Quality Check</span></td>
+                                <td>
+                                    <div class="flex gap-2">
+                                        <button class="text-gift-slate hover:text-gift-slate-dark" title="Update Status"><i class="fas fa-sync-alt"></i></button>
+                                        <button class="text-gift-slate hover:text-gift-slate-dark" title="View Details"><i class="fas fa-eye"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">#BN-2026-019</td>
+                                <td>David Chen</td>
+                                <td>Festive Hampers</td>
+                                <td>85</td>
+                                <td>$88.00</td>
+                                <td class="font-semibold">$7,480.00</td>
+                                <td><span class="status-badge status-received">Received</span></td>
+                                <td>
+                                    <div class="flex gap-2">
+                                        <button class="text-gift-slate hover:text-gift-slate-dark" title="Update Status"><i class="fas fa-sync-alt"></i></button>
+                                        <button class="text-gift-slate hover:text-gift-slate-dark" title="View Details"><i class="fas fa-eye"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>
 
-            <!-- MEMBERS SECTION -->
-            <div id="section-members" class="page-section hidden animate-fade-in-up space-y-6 max-w-7xl mx-auto pb-12">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-                    <h2 class="text-3xl md:text-4xl font-medium text-[var(--text-color)] uppercase tracking-tight">Member Database</h2>
-                    <div class="flex gap-3 w-full sm:w-auto">
-                        <div class="relative w-full sm:w-64">
-                            <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                            <input type="text" placeholder="Search members..." class="w-full pl-10 pr-4 py-2.5 rounded-full bg-card border border-theme text-[var(--text-color)] focus:border-primary outline-none text-sm font-medium">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-card border border-theme rounded-3xl p-0 overflow-hidden shadow-sm">
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="bg-[var(--bg-color)] border-b border-theme">
-                                    <th class="px-6 py-5 text-xs font-medium text-body-muted uppercase tracking-widest whitespace-nowrap">Member Details</th>
-                                    <th class="px-6 py-5 text-xs font-medium text-body-muted uppercase tracking-widest whitespace-nowrap">Order Tier</th>
-                                    <th class="px-6 py-5 text-xs font-medium text-body-muted uppercase tracking-widest whitespace-nowrap">Status</th>
-                                    <th class="px-6 py-5 text-xs font-medium text-body-muted uppercase tracking-widest whitespace-nowrap text-right">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-[var(--border-color)]">
-                                
-                                <tr class="hover:bg-[var(--bg-color)] transition-colors group">
-                                    <td class="px-6 py-4 flex items-center gap-3">
-                                        <img src="assets/images/company_23.jpg" class="w-10 h-10 rounded-full object-cover">
-                                        <div>
-                                            <p class="text-sm font-medium text-[var(--text-color)]">Marcus Kane</p>
-                                            <p class="text-xs text-body-muted font-medium">marcus.kane@example.com</p>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <span class="text-xs font-medium uppercase tracking-wider text-secondary">Annual Elite</span>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <span class="inline-flex items-center px-3 py-1 rounded-sm text-[9px] font-medium uppercase tracking-widest bg-green-500/10 text-green-500 border border-green-500/20">
-                                            Active
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button class="text-gray-400 hover:text-primary transition-colors px-2 bg-transparent border-0 cursor-pointer"><i class="fas fa-edit"></i></button>
-                                        <button class="text-gray-400 hover:text-red-500 transition-colors px-2 bg-transparent border-0 cursor-pointer"><i class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
+        <!-- ========== PRODUCTION QUEUE ========== -->
+        <div id="page-production" class="page-content hidden">
+            <div class="card-design p-6">
+                <h3 class="font-bold text-2xl mb-2">Production Queue</h3>
+                <p class="text-sm text-neutral-dark/60 dark:text-gray-400 mb-6">Manage active production jobs and update stages.</p>
 
-                                <tr class="hover:bg-[var(--bg-color)] transition-colors group">
-                                    <td class="px-6 py-4 flex items-center gap-3">
-                                        <div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-[var(--text-color)] font-medium text-sm shrink-0">ER</div>
-                                        <div>
-                                            <p class="text-sm font-medium text-[var(--text-color)]">Elena Rostova</p>
-                                            <p class="text-xs text-body-muted font-medium">elena.r@example.com</p>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <span class="text-xs font-medium uppercase tracking-wider text-primary">Monthly Flex</span>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <span class="inline-flex items-center px-3 py-1 rounded-sm text-[9px] font-medium uppercase tracking-widest bg-red-500/10 text-red-500 border border-red-500/20">
-                                            Payment Failed
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button class="text-gray-400 hover:text-primary transition-colors px-2 bg-transparent border-0 cursor-pointer"><i class="fas fa-edit"></i></button>
-                                        <button class="text-gray-400 hover:text-red-500 transition-colors px-2 bg-transparent border-0 cursor-pointer"><i class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
-
-                                <tr class="hover:bg-[var(--bg-color)] transition-colors group">
-                                    <td class="px-6 py-4 flex items-center gap-3">
-                                        <img src="assets/images/company_24.jpg" class="w-10 h-10 rounded-full object-cover">
-                                        <div>
-                                            <p class="text-sm font-medium text-[var(--text-color)]">David Chen</p>
-                                            <p class="text-xs text-body-muted font-medium">d.chen@example.com</p>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <span class="text-xs font-medium uppercase tracking-wider text-[var(--text-color)]">Quarterly Pro</span>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <span class="inline-flex items-center px-3 py-1 rounded-sm text-[9px] font-medium uppercase tracking-widest bg-green-500/10 text-green-500 border border-green-500/20">
-                                            Active
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button class="text-gray-400 hover:text-primary transition-colors px-2 bg-transparent border-0 cursor-pointer"><i class="fas fa-edit"></i></button>
-                                        <button class="text-gray-400 hover:text-red-500 transition-colors px-2 bg-transparent border-0 cursor-pointer"><i class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CLASSES SCHEDULE MANAGEMENT -->
-            <div id="section-items" class="page-section hidden animate-fade-in-up space-y-6 max-w-7xl mx-auto pb-12">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-                    <h2 class="text-3xl md:text-4xl font-medium text-[var(--text-color)] uppercase tracking-tight">Schedule Management</h2>
-                    <button class="w-full sm:w-auto inline-flex bg-primary text-white px-6 py-3 rounded-full font-medium uppercase tracking-widest text-xs hover:bg-[#DC2626] transition-colors items-center justify-center gap-2 shadow-md border-0 cursor-pointer">
-                        <i class="fas fa-plus"></i> Add Class
-                    </button>
-                </div>
-                
-                <div class="bg-card border border-theme rounded-3xl p-0 overflow-hidden shadow-sm">
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="bg-[var(--bg-color)] border-b border-theme">
-                                    <th class="px-6 py-5 text-xs font-medium text-body-muted uppercase tracking-widest whitespace-nowrap">Time & Studio</th>
-                                    <th class="px-6 py-5 text-xs font-medium text-body-muted uppercase tracking-widest whitespace-nowrap">Format</th>
-                                    <th class="px-6 py-5 text-xs font-medium text-body-muted uppercase tracking-widest whitespace-nowrap">Instructor</th>
-                                    <th class="px-6 py-5 text-xs font-medium text-body-muted uppercase tracking-widest whitespace-nowrap text-center">Capacity</th>
-                                    <th class="px-6 py-5 text-xs font-medium text-body-muted uppercase tracking-widest whitespace-nowrap text-right">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-[var(--border-color)]">
-                                
-                                <tr class="hover:bg-[var(--bg-color)] transition-colors group">
-                                    <td class="px-6 py-4">
-                                        <p class="text-sm font-medium text-[var(--text-color)] whitespace-nowrap">Today, 06:00 AM</p>
-                                        <p class="text-xs text-body-muted font-medium">Turf Zone</p>
-                                    </td>
-                                    <td class="px-6 py-4 min-w-[150px]">
-                                        <span class="text-sm font-medium text-[var(--text-color)] uppercase tracking-wide">HIIT Burn</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm font-medium text-body-muted whitespace-nowrap">Elena R.</td>
-                                    <td class="px-6 py-4 text-center">
-                                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 mb-1">
-                                            <div class="bg-primary h-1.5 rounded-full" style="width: 85%"></div>
-                                        </div>
-                                        <span class="text-xs font-medium uppercase text-gray-500">25 / 30 Booked</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button class="text-gray-400 hover:text-primary transition-colors px-2 bg-transparent border-0 cursor-pointer"><i class="fas fa-cog"></i></button>
-                                    </td>
-                                </tr>
-
-                                <tr class="hover:bg-[var(--bg-color)] transition-colors group">
-                                    <td class="px-6 py-4">
-                                        <p class="text-sm font-medium text-[var(--text-color)] whitespace-nowrap">Today, 08:00 AM</p>
-                                        <p class="text-xs text-body-muted font-medium">The Iron Room</p>
-                                    </td>
-                                    <td class="px-6 py-4 min-w-[150px]">
-                                        <span class="text-sm font-medium text-[var(--text-color)] uppercase tracking-wide">Power Forge</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm font-medium text-body-muted whitespace-nowrap">Marcus K.</td>
-                                    <td class="px-6 py-4 text-center">
-                                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 mb-1">
-                                            <div class="bg-red-500 h-1.5 rounded-full" style="width: 100%"></div>
-                                        </div>
-                                        <span class="text-xs font-medium uppercase text-red-500">15 / 15 Full</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button class="text-gray-400 hover:text-primary transition-colors px-2 bg-transparent border-0 cursor-pointer"><i class="fas fa-cog"></i></button>
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- REVENUE SECTION -->
-            <div id="section-revenue" class="page-section hidden animate-fade-in-up space-y-6 max-w-7xl mx-auto pb-12">
-                <h2 class="text-3xl md:text-4xl font-medium text-[var(--text-color)] uppercase tracking-tight mb-6">Financial Overview</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div class="bg-card border border-theme p-6 rounded-3xl shadow-sm text-center">
-                        <i class="fas fa-wallet text-3xl text-gray-400 mb-4"></i>
-                        <h3 class="text-body-muted text-xs font-medium uppercase tracking-widest mb-1">Gross Revenue (MTD)</h3>
-                        <p class="text-3xl font-medium text-[var(--text-color)]">$142,500</p>
-                    </div>
-                    <div class="bg-card border border-theme p-6 rounded-3xl shadow-sm text-center">
-                        <i class="fas fa-redo text-3xl text-secondary mb-4"></i>
-                        <h3 class="text-body-muted text-xs font-medium uppercase tracking-widest mb-1">Recurring (MRR)</h3>
-                        <p class="text-3xl font-medium text-[var(--text-color)]">$124,000</p>
-                    </div>
-                    <div class="bg-card border border-theme p-6 rounded-3xl shadow-sm text-center">
-                        <i class="fas fa-shopping-cart text-3xl text-primary mb-4"></i>
-                        <h3 class="text-body-muted text-xs font-medium uppercase tracking-widest mb-1">PT & Supplements</h3>
-                        <p class="text-3xl font-medium text-[var(--text-color)]">$18,500</p>
-                    </div>
-                </div>
-
-                <div class="bg-card border border-theme rounded-3xl p-8 shadow-sm">
-                    <div class="flex justify-between items-center mb-8 border-b border-theme pb-4">
-                        <h3 class="text-lg font-medium uppercase tracking-tight text-[var(--text-color)]">Monthly Target</h3>
-                        <span class="text-sm font-medium text-gray-500">Goal: $150,000</span>
-                    </div>
-                    <div class="relative pt-1">
-                        <div class="flex mb-2 items-center justify-between">
+                <div class="space-y-5">
+                    <!-- Job 1 -->
+                    <div class="p-5 bg-[rgba(var(--color-rgb-primary),0.04)] dark:bg-[rgba(var(--color-rgb-bright),0.05)] rounded-2xl border border-[rgba(var(--color-rgb-primary),0.08)]">
+                        <div class="flex flex-wrap justify-between items-start gap-3 mb-4">
                             <div>
-                                <span class="text-xs font-medium inline-block py-1 px-2 uppercase rounded-sm text-primary bg-primary/10 border border-primary/20">
-                                    95% Complete
-                                </span>
+                                <div class="flex items-center gap-2">
+                                    <p class="font-bold text-lg">#BN-2026-042 — Executive Kits</p>
+                                    <span class="status-badge status-production">Production</span>
+                                </div>
+                                <p class="text-sm text-neutral-dark/60 dark:text-gray-400">Client: Michael Johnson · 250 units · Due Apr 5</p>
                             </div>
-                            <div class="text-right">
-                                <span class="text-xs font-medium inline-block text-[var(--text-color)]">
-                                    $7,500 Remaining
-                                </span>
+                            <div class="flex gap-2">
+                                <button class="btn-outline-design text-xs px-4 py-1.5"><i class="fas fa-pause mr-1"></i>Pause</button>
+                                <button class="btn-primary-design text-xs px-4 py-1.5"><i class="fas fa-forward mr-1"></i>Advance Stage</button>
                             </div>
                         </div>
-                        <div class="overflow-hidden h-4 mb-4 text-xs flex rounded-full bg-gray-200 dark:bg-gray-700">
-                            <div style="width: 95%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-primary"></div>
+                        <div class="flex flex-wrap justify-between gap-y-4 mt-6">
+                            <div class="tracking-step completed">
+                                <div class="tracking-icon"><i class="fas fa-check"></i></div>
+                                <span class="tracking-label">Order Received</span>
+                            </div>
+                            <div class="tracking-step completed">
+                                <div class="tracking-icon"><i class="fas fa-check"></i></div>
+                                <span class="tracking-label">Design Proof Sent</span>
+                            </div>
+                            <div class="tracking-step active">
+                                <div class="tracking-icon"><i class="fas fa-cog fa-spin"></i></div>
+                                <span class="tracking-label">Production</span>
+                            </div>
+                            <div class="tracking-step">
+                                <div class="tracking-icon"><i class="fas fa-clipboard-check"></i></div>
+                                <span class="tracking-label">Quality Checked</span>
+                            </div>
+                            <div class="tracking-step">
+                                <div class="tracking-icon"><i class="fas fa-truck"></i></div>
+                                <span class="tracking-label">Dispatched</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job 2 -->
+                    <div class="p-5 bg-[rgba(var(--color-rgb-primary),0.04)] dark:bg-[rgba(var(--color-rgb-bright),0.05)] rounded-2xl border border-[rgba(var(--color-rgb-primary),0.08)]">
+                        <div class="flex flex-wrap justify-between items-start gap-3 mb-4">
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <p class="font-bold text-lg">#BN-2026-038 — Branded Hoodies</p>
+                                    <span class="status-badge status-proof">Awaiting Approval</span>
+                                </div>
+                                <p class="text-sm text-neutral-dark/60 dark:text-gray-400">Client: Sarah Kim · 500 units · Proof sent Mar 19</p>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="btn-outline-design text-xs px-4 py-1.5"><i class="fas fa-redo mr-1"></i>Resend Proof</button>
+                                <button class="btn-primary-design text-xs px-4 py-1.5"><i class="fas fa-check mr-1"></i>Approve & Start</button>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap justify-between gap-y-4 mt-6">
+                            <div class="tracking-step completed">
+                                <div class="tracking-icon"><i class="fas fa-check"></i></div>
+                                <span class="tracking-label">Order Received</span>
+                            </div>
+                            <div class="tracking-step active">
+                                <div class="tracking-icon"><i class="fas fa-eye"></i></div>
+                                <span class="tracking-label">Design Proof Sent</span>
+                            </div>
+                            <div class="tracking-step">
+                                <div class="tracking-icon"><i class="fas fa-cog"></i></div>
+                                <span class="tracking-label">Production</span>
+                            </div>
+                            <div class="tracking-step">
+                                <div class="tracking-icon"><i class="fas fa-clipboard-check"></i></div>
+                                <span class="tracking-label">Quality Checked</span>
+                            </div>
+                            <div class="tracking-step">
+                                <div class="tracking-icon"><i class="fas fa-truck"></i></div>
+                                <span class="tracking-label">Dispatched</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job 3 -->
+                    <div class="p-5 bg-[rgba(var(--color-rgb-primary),0.04)] dark:bg-[rgba(var(--color-rgb-bright),0.05)] rounded-2xl border border-[rgba(var(--color-rgb-primary),0.08)]">
+                        <div class="flex flex-wrap justify-between items-start gap-3 mb-4">
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <p class="font-bold text-lg">#BN-2026-027 — Tech & Gadgets</p>
+                                    <span class="status-badge status-quality">Quality Check</span>
+                                </div>
+                                <p class="text-sm text-neutral-dark/60 dark:text-gray-400">Client: Amara Lopez · 300 units · Ready to dispatch</p>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="btn-outline-design text-xs px-4 py-1.5"><i class="fas fa-clipboard mr-1"></i>Log Check</button>
+                                <button class="btn-primary-design text-xs px-4 py-1.5"><i class="fas fa-truck mr-1"></i>Mark Dispatched</button>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap justify-between gap-y-4 mt-6">
+                            <div class="tracking-step completed">
+                                <div class="tracking-icon"><i class="fas fa-check"></i></div>
+                                <span class="tracking-label">Order Received</span>
+                            </div>
+                            <div class="tracking-step completed">
+                                <div class="tracking-icon"><i class="fas fa-check"></i></div>
+                                <span class="tracking-label">Design Proof Sent</span>
+                            </div>
+                            <div class="tracking-step completed">
+                                <div class="tracking-icon"><i class="fas fa-check"></i></div>
+                                <span class="tracking-label">Production</span>
+                            </div>
+                            <div class="tracking-step active">
+                                <div class="tracking-icon"><i class="fas fa-clipboard-check"></i></div>
+                                <span class="tracking-label">Quality Checked</span>
+                            </div>
+                            <div class="tracking-step">
+                                <div class="tracking-icon"><i class="fas fa-truck"></i></div>
+                                <span class="tracking-label">Dispatched</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- SETTINGS SECTION -->
-            <div id="section-settings" class="page-section hidden animate-fade-in-up space-y-6 max-w-7xl mx-auto pb-12">
-                <h2 class="text-3xl md:text-4xl font-medium text-[var(--text-color)] uppercase tracking-tight mb-6">Facility Settings</h2>
-                
-                <div class="bg-card border border-theme rounded-3xl p-8 md:p-10 shadow-sm max-w-3xl">
-                    <form class="space-y-6">
-                        <div>
-                            <h3 class="text-sm font-medium text-[var(--text-color)] uppercase tracking-wide mb-4 border-b border-theme pb-2">Operational Hours</h3>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-xs font-medium text-body-muted uppercase tracking-widest mb-2">Staffed Hours Start</label>
-                                    <input type="time" value="05:00" class="w-full px-5 py-3 rounded-xl bg-[var(--bg-color)] border border-theme text-[var(--text-color)] focus:outline-none focus:border-primary font-medium">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-medium text-body-muted uppercase tracking-widest mb-2">Staffed Hours End</label>
-                                    <input type="time" value="22:00" class="w-full px-5 py-3 rounded-xl bg-[var(--bg-color)] border border-theme text-[var(--text-color)] focus:outline-none focus:border-primary font-medium">
-                                </div>
-                            </div>
-                        </div>
+        <!-- ========== CLIENT MANAGEMENT ========== -->
+        <div id="page-clients" class="page-content hidden">
+            <div class="card-design p-6">
+                <div class="flex flex-wrap justify-between items-center gap-3 mb-6">
+                    <div>
+                        <h3 class="font-bold text-2xl">Client Management</h3>
+                        <p class="text-sm text-neutral-dark/60 dark:text-gray-400">Manage client accounts, contacts, and order history.</p>
+                    </div>
+                    <button class="btn-primary-design px-5 py-2 text-sm"><i class="fas fa-user-plus"></i> Add Client</button>
+                </div>
 
-                        <div class="pt-4">
-                            <h3 class="text-sm font-medium text-[var(--text-color)] uppercase tracking-wide mb-4 border-b border-theme pb-2">Access Control</h3>
-                            <div class="flex items-center justify-between bg-[var(--bg-color)] p-4 rounded-xl border border-theme">
-                                <div>
-                                    <p class="font-medium text-sm text-[var(--text-color)]">24/7 Biometric Access</p>
-                                    <p class="text-xs text-body-muted mt-1">Allow active members after-hours access.</p>
-                                </div>
-                                <label class="relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" checked class="sr-only peer">
-                                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <div class="pt-6 border-t border-theme">
-                            <button type="button" class="bg-primary hover:bg-[#DC2626] text-white px-8 py-4 rounded-full font-medium uppercase tracking-widest text-xs transition-all hover:scale-[1.02] shadow-lg shadow-primary/30 border-0 cursor-pointer">Save Changes</button>
-                        </div>
-                    </form>
+                <div class="overflow-x-auto">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Client</th>
+                                <th>Company</th>
+                                <th>Email</th>
+                                <th>Orders</th>
+                                <th>Total Spent</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-600 to-indigo-500 flex items-center justify-center text-white text-xs font-bold shadow-sm">MJ</div>
+                                        <span class="font-semibold">Michael Johnson</span>
+                                    </div>
+                                </td>
+                                <td>Acme Corp</td>
+                                <td>michael@acme.com</td>
+                                <td>5</td>
+                                <td class="font-semibold">$24,850.00</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <div class="flex gap-2">
+                                        <button class="text-gift-slate hover:text-gift-slate-dark" title="View"><i class="fas fa-eye"></i></button>
+                                        <button class="text-gift-slate hover:text-gift-slate-dark" title="Edit"><i class="fas fa-edit"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-9 h-9 rounded-full bg-gradient-to-br from-amber-500 to-orange-400 flex items-center justify-center text-white text-xs font-bold shadow-sm">SK</div>
+                                        <span class="font-semibold">Sarah Kim</span>
+                                    </div>
+                                </td>
+                                <td>Nimbus Inc</td>
+                                <td>sarah@nimbus.io</td>
+                                <td>3</td>
+                                <td class="font-semibold">$18,200.00</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <div class="flex gap-2">
+                                        <button class="text-gift-slate hover:text-gift-slate-dark" title="View"><i class="fas fa-eye"></i></button>
+                                        <button class="text-gift-slate hover:text-gift-slate-dark" title="Edit"><i class="fas fa-edit"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-500 to-teal-400 flex items-center justify-center text-white text-xs font-bold shadow-sm">MR</div>
+                                        <span class="font-semibold">Marcus Reed</span>
+                                    </div>
+                                </td>
+                                <td>Vertex Global</td>
+                                <td>marcus@vertex.com</td>
+                                <td>4</td>
+                                <td class="font-semibold">$15,400.00</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <div class="flex gap-2">
+                                        <button class="text-gift-slate hover:text-gift-slate-dark" title="View"><i class="fas fa-eye"></i></button>
+                                        <button class="text-gift-slate hover:text-gift-slate-dark" title="Edit"><i class="fas fa-edit"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-9 h-9 rounded-full bg-gradient-to-br from-purple-500 to-pink-400 flex items-center justify-center text-white text-xs font-bold shadow-sm">AL</div>
+                                        <span class="font-semibold">Amara Lopez</span>
+                                    </div>
+                                </td>
+                                <td>Pulse Media</td>
+                                <td>amara@pulse.co</td>
+                                <td>2</td>
+                                <td class="font-semibold">$12,900.00</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <div class="flex gap-2">
+                                        <button class="text-gift-slate hover:text-gift-slate-dark" title="View"><i class="fas fa-eye"></i></button>
+                                        <button class="text-gift-slate hover:text-gift-slate-dark" title="Edit"><i class="fas fa-edit"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-9 h-9 rounded-full bg-gradient-to-br from-gray-500 to-gray-400 flex items-center justify-center text-white text-xs font-bold shadow-sm">DC</div>
+                                        <span class="font-semibold">David Chen</span>
+                                    </div>
+                                </td>
+                                <td>Globex</td>
+                                <td>david@globex.net</td>
+                                <td>1</td>
+                                <td class="font-semibold">$7,480.00</td>
+                                <td><span class="status-badge status-inactive">Inactive</span></td>
+                                <td>
+                                    <div class="flex gap-2">
+                                        <button class="text-gift-slate hover:text-gift-slate-dark" title="View"><i class="fas fa-eye"></i></button>
+                                        <button class="text-gift-slate hover:text-gift-slate-dark" title="Edit"><i class="fas fa-edit"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>
 
-            <!-- FOOTER -->
-            <div class="mt-8 pt-8 border-t border-theme flex flex-col sm:flex-row items-center justify-between text-xs font-medium uppercase tracking-widest text-body-muted max-w-7xl mx-auto pb-6">
-                <p>&copy; 2026 BrandNest Merchandise Admin. All rights reserved.</p>
-                <div class="flex gap-6 mt-4 sm:mt-0">
-                    <a href="#" class="hover:text-primary transition-colors">System Status</a>
-                    <a href="#" class="hover:text-primary transition-colors">Admin Logs</a>
+        <!-- ========== INVENTORY ========== -->
+        <div id="page-inventory" class="page-content hidden">
+            <div class="card-design p-6">
+                <div class="flex flex-wrap justify-between items-center gap-3 mb-6">
+                    <div>
+                        <h3 class="font-bold text-2xl">Inventory Management</h3>
+                        <p class="text-sm text-neutral-dark/60 dark:text-gray-400">Track stock levels for all gifting products.</p>
+                    </div>
+                    <button class="btn-primary-design px-5 py-2 text-sm"><i class="fas fa-plus"></i> Add Stock</button>
+                </div>
+
+                <!-- Low stock alert -->
+                <div class="p-4 mb-5 bg-[#FFF3E0] dark:bg-[#E65100]/20 rounded-2xl border border-[#F59E0B]/30 flex items-start gap-3">
+                    <i class="fas fa-exclamation-triangle text-[#E65100] dark:text-[#FFCC80] text-xl mt-0.5"></i>
+                    <div>
+                        <p class="font-bold text-[#E65100] dark:text-[#FFCC80]">Low Stock Alert</p>
+                        <p class="text-sm text-[#E65100]/80 dark:text-[#FFCC80]/80">3 products are running low and may affect upcoming orders. Review and reorder soon.</p>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Stock</th>
+                                <th>Reserved</th>
+                                <th>Available</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-semibold">Premium Leather Folio</td>
+                                <td>Executive Kits</td>
+                                <td>420</td>
+                                <td>250</td>
+                                <td>170</td>
+                                <td><span class="status-badge status-active">In Stock</span></td>
+                                <td><button class="text-gift-slate hover:text-gift-slate-dark"><i class="fas fa-edit"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Yeti Rambler Tumbler</td>
+                                <td>Drinkware</td>
+                                <td>180</td>
+                                <td>120</td>
+                                <td>60</td>
+                                <td><span class="status-badge status-low">Low Stock</span></td>
+                                <td><button class="text-gift-slate hover:text-gift-slate-dark"><i class="fas fa-edit"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Embroidered Hoodie (M)</td>
+                                <td>Apparel</td>
+                                <td>650</td>
+                                <td>500</td>
+                                <td>150</td>
+                                <td><span class="status-badge status-active">In Stock</span></td>
+                                <td><button class="text-gift-slate hover:text-gift-slate-dark"><i class="fas fa-edit"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Wireless Charging Pad</td>
+                                <td>Tech & Gadgets</td>
+                                <td>95</td>
+                                <td>80</td>
+                                <td>15</td>
+                                <td><span class="status-badge status-low">Low Stock</span></td>
+                                <td><button class="text-gift-slate hover:text-gift-slate-dark"><i class="fas fa-edit"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Executive Pen Set</td>
+                                <td>Desk & Stationery</td>
+                                <td>800</td>
+                                <td>300</td>
+                                <td>500</td>
+                                <td><span class="status-badge status-active">In Stock</span></td>
+                                <td><button class="text-gift-slate hover:text-gift-slate-dark"><i class="fas fa-edit"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Festive Hamper Box</td>
+                                <td>Festive Hampers</td>
+                                <td>45</td>
+                                <td>40</td>
+                                <td>5</td>
+                                <td><span class="status-badge status-low">Critical</span></td>
+                                <td><button class="text-gift-slate hover:text-gift-slate-dark"><i class="fas fa-edit"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>
 
-        </main>
+        <!-- ========== ANALYTICS ========== -->
+        <div id="page-analytics" class="page-content hidden">
+            <div class="card-design p-6">
+                <h3 class="font-bold text-2xl mb-2">Analytics & Reports</h3>
+                <p class="text-sm text-neutral-dark/60 dark:text-gray-400 mb-6">Performance metrics across orders, clients, and production.</p>
+
+                <!-- KPI cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                    <div class="p-5 rounded-2xl bg-[rgba(var(--color-rgb-primary),0.04)] dark:bg-[rgba(var(--color-rgb-bright),0.05)] border border-[rgba(var(--color-rgb-primary),0.08)]">
+                        <p class="text-xs text-neutral-dark/60 dark:text-gray-400 mb-1">Avg. Order Value</p>
+                        <p class="text-2xl font-bold text-gift-slate">$9,240</p>
+                        <p class="text-xs text-emerald-500 mt-1"><i class="fas fa-arrow-up"></i> 6.2% vs last month</p>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-[rgba(var(--color-rgb-primary),0.04)] dark:bg-[rgba(var(--color-rgb-bright),0.05)] border border-[rgba(var(--color-rgb-primary),0.08)]">
+                        <p class="text-xs text-neutral-dark/60 dark:text-gray-400 mb-1">Avg. Production Time</p>
+                        <p class="text-2xl font-bold text-gift-slate">11.4 days</p>
+                        <p class="text-xs text-emerald-500 mt-1"><i class="fas fa-arrow-down"></i> 1.8 days faster</p>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-[rgba(var(--color-rgb-primary),0.04)] dark:bg-[rgba(var(--color-rgb-bright),0.05)] border border-[rgba(var(--color-rgb-primary),0.08)]">
+                        <p class="text-xs text-neutral-dark/60 dark:text-gray-400 mb-1">Repeat Client Rate</p>
+                        <p class="text-2xl font-bold text-gift-slate">74%</p>
+                        <p class="text-xs text-emerald-500 mt-1"><i class="fas fa-arrow-up"></i> 4% growth</p>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-[rgba(var(--color-rgb-primary),0.04)] dark:bg-[rgba(var(--color-rgb-bright),0.05)] border border-[rgba(var(--color-rgb-primary),0.08)]">
+                        <p class="text-xs text-neutral-dark/60 dark:text-gray-400 mb-1">On-Time Delivery</p>
+                        <p class="text-2xl font-bold text-gift-slate">98.2%</p>
+                        <p class="text-xs text-emerald-500 mt-1"><i class="fas fa-arrow-up"></i> 0.5% improvement</p>
+                    </div>
+                </div>
+
+                <!-- Top products & categories -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="p-5 rounded-2xl bg-[rgba(var(--color-rgb-primary),0.04)] dark:bg-[rgba(var(--color-rgb-bright),0.05)] border border-[rgba(var(--color-rgb-primary),0.08)]">
+                        <h4 class="font-bold text-lg mb-4">Top Product Categories</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="font-medium">Executive Kits</span>
+                                    <span class="font-bold">42%</span>
+                                </div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:42%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="font-medium">Apparel</span>
+                                    <span class="font-bold">28%</span>
+                                </div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:28%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="font-medium">Drinkware</span>
+                                    <span class="font-bold">16%</span>
+                                </div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:16%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="font-medium">Tech & Gadgets</span>
+                                    <span class="font-bold">9%</span>
+                                </div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:9%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="font-medium">Other</span>
+                                    <span class="font-bold">5%</span>
+                                </div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:5%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 rounded-2xl bg-[rgba(var(--color-rgb-primary),0.04)] dark:bg-[rgba(var(--color-rgb-bright),0.05)] border border-[rgba(var(--color-rgb-primary),0.08)]">
+                        <h4 class="font-bold text-lg mb-4">Top Clients by Revenue</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 bg-white dark:bg-[#0F172A] rounded-xl">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-600 to-indigo-500 flex items-center justify-center text-white text-xs font-bold shadow-sm">MJ</div>
+                                    <span class="font-medium text-sm">Michael Johnson</span>
+                                </div>
+                                <span class="font-bold text-sm">$24,850</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-white dark:bg-[#0F172A] rounded-xl">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-amber-500 to-orange-400 flex items-center justify-center text-white text-xs font-bold shadow-sm">SK</div>
+                                    <span class="font-medium text-sm">Sarah Kim</span>
+                                </div>
+                                <span class="font-bold text-sm">$18,200</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-white dark:bg-[#0F172A] rounded-xl">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-500 to-teal-400 flex items-center justify-center text-white text-xs font-bold shadow-sm">MR</div>
+                                    <span class="font-medium text-sm">Marcus Reed</span>
+                                </div>
+                                <span class="font-bold text-sm">$15,400</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-white dark:bg-[#0F172A] rounded-xl">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-400 flex items-center justify-center text-white text-xs font-bold shadow-sm">AL</div>
+                                    <span class="font-medium text-sm">Amara Lopez</span>
+                                </div>
+                                <span class="font-bold text-sm">$12,900</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // --- Theme Toggle Logic ---
-        const htmlElement = document.documentElement;
-        const themeToggleBtns = document.querySelectorAll('.theme-toggle');
+        document.addEventListener('DOMContentLoaded', () => {
+            // RTL Toggle
+            const rtlToggle = document.getElementById('rtl-toggle');
+            const rtlToggleMobile = document.getElementById('rtl-toggle-mobile');
+            function setRTL(isRTL) {
+                document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+                localStorage.setItem('dir', isRTL ? 'rtl' : 'ltr');
+            }
+            const savedDir = localStorage.getItem('dir');
+            setRTL(savedDir === 'rtl');
+            if (rtlToggle) rtlToggle.addEventListener('click', () => setRTL(document.documentElement.getAttribute('dir') !== 'rtl'));
+            if (rtlToggleMobile) rtlToggleMobile.addEventListener('click', () => setRTL(document.documentElement.getAttribute('dir') !== 'rtl'));
 
-        function updateTheme() {
-            const isDark = htmlElement.classList.contains('dark');
-            htmlElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-            
-            themeToggleBtns.forEach(btn => {
-                const icon = btn.querySelector('i');
-                if (icon) {
-                    if (isDark) {
-                        icon.classList.remove('fa-moon');
-                        icon.classList.add('fa-sun');
-                    } else {
-                        icon.classList.remove('fa-sun');
-                        icon.classList.add('fa-moon');
+            // Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+            function setTheme(isDark) {
+                if (isDark) document.documentElement.classList.add('dark');
+                else document.documentElement.classList.remove('dark');
+                [themeToggle, themeToggleMobile].forEach(btn => {
+                    if (btn) {
+                        let moon = btn.querySelector('.fa-moon'), sun = btn.querySelector('.fa-sun');
+                        if (isDark) { moon?.classList.add('hidden'); sun?.classList.remove('hidden'); }
+                        else { moon?.classList.remove('hidden'); sun?.classList.add('hidden'); }
                     }
-                }
-            });
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        }
-
-        themeToggleBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation(); 
-                htmlElement.classList.toggle('dark');
-                updateTheme();
-            });
-        });
-
-        // Initialize Light mode explicitly unless specified in local storage as dark
-        if (localStorage.getItem('theme') === 'dark') {
-            htmlElement.classList.add('dark');
-        } else {
-            htmlElement.classList.remove('dark');
-        }
-        updateTheme();
-
-        // --- RTL Toggle Logic ---
-        const rtlToggleBtns = document.querySelectorAll('.rtl-toggle-btn');
-        rtlToggleBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation(); 
-                document.body.classList.add('no-transition');
-                const currentDir = htmlElement.getAttribute('dir');
-                htmlElement.setAttribute('dir', currentDir === 'ltr' ? 'rtl' : 'ltr');
-                setTimeout(() => { document.body.classList.remove('no-transition'); }, 50);
-            });
-        });
-
-        // --- Mobile Sidebar Logic ---
-        const sidebar = document.getElementById('dashboard-sidebar');
-        const mobileToggleBtn = document.getElementById('mobile-sidebar-btn');
-        const closeSidebarBtn = document.getElementById('close-sidebar-btn');
-        const sidebarOverlay = document.getElementById('sidebar-overlay');
-
-        function toggleSidebar() {
-            const isRTL = htmlElement.getAttribute('dir') === 'rtl';
-            const closedClass = isRTL ? 'rtl:translate-x-full' : 'ltr:-translate-x-full';
-            
-            const isHidden = sidebar.classList.contains(closedClass);
-            
-            if (isHidden) {
-                // Open Sidebar
-                sidebar.classList.remove('ltr:-translate-x-full', 'rtl:translate-x-full');
-                sidebarOverlay.classList.remove('hidden');
-                setTimeout(() => { sidebarOverlay.classList.remove('opacity-0'); sidebarOverlay.classList.add('opacity-100'); }, 10);
-            } else {
-                // Close Sidebar
-                if (isRTL) {
-                    sidebar.classList.add('rtl:translate-x-full');
-                } else {
-                    sidebar.classList.add('ltr:-translate-x-full');
-                }
-                sidebarOverlay.classList.remove('opacity-100');
-                sidebarOverlay.classList.add('opacity-0');
-                setTimeout(() => { sidebarOverlay.classList.add('hidden'); }, 300);
-            }
-        }
-
-        if (mobileToggleBtn) mobileToggleBtn.addEventListener('click', toggleSidebar);
-        if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', toggleSidebar);
-        if (sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebar);
-
-        // --- Tab Switching Logic ---
-        window.switchTab = function(event, targetId) {
-            if(event) event.preventDefault();
-            
-            // 1. Hide all sections
-            const sections = document.querySelectorAll('.page-section');
-            sections.forEach(section => {
-                section.classList.remove('block', 'animate-fade-in-up');
-                section.classList.add('hidden');
-            });
-
-            // 2. Show target section and apply animation
-            const targetSection = document.getElementById(targetId);
-            if (targetSection) {
-                targetSection.classList.remove('hidden');
-                void targetSection.offsetWidth; // Trigger reflow to restart animation
-                targetSection.classList.add('block', 'animate-fade-in-up');
-            }
-
-            // 3. Update active state in sidebar links
-            if (event && event.currentTarget && event.currentTarget.classList.contains('sidebar-link')) {
-                document.querySelectorAll('.sidebar-link').forEach(link => {
-                    link.classList.remove('active');
                 });
-                event.currentTarget.classList.add('active');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
             }
+            const savedTheme = localStorage.getItem('theme');
+            setTheme(savedTheme === 'dark');
+            if (themeToggle) themeToggle.addEventListener('click', () => setTheme(!document.documentElement.classList.contains('dark')));
+            if (themeToggleMobile) themeToggleMobile.addEventListener('click', () => setTheme(!document.documentElement.classList.contains('dark')));
 
-            // 4. Close mobile sidebar after clicking a link (on small screens)
-            if (window.innerWidth < 1024 && event) {
-                const isRTL = htmlElement.getAttribute('dir') === 'rtl';
-                if (isRTL) {
-                    sidebar.classList.add('rtl:translate-x-full');
-                } else {
-                    sidebar.classList.add('ltr:-translate-x-full');
-                }
-                sidebarOverlay.classList.remove('opacity-100');
-                sidebarOverlay.classList.add('opacity-0');
-                setTimeout(() => { sidebarOverlay.classList.add('hidden'); }, 300);
+            // Mobile Sidebar
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('open'); }
+            function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('open'); }
+            if (menuToggle) menuToggle.addEventListener('click', (e) => { e.stopPropagation(); sidebar.classList.contains('open') ? closeSidebar() : openSidebar(); });
+            if (overlay) overlay.addEventListener('click', closeSidebar);
+            window.addEventListener('resize', () => { if (window.innerWidth > 768 && sidebar.classList.contains('open')) closeSidebar(); });
+
+            // Navigation
+            const sidebarItems = document.querySelectorAll('.sidebar-item');
+            const pages = document.querySelectorAll('.page-content');
+            const pageTitle = document.getElementById('page-title');
+            const pageSubtitle = document.getElementById('page-subtitle');
+            const titles = {
+                dashboard: { title: 'Admin Dashboard', subtitle: 'Overview of all operations' },
+                orders: { title: 'Order Management', subtitle: 'Review and manage all client orders' },
+                production: { title: 'Production Queue', subtitle: 'Manage active production jobs' },
+                clients: { title: 'Client Management', subtitle: 'Manage client accounts and contacts' },
+                inventory: { title: 'Inventory', subtitle: 'Track stock levels for all products' },
+                analytics: { title: 'Analytics', subtitle: 'Performance metrics and reports' }
+            };
+            function navigateTo(page) {
+                sidebarItems.forEach(i => i.classList.remove('active'));
+                document.querySelector(`.sidebar-item[data-page="${page}"]`)?.classList.add('active');
+                pages.forEach(p => p.classList.add('hidden'));
+                document.getElementById(`page-${page}`)?.classList.remove('hidden');
+                if (titles[page]) { pageTitle.textContent = titles[page].title; pageSubtitle.textContent = titles[page].subtitle; }
+                closeSidebar();
             }
-        };
-
-        // Initialize: Ensure only Overview is shown on load
-        document.addEventListener("DOMContentLoaded", () => {
-            switchTab(null, 'section-overview');
+            sidebarItems.forEach(item => { item.addEventListener('click', () => { navigateTo(item.getAttribute('data-page')); }); });
+            document.querySelectorAll('[data-nav]').forEach(btn => { btn.addEventListener('click', () => { navigateTo(btn.getAttribute('data-nav')); }); });
         });
     </script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    let currentPath = window.location.pathname.split('/').pop() || 'index.html';
-    
-    // First, clear active classes from ALL nav links and reset them to default inactive state
-    document.querySelectorAll('nav a').forEach(link => {
-        link.classList.remove('text-primary', 'dark:text-primary', 'bg-gray-100', 'dark:bg-primary/10', 'font-bold');
-        // Add default inactive classes if they don't have them
-        if (!link.classList.contains('bg-primary')) { // Don't mess with dropdown item hovers if they exist
-            link.classList.add('text-dark-bg', 'dark:text-white');
-        }
-    });
-
-    // Then, find the exact matching link and apply active state
-    let foundMatch = false;
-    document.querySelectorAll('nav a').forEach(link => {
-      let href = link.getAttribute('href');
-      if (href && href === currentPath) {
-        link.classList.add('text-primary', 'dark:text-primary', 'bg-gray-100', 'dark:bg-primary/10', 'font-bold');
-        link.classList.remove('text-dark-bg', 'text-gray-600', 'dark:text-white', 'dark:text-white/70');
-        foundMatch = true;
-        
-        // If it's a dropdown child (like index.html or home2.html), also highlight the parent "Home" link
-        let parentDropdown = link.closest('.group');
-        if (parentDropdown) {
-            let parentLink = parentDropdown.querySelector('a[href="#"]');
-            if (parentLink) {
-                parentLink.classList.add('text-primary', 'dark:text-primary', 'bg-gray-100', 'dark:bg-primary/10', 'font-bold');
-                parentLink.classList.remove('text-dark-bg', 'dark:text-white');
-            }
-        }
-      }
-    });
-    
-    // Fallback: if somehow no match, but we are at root, highlight index.html
-    if (!foundMatch && currentPath === '') {
-        let homeLink = document.querySelector('nav a[href="index.html"]');
-        if (homeLink) {
-            homeLink.classList.add('text-primary', 'dark:text-primary', 'bg-gray-100', 'dark:bg-primary/10', 'font-bold');
-            homeLink.classList.remove('text-dark-bg', 'dark:text-white');
-        }
-    }
-  });
-</script>
-
 </body>
 </html>
-
-
