@@ -190,17 +190,17 @@
   <main class="flex-grow w-full max-w-[100vw] overflow-hidden">
     
 <!-- 1️⃣ HERO SECTION -->
-<section class="relative min-h-screen flex items-center justify-center pt-[120px] pb-16 overflow-hidden bg-white dark:bg-dark-bg text-dark-bg dark:text-white">
+<section class="relative min-h-[450px] md:min-h-[550px] flex items-center justify-center pt-[120px] pb-16 overflow-hidden bg-gray-900 text-white">
   
   <!-- BACKGROUND IMAGE -->
   <div class="absolute inset-0 z-0">
-    <img src="images/hero-about.jpg" class="w-full h-full object-cover opacity-80 dark:opacity-70 scale-105 transform transition-transform duration-[20s] hover:scale-110" alt="Corporate Gifting Background">
-    <div class="absolute inset-0 bg-gradient-to-b from-dark-bg/80 to-dark-bg/30 mix-blend-multiply"></div>
+    <img src="images/hero-about.jpg" class="w-full h-full object-cover opacity-50 scale-105 transform transition-transform duration-[20s] hover:scale-110" alt="Corporate Gifting Background">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/85"></div>
   </div>
-  <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in backdrop-blur-sm bg-white/5 dark:bg-dark-bg/20 p-12 rounded-3xl border border-white/20 shadow-2xl">
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in backdrop-blur-md bg-black/50 p-8 md:p-12 rounded-3xl border border-white/20 shadow-2xl">
 
-    <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 drop-shadow-md">Our Story</h1>
-    <p class="text-xl md:text-2xl text-gray-100 font-light mb-10 max-w-3xl mx-auto drop-shadow">The premier corporate gifting partner redefining how brands connect with people.</p>
+    <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-6 text-white drop-shadow-xl">Our Story</h1>
+    <p class="text-xl md:text-2xl text-gray-200 font-medium mb-10 max-w-3xl mx-auto drop-shadow">The premier corporate gifting partner redefining how brands connect with people.</p>
   </div>
 </section>
 
@@ -417,13 +417,6 @@
         link.classList.remove('text-dark-bg', 'dark:text-white', 'text-gray-600');
         link.style.color = '#2563EB';
         link.style.fontWeight = '800';
-        if (!link.querySelector('.nav-active-dot')) {
-          var dot = document.createElement('span');
-          dot.className = 'nav-active-dot';
-          dot.style.cssText = 'display:block;position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:6px;height:6px;background:#2563EB;border-radius:9999px;box-shadow:0 0 8px #2563EB;';
-          link.style.position = 'relative';
-          link.appendChild(dot);
-        }
         var parentGroup = link.closest('.group');
         if (parentGroup) {
           var parentLink = parentGroup.querySelector('a[href="#"]');

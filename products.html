@@ -191,16 +191,17 @@
     
 
 <!-- 1️⃣ HERO SECTION -->
-<section class="relative min-h-screen flex items-center justify-center pt-[120px] pb-16 overflow-hidden bg-white dark:bg-dark-bg text-dark-bg dark:text-white">
+<section class="relative min-h-[450px] md:min-h-[550px] flex items-center justify-center pt-[120px] pb-16 overflow-hidden bg-gray-900 text-white">
   
   <!-- BACKGROUND IMAGE -->
   <div class="absolute inset-0 z-0">
-    <img src="images/hero-products.jpg" class="w-full h-full object-cover opacity-60 dark:opacity-70" alt="Corporate Gifting Background">
+    <img src="images/hero-products.jpg" class="w-full h-full object-cover opacity-50" alt="Corporate Gifting Background">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/85"></div>
   </div>
   <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in">
 
-    <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight mb-6">Our Products</h1>
-    <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-10">Stationery, Tech, Hampers, Apparel, Trophies.</p>
+    <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight mb-6 text-white drop-shadow-xl">Our Products</h1>
+    <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto font-medium drop-shadow">Stationery, Tech, Hampers, Apparel, Trophies.</p>
     <a href="#section2" class="inline-block bg-primary text-white font-bold px-8 py-4 rounded-full hover:bg-secondary transition-colors">Discover More</a>
   </div>
 </section>
@@ -477,13 +478,6 @@
         link.classList.remove('text-dark-bg', 'dark:text-white', 'text-gray-600');
         link.style.color = '#2563EB';
         link.style.fontWeight = '800';
-        if (!link.querySelector('.nav-active-dot')) {
-          var dot = document.createElement('span');
-          dot.className = 'nav-active-dot';
-          dot.style.cssText = 'display:block;position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:6px;height:6px;background:#2563EB;border-radius:9999px;box-shadow:0 0 8px #2563EB;';
-          link.style.position = 'relative';
-          link.appendChild(dot);
-        }
         var parentGroup = link.closest('.group');
         if (parentGroup) {
           var parentLink = parentGroup.querySelector('a[href="#"]');
